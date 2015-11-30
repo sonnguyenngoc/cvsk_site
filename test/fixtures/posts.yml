@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tag_id: 1
+  title: MyString
+  content: MyText
+  general_benefit: MyText
+
+two:
+  tag_id: 1
+  title: MyString
+  content: MyText
+  general_benefit: MyText

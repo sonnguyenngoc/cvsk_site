@@ -1,0 +1,67 @@
+/* turquoise template */
+
+/* Backgrounds */
+html{ background:url(html-bg.png) repeat-x top left; }
+
+/* Teaser section */
+#teaser h1{ color: #695622; }
+#teaser:after{ background: url("menu-category-bg.png") repeat-x scroll left 0 transparent; }
+
+/* Mazzareli slider */
+.mask-slider-wrapper > .mask{ background-image: url("home-slider-mask.png"); }
+.slider-text h2,
+.tl-carousel h3 a{ color:#695622; }
+.slider-text p{ color: #413B34; }
+
+/* Featured section at homepage */
+#featured,
+#featured:after { background-image: url("menu-category-bg.png"); }
+
+/* Unordered lists */
+ul.bullets li,
+ul.arrows li,
+ul.stars li,
+ul.checklist li { background-image: url("bullet-arrows.png"); color: #695622; }
+ol li{ color: #695622; }
+
+/* Page content */
+.page-content h1 a,
+.page-content h1,
+.page-content h2 a,
+.page-content h2,
+.price-heading h4,
+.price-heading h4 a{
+    color: #695622;
+}
+
+/* Widgets */
+.widget h4.title > a,
+.widget h2.title a,
+.widget h3.title a,
+.widget li a{
+    color: #695622;
+}
+
+.widget_recent_entries li:before,
+.widget_pages li:before,
+.widget_meta li:before{
+    background-image: url("bullet-arrows.png");
+}
+
+/* Gallery && Posts & Events && Reviews */
+.gallery-list h3.title,
+.gallery-list h3.title a,
+.post-list h3.title,
+.post-list h3.title a{
+    color: #695622;
+}
+
+/* Post comments */
+.post .meta .comments{ background-image: url(icon-cloud.png); }
+.post .meta .comments a,
+#comments ul.comment-avatar a{
+    color: #695622;
+}
+article.review{ background-image: url(icon-testimonial.png); }
+.events-calendar{ background-image: url(callendar-events.png); }
+

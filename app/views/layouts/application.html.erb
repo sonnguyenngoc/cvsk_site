@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vegetarian - Restaurant</title>
+
+    <!-- Global stylesheets -->
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900' %>
+	<%= stylesheet_link_tag '/assets/css/icons/icomoon/styles.css' %>
+	<%= stylesheet_link_tag '/assets/css/bootstrap.min.css' %>
+	<%= stylesheet_link_tag '/assets/css/core.min.css' %>
+	<%= stylesheet_link_tag '/assets/css/components.min.css' %>
+	<%= stylesheet_link_tag '/assets/css/colors.min.css' %>
+	<%= stylesheet_link_tag 'custom.css' %>
+	<!-- /global stylesheets -->
+	
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
+	
+	<!-- Core JS files -->
+	<%= javascript_include_tag '/assets/js/plugins/loaders/pace.min.js' %>
+	<%= javascript_include_tag '/assets/js/core/libraries/jquery.min.js' %>
+	<%= javascript_include_tag '/assets/js/core/libraries/bootstrap.min.js' %>
+	<%= javascript_include_tag '/assets/js/plugins/loaders/blockui.min.js' %>
+		<!-- /core JS files -->
+
+</head>
+
+<body>
+
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="<%= root_path %>"><img src="<%= url_for("/assets/images/logo_light.png") %>" alt=""></a>
+
+            <ul class="nav navbar-nav visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+                <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav">
+                <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+                <p class="navbar-text"><span class="label bg-success-400">Online</span></p>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown language-switch">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+						<img src="<%= url_for("/assets/images/flags/gb.png") %>" class="position-left" alt="">
+						English
+					</a>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-bubbles4"></i>
+                        <span class="visible-xs-inline-block position-right">Messages</span>
+                        <span class="badge bg-warning-400">1</span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-content width-350">
+                        <div class="dropdown-content-heading">
+                            Messages
+                            <ul class="icons-list">
+                                <li><a href="#"><i class="icon-compose"></i></a></li>
+                            </ul>
+                        </div>
+
+                        <ul class="media-list dropdown-content-body">
+                            <li class="media">
+                                <div class="media-left">
+                                    <img src="<%= url_for " /assets/images/placeholder.jpg " %>" class="img-circle img-sm" alt="">
+                                    <span class="badge bg-danger-400 media-badge">2</span>
+                                </div>
+
+                                <div class="media-body">
+                                    <a href="#" class="media-heading">
+                                        <span class="text-semibold">James Alexander</span>
+                                        <span class="media-annotation pull-right">04:58</span>
+                                    </a>
+
+                                    <span class="text-muted">who knows, maybe that would be the best thing for me...</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="dropdown-content-footer">
+                            <a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+						<img src="<%= url_for "/assets/images/placeholder.jpg" %>" alt="">
+						<span>Manager</span>
+						<i class="caret"></i>
+					</a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+                        <li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /main navbar -->
+
+
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <!-- Main sidebar -->
+            <div class="sidebar sidebar-main">
+                <div class="sidebar-content">
+
+                    <!-- User menu -->
+                    <div class="sidebar-user">
+                        <div class="category-content">
+                            <div class="media">
+                                <a href="#" class="media-left"><img src="<%= url_for "/assets/images/placeholder.jpg" %>" class="img-circle img-sm" alt=""></a>
+                                <div class="media-body">
+                                    <span class="media-heading text-semibold">Manager</span>
+                                    <div class="text-size-mini text-muted">
+                                        <i class="icon-pin text-size-small"></i> &nbsp;HCM City
+                                    </div>
+                                </div>
+
+                                <div class="media-right media-middle">
+                                    <ul class="icons-list">
+                                        <li>
+                                            <a href="#"><i class="icon-cog3"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /user menu -->
+
+                    <!-- Main navigation -->
+                    <div class="sidebar-category sidebar-category-visible">
+                        <div class="category-content no-padding">
+                            <ul class="navigation navigation-main navigation-accordion">
+
+                                <!-- Main -->
+                                <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+                                <li class="active"><a href="<%= root_path %>"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+                                <li>
+                                    <a href="#"><i class="icon-stack2"></i> <span>Storage</span></a>
+                                    <ul>
+                                        <li><a href="<%= products_path %>">Product List</a></li>
+                                        <li><a href="<%= categories_path %>">Categories</a></li>
+                                        <li><a href="<%= manufacturers_path %>">Manufacturers</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="icon-newspaper2"></i> <span>News & Events</span></a>
+                                    <ul>
+                                        <li><a href="<%= posts_path %>">Post List</a></li>
+										<li><a href="<%= tags_path %>">Tags</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="icon-list-unordered"></i> <span>Orders Management</span></a>
+                                    <ul>
+                                        <li><a href="<%= orders_path %>">Order List</a></li>
+                                        <li><a href="#">Order Statistics</a></li>
+										<li><a href="<%= types_path %>">Type</a></li>
+                                    </ul>
+                                </li>
+                                <!-- /main -->
+
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /main navigation -->
+
+                </div>
+            </div>
+            <!-- /main sidebar -->
+
+
+            <!-- Main content -->
+            <div class="content-wrapper">
+
+                <%= yield %>
+
+            </div>
+            <!-- /main content -->
+
+        </div>
+        <!-- /page content -->
+
+    </div>
+    <!-- /page container -->
+
+</body>
+
+</html>
