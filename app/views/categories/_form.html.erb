@@ -1,25 +1,48 @@
-<%= form_for(@category) do |f| %>
-  <% if @category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+<% if @category.errors.any? %>
+  <div id="error_explanation">
+    <h6><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h6>
 
-      <ul>
-      <% @category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% @category.errors.full_messages.each do |message| %>
+      <p class="label label-warning"><%= message %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_for @category, html: {class: "form-horizontal"} do |f| %>
+    <div class="panel-body">
+        
+        <div class="form-group field">
+            <%= f.label "Title: ", class: "col-lg-3 control-label" %>
+            <div class="col-lg-9">
+              <%= f.text_field :title, placeholder: "Category's title (required)", class: "form-control" %>
+            </div>
+        </div>
+
+        <div class="form-group field">
+            <%= f.label "Description: ", class: "col-lg-3 control-label" %>
+            <div class="col-lg-9">
+              <%= f.text_area :description, rows: "5", cols: "5", placeholder: "Enter category's description here...", class: "form-control" %>
+            </div>
+        </div>
+            
+        <div class="form-group field">
+            <%= f.label "Parent: ", class: "col-lg-3 control-label" %>
+            <div class="col-lg-9">
+              <% Category.all.each do |category| %>
+                <% if @category.id != category.id %>
+                  <div class="row-fluid">
+                    <div class="checkbox">
+                      <%= check_box_tag 'category[parent_ids][]', category.id, @category.parent.include?(category), :id => "category_#{category.id}" %>
+                      <%= f.label category.title, :for => "category_#{category.id}" %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+        </div>
+
+        <div class="text-right">
+          <%= button_tag 'Save <i class="icon-plus22 position-right"></i>'.html_safe, class: "btn btn-primary"%>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

@@ -1,6 +1,65 @@
-<h1>Editing Tag</h1>
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><a href="<%= tags_path %>" class="btn-back"><i class="icon-arrow-left52 position-left"></i></a> <span class="text-semibold">Edit</span> - Tag</h4>
+        </div>
+    </div>
 
-<%= render 'form' %>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="<%= mains_path %>"><i class="icon-home2 position-left"></i> Home</a></li>
+            <li><a href="<%= tags_path %>">Storage</a></li>
+            <li><a href="<%= tags_path %>">Tags</a></li>
+            <li class="active">Edit Tag</li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
 
-<%= link_to 'Show', @tag %> |
-<%= link_to 'Back', tags_path %>
+
+<!-- Content area -->
+<div class="content">
+
+    <!-- Horizontal form options -->
+    <div class="row">
+        <div class="col-md-12">
+
+            <!-- Basic layout-->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Edit Tag</h5>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="panel-body">
+                    <%= render 'form' %>
+                </div>
+
+            </div>
+            <!-- /basic layout -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+	<div class="footer text-muted">
+		Copyright &copy; 2015 - Nhà hàng Chay vì sức khỏe.
+	</div>
+	<!-- /footer -->
+
+</div>
+<!-- /content area -->
+
+<!-- Theme JS files -->
+<%= javascript_include_tag '/assets/js/plugins/forms/selects/select2.min.js' %>
+<%= javascript_include_tag '/assets/js/plugins/forms/styling/uniform.min.js' %>
+
+<%= javascript_include_tag '/assets/js/core/app.js' %>
+<%= javascript_include_tag '/assets/js/pages/form_layouts.js' %>
+<!-- /theme JS files -->

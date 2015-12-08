@@ -1,34 +1,105 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><a href="<%= products_path %>" class="btn-back"><i class="icon-arrow-left52 position-left"></i></a> <span class="text-semibold">Products</span> - Management</h4>
+        </div>
+    </div>
 
-<p>
-  <strong>Image url:</strong>
-  <%= @product.image_url %>
-</p>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="<%= mains_path %>"><i class="icon-home2 position-left"></i> Home</a></li>
+            <li><a href="<%= products_path %>">Storage</a></li>
+            <li><a href="<%= products_path %>">Product List</a></li>
+            <li class="active"><%= @product.name %></li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<!-- Content area -->
+<div class="content">
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title"><span class="text-semibold"><%= @product.name %></span></h5>
+            
+            <%= content_tag(:p, class: "color-red") do %>
+              <%= notice %>
+            <% end %>
+        
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+					<%= label "", "Picture: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+						<%= image_tag(@product.image_url, size: "250x150", alt: "Picture's Product", class: "img-rouded") %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= label "", "Name: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static text-justify") do %>
+                          <%= @product.name %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= label "", "Price: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static") do %>
+                          <%= @product.price %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= label "", "Category: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static") do %>
+                          <%= @product.category.title %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= label "", "Manufacturer: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static") do %>
+                          <%= @product.manufacturer.name %>
+                        <% end %>
+                    </div>
+                </div>
+                    <div class="form-group">
+                    <%= label "", "Description: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static text-justify") do %>
+                          <%= @product.description %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= label "", "Created At: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static") do %>
+                          <%= @product.created_at.strftime("%d/%m/%Y") %>
+                        <% end %>
+                    </div>
+                </div>
+            </form>
+        
+            <%= link_to '<i class="icon-backward2 position-left"></i> Back'.html_safe, products_path, class: "btn btn-primary" %>
+            
+        </div>
+    </div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
+    <!-- Footer -->
+	<div class="footer text-muted">
+		Copyright &copy; 2015 - Nhà hàng Chay vì sức khỏe.
+	</div>
+	<!-- /footer -->
 
-<p>
-  <strong>Category:</strong>
-  <%= @product.category_id %>
-</p>
+</div>
+<!-- /content area -->
 
-<p>
-  <strong>Manufacturer:</strong>
-  <%= @product.manufacturer_id %>
-</p>
+<!-- Theme JS files -->
+<%= javascript_include_tag '/assets/js/plugins/tables/datatables/datatables.min.js' %>
+<%= javascript_include_tag '/assets/js/plugins/forms/selects/select2.min.js' %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= javascript_include_tag '/assets/js/core/app.js' %>
+<!-- /theme JS files -->

@@ -1,25 +1,33 @@
-<%= form_for(@tag) do |f| %>
-  <% if @tag.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
+<% if @tag.errors.any? %>
+  <div id="error_explanation">
+    <h6><%= pluralize(@tag.errors.count, "error") %> prohibited this tag from being saved:</h6>
 
-      <ul>
-      <% @tag.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% @tag.errors.full_messages.each do |message| %>
+      <p class="label label-warning"><%= message %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_for @tag, html: {class: "form-horizontal"} do |f| %>
+
+    <div class="panel-body">
+        
+        <div class="form-group field">
+            <%= f.label "Title: ", class: "col-lg-3 control-label" %>
+            <div class="col-lg-9">
+              <%= f.text_field :title, placeholder: "Tag's title", class: "form-control" %>
+            </div>
+        </div>
+
+        <div class="form-group field">
+            <%= f.label "Description: ", class: "col-lg-3 control-label" %>
+            <div class="col-lg-9">
+              <%= f.text_area :description, rows: "5", cols: "5", placeholder: "Enter tag's description here", class: "form-control" %>
+            </div>
+        </div>
+
+        <div class="text-right">
+          <%= button_tag 'Save <i class="icon-plus22 position-right"></i>'.html_safe, class: "btn btn-primary"%>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

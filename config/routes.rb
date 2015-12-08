@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
-  root 'mains#index'
+  resources :homes do
+    collection do
+      get :contact
+      get :news
+      get :intro
+      get :service
+    end
+  end
+  root 'homes#index'
+  resources :mains
   resources :types
   resources :orders
   resources :tags

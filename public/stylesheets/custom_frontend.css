@@ -25,3 +25,15 @@
 #c_scheme {
     display: none;
 }
+.image-large-post {
+    width: 800px;
+    height: 600px;
+}
+.image-post {
+    width: 360px;
+    height: 150px;
+}
+.image-slideshow-small {
+    width: 250px;
+    height: 130px;
+}

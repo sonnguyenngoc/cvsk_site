@@ -1,33 +1,59 @@
-<%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
+<% if @post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <% @post.errors.full_messages.each do |message| %>
+            <span class="label label-warning"><%= message %></span>
+        <% end %>
+        <hr/>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :tag_id %><br>
-    <%= f.number_field :tag_id %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-  <div class="field">
-    <%= f.label :general_benefit %><br>
-    <%= f.text_area :general_benefit %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
+
+<%= form_for @post, html: {class: "form-horizontal"} do |f| %>
+
+    <div class="form-group">
+        <%= f.label "Picture/Logo: ", class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+          <%= f.file_field :image_url, class: "file-styled" %>
+          <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
+          <%= image_tag(@post.image_url, size: "250x150", alt: "Picture/logo's Manufacturer", class: "img-rouded") %>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <%= f.label "Title: ", class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+            <%= f.text_field :title, placeholder: "Post's title (required)", class: "form-control" %>
+        </div>
+    </div>
+        
+    <div class="form-group">
+        <%= f.label "Tag: ", class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+            <%= f.collection_select(:tag_id, Tag.all, :id, :title, {:prompt => "Please select..."}, {class: "select"}) %>
+        </div>
+        <%= render 'dropdown_js' %>
+    </div>
+
+    <div class="mb-15">
+        <%= f.text_area :content, rows: "4", cols: "4", id: "editor-full" %>
+    </div>
+    
+    <div class="form-group">
+        <%= f.label "General Benefits: ", class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+            <%= f.text_area :general_benefit, rows: "5", cols: "5", placeholder: "Enter post's general benefit here...", class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="text-right">
+        <button type="submit" class="btn btn-success">Save <i class="icon-plus22 position-right"></i></button>
+    </div>
+<% end %>
+
+<!-- Theme JS files -->
+<%= javascript_include_tag '/assets/js/plugins/forms/styling/uniform.min.js' %>
+<%= javascript_include_tag '/assets/js/core/app.js' %>
+
+<%= javascript_include_tag '/assets/js/pages/form_layouts.js' %>
+<%= javascript_include_tag '/ckeditor/ckeditor.js' %>
+<%= javascript_include_tag '/assets/js/pages/editor_ckeditor.js' %>
+<!-- /theme JS files -->

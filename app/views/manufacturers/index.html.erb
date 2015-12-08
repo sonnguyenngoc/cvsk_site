@@ -1,37 +1,102 @@
-<p id="notice"><%= notice %></p>
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><a href="<%= mains_path %>" class="btn-back"><i class="icon-arrow-left52 position-left"></i></a> <span class="text-semibold">Manufacturers</span> - Management</h4>
+        </div>
+    </div>
 
-<h1>Listing Manufacturers</h1>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="<%= mains_path %>"><i class="icon-home2 position-left"></i> Home</a></li>
+            <li><a href="<%= manufacturers_path %>">Storage</a></li>
+            <li class="active">Manufacturers</li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
 
-<table>
-  <thead>
-    <tr>
-      <th>Image url</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Intro</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!-- Content area -->
+<div class="content">
 
-  <tbody>
-    <% @manufacturers.each do |manufacturer| %>
-      <tr>
-        <td><%= manufacturer.image_url %></td>
-        <td><%= manufacturer.name %></td>
-        <td><%= manufacturer.address %></td>
-        <td><%= manufacturer.phone %></td>
-        <td><%= manufacturer.email %></td>
-        <td><%= manufacturer.intro %></td>
-        <td><%= link_to 'Show', manufacturer %></td>
-        <td><%= link_to 'Edit', edit_manufacturer_path(manufacturer) %></td>
-        <td><%= link_to 'Destroy', manufacturer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <!-- Basic datatable -->
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <%= link_to 'New Manufacturer', new_manufacturer_path, class: 'btn btn-primary' %>
+            <hr/>
+            <h5 class="panel-title">Listing <span class="text-semibold">Manufacturer</span></h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse"></a></li>
+                    <li><a data-action="reload"></a></li>
+                    <li><a data-action="close"></a></li>
+                </ul>
+            </div>
+        </div>
 
-<br>
+        <table class="table datatable-manufacturer">
+            <thead>
+                <tr>
+                    <th>Picture/Logo</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Introduction</th>
+                    <th>Created At</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
 
-<%= link_to 'New Manufacturer', new_manufacturer_path %>
+            <tbody>
+              <% @manufacturers.each do |item| %>
+                <tr>
+                  <td><div class="media-left">
+                    <img src="<%= item.image_url if item.image_url? %>" style="width: 82px; height: 56px;" class="img-rounded" alt="">
+                  </div></td>
+                      <td><%= link_to (truncate(strip_tags(item.name), length: 20)), item %></td>
+                      <td><%= truncate(strip_tags(item.address), length: 50) %></td>
+                      <td><%= item.phone %></td>
+                      <td><%= item.email %></td>
+                      <td><%= truncate(strip_tags(item.intro), length: 50) %></td>
+                      <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
+                      <td class="text-center">
+                        <ul class="icons-list">
+                          <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon-menu9"></i>
+                              </a>
+                              <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                  <%= link_to '<i class="glyphicon glyphicon-edit"></i> Edit'.html_safe, edit_manufacturer_path(item) %>
+                                </li>
+                                <li>
+                                  <%= link_to '<i class="icon-cross2"></i> Destroy'.html_safe, item, method: :delete, data: {confirm: 'Bạn có muốn xóa?'} %>
+                                </li>
+                              </ul>
+                          </li>
+                        </ul>
+                      </td>
+                  </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+    <!-- /basic datatable -->
+
+    <!-- Footer -->
+	<div class="footer text-muted">
+		Copyright &copy; 2015 - Nhà hàng Chay vì sức khỏe.
+	</div>
+	<!-- /footer -->
+
+</div>
+<!-- /content area -->
+
+<!-- Theme JS files -->
+<%= javascript_include_tag '/assets/js/plugins/tables/datatables/datatables.min.js' %>
+<%= javascript_include_tag '/assets/js/plugins/forms/selects/select2.min.js' %>
+
+<%= javascript_include_tag '/assets/js/core/app.js' %>
+<%= javascript_include_tag '/javascripts/datatables_manufacturer.js' %>
+<!-- /theme JS files -->

@@ -1,41 +1,62 @@
-<%= form_for(@manufacturer) do |f| %>
-  <% if @manufacturer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@manufacturer.errors.count, "error") %> prohibited this manufacturer from being saved:</h2>
+<% if @manufacturer.errors.any? %>
+  <div id="error_explanation">
+    <h6><%= pluralize(@manufacturer.errors.count, "error") %> prohibited this manufacturer from being saved:</h6>
 
-      <ul>
-      <% @manufacturer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% @manufacturer.errors.full_messages.each do |message| %>
+      <p class="label label-warning"><%= message %></p>
+    <% end %>
+  </div>
+<% end %>
 
-  <div class="field">
-    <%= f.label :image_url %><br>
-    <%= f.text_field :image_url %>
+<%= form_for @manufacturer, html: {class: "form-horizontal"} do |f| %>
+  <div class="form-group">
+      <%= f.label "Picture/Logo: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.file_field :image_url, class: "file-styled" %>
+        <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
+        <%= image_tag(@manufacturer.image_url, size: "250x150", alt: "Picture/logo's Manufacturer", class: "img-rouded") %>
+      </div>
+      <%= render 'choose_file' %>
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  
+  <div class="form-group">
+      <%= f.label "Name: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_field :name, placeholder: "Manufacturer's name (required)", class: "form-control" %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
+  
+  <div class="form-group">
+      <%= f.label "Address: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_field :address, placeholder: "Manufacturer's address (required)", class: "form-control" %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+  
+  <div class="form-group">
+      <%= f.label "Email: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_field :email, placeholder: "Manufacturer's email (required)", class: "form-control" %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+  
+  <div class="form-group">
+      <%= f.label "Phone: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_field :phone, placeholder: "Manufacturer's phone (required)", class: "form-control" %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :intro %><br>
-    <%= f.text_area :intro %>
+
+  <div class="form-group">
+      <%= f.label "Introduction: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_area :intro, rows: "4", cols: "4", id: "editor-full" %>
+        <%= render 'ckeditor_js' %>
+      </div>
+      
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="text-right">
+      <%= button_tag 'Save <i class="icon-plus22 position-right"></i>'.html_safe, class: "btn btn-primary"%>
   </div>
 <% end %>

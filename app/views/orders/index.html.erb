@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>
 
 <h1>Listing Orders</h1>
 
@@ -36,4 +36,111 @@
 
 <br>
 
-<%= link_to 'New Order', new_order_path %>
+<%= link_to 'New Order', new_order_path %>-->
+
+<!-- Page header -->
+<div class="page-header">
+	<div class="page-header-content">
+		<div class="page-title">
+			<h4><a href="<%= mains_path %>" class="btn-back"><i class="icon-arrow-left52 position-left"></i></a> <span class="text-semibold">Orders</span> - Management</h4>
+		</div>
+	</div>
+
+	<div class="breadcrumb-line">
+		<ul class="breadcrumb">
+			<li><a href="<%= mains_path %>"><i class="icon-home2 position-left"></i> Home</a></li>
+			<li><a href="<%= orders_path %>">Orders Management</a></li>
+			<li class="active">Order List</li>
+		</ul>
+	</div>
+</div>
+<!-- /page header -->
+
+
+<!-- Content area -->
+<div class="content">
+
+	<!-- Basic TableTools example -->
+	<div class="panel panel-flat">
+		<div class="panel-heading">
+			<%= link_to 'New Order', new_order_path, class: 'btn btn-primary' %>
+			<hr/>
+			<h5 class="panel-title">Listing <span class="text-semibold">Order</span></h5>
+			<div class="heading-elements">
+				<ul class="icons-list">
+					<li><a data-action="collapse"></a></li>
+					<li><a data-action="reload"></a></li>
+					<li><a data-action="close"></a></li>
+				</ul>
+			</div>
+		</div>	
+
+		<table class="table datatable-order">
+			<thead>
+				<tr>
+                    <th>Type</th>
+                    <th>Customer</th>
+					<th>Email</th>
+					<th>Phone</th>
+                    <th>OrderDate</th>
+                    <th>People</th>
+                    <th>ProductList</th>
+                    <th>Message</th>
+                    <th>CreatedAt</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+			</thead>
+			<tbody>
+              <% @orders.each do |item| %>
+				<tr>
+                    <td><%= item.type %></td>
+                    <td><%= link_to item.customer_name, item %></td>
+                    <td><%= item.customer_email %></td>
+                    <td><%= item.customer_phone %></td>
+					<td><%= item.order_date %></td>
+                    <td><%= item.many_people %></td>
+                    <td>001</td>
+                    <td><%= item.message %></td>
+                    <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
+                    <td class="text-center">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-menu9"></i>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li>
+                                      <%= link_to '<i class="glyphicon glyphicon-edit"></i> Edit'.html_safe, edit_order_path(item) %>
+                                    </li>
+                                    <li>
+                                      <%= link_to '<i class="icon-cross2"></i> Destroy'.html_safe, item, method: :delete, data: {confirm: 'Are you sure'} %>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+              <% end %>
+			</tbody>
+		</table>
+	</div>
+	<!-- /basic TableTools example -->
+
+	<!-- Footer -->
+	<div class="footer text-muted">
+		Copyright &copy; 2015 - Nhà hàng Chay vì sức khỏe.
+	</div>
+	<!-- /footer -->
+
+</div>
+<!-- /content area -->
+
+<!-- Theme JS files -->
+<%= javascript_include_tag '/assets/js/plugins/tables/datatables/datatables.min.js' %>
+<%= javascript_include_tag '/javascripts/tools.min.product.js' %>
+<%= javascript_include_tag '/assets/js/plugins/forms/selects/select2.min.js' %>
+
+<%= javascript_include_tag '/assets/js/core/app.js' %>
+<%= javascript_include_tag '/javascripts/datatables_order.js' %>
+<!-- /theme JS files -->

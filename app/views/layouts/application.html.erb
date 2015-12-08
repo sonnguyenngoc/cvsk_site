@@ -8,25 +8,30 @@
     <title>Vegetarian - Restaurant</title>
 
     <!-- Global stylesheets -->
-    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900' %>
 	<%= stylesheet_link_tag '/assets/css/icons/icomoon/styles.css' %>
 	<%= stylesheet_link_tag '/assets/css/bootstrap.min.css' %>
 	<%= stylesheet_link_tag '/assets/css/core.min.css' %>
 	<%= stylesheet_link_tag '/assets/css/components.min.css' %>
 	<%= stylesheet_link_tag '/assets/css/colors.min.css' %>
-	<%= stylesheet_link_tag 'custom.css' %>
 	<!-- /global stylesheets -->
 	
+	<!-- JS and meta for Rails -->
 	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
+	<!-- /js and meta for rails -->
 	
 	<!-- Core JS files -->
 	<%= javascript_include_tag '/assets/js/plugins/loaders/pace.min.js' %>
 	<%= javascript_include_tag '/assets/js/core/libraries/jquery.min.js' %>
 	<%= javascript_include_tag '/assets/js/core/libraries/bootstrap.min.js' %>
 	<%= javascript_include_tag '/assets/js/plugins/loaders/blockui.min.js' %>
-		<!-- /core JS files -->
-
+	<!-- /core JS files -->
+	
+	<!-- Customize -->
+	<%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900' %>
+	<%= stylesheet_link_tag 'custom_backend.css' %>
+	<!-- /customize -->
+	
 </head>
 
 <body>
@@ -34,7 +39,7 @@
     <!-- Main navbar -->
     <div class="navbar navbar-inverse">
         <div class="navbar-header">
-            <a class="navbar-brand" href="<%= root_path %>"><img src="<%= url_for("/assets/images/logo_light.png") %>" alt=""></a>
+            <a class="navbar-brand" href="<%= mains_path %>"><img src="<%= url_for("/assets/images/logo_light.png") %>" alt=""></a>
 
             <ul class="nav navbar-nav visible-xs-block">
                 <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -98,7 +103,7 @@
                 <li class="dropdown dropdown-user">
                     <a class="dropdown-toggle" data-toggle="dropdown">
 						<img src="<%= url_for "/assets/images/placeholder.jpg" %>" alt="">
-						<span>Manager</span>
+						<span>Administrator</span>
 						<i class="caret"></i>
 					</a>
 
@@ -111,7 +116,6 @@
         </div>
     </div>
     <!-- /main navbar -->
-
 
     <!-- Page container -->
     <div class="page-container">
@@ -129,7 +133,7 @@
                             <div class="media">
                                 <a href="#" class="media-left"><img src="<%= url_for "/assets/images/placeholder.jpg" %>" class="img-circle img-sm" alt=""></a>
                                 <div class="media-body">
-                                    <span class="media-heading text-semibold">Manager</span>
+                                    <span class="media-heading text-semibold">Administrator</span>
                                     <div class="text-size-mini text-muted">
                                         <i class="icon-pin text-size-small"></i> &nbsp;HCM City
                                     </div>
@@ -154,7 +158,7 @@
 
                                 <!-- Main -->
                                 <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-                                <li class="active"><a href="<%= root_path %>"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+                                <li class="active"><a href="<%= mains_path %>"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
                                 <li>
                                     <a href="#"><i class="icon-stack2"></i> <span>Storage</span></a>
                                     <ul>
@@ -173,9 +177,9 @@
                                 <li>
                                     <a href="#"><i class="icon-list-unordered"></i> <span>Orders Management</span></a>
                                     <ul>
+										<li><a href="<%= types_path %>">Types</a></li>
                                         <li><a href="<%= orders_path %>">Order List</a></li>
                                         <li><a href="#">Order Statistics</a></li>
-										<li><a href="<%= types_path %>">Type</a></li>
                                     </ul>
                                 </li>
                                 <!-- /main -->
@@ -189,21 +193,16 @@
             </div>
             <!-- /main sidebar -->
 
-
             <!-- Main content -->
             <div class="content-wrapper">
-
                 <%= yield %>
-
             </div>
             <!-- /main content -->
-
+			
         </div>
         <!-- /page content -->
-
     </div>
     <!-- /page container -->
-
 </body>
 
 </html>

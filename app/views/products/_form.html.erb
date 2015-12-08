@@ -1,41 +1,59 @@
-<%= form_for(@product) do |f| %>
-  <% if @product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<% if @product.errors.any? %>
+  <div id="error_explanation">
+    <h6><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h6>
 
-      <ul>
-      <% @product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% @product.errors.full_messages.each do |message| %>
+      <p class="label label-warning"><%= message %></p>
+    <% end %>
+  </div>
+<% end %>
 
-  <div class="field">
-    <%= f.label :image_url %><br>
-    <%= f.text_field :image_url %>
+<%= form_for @product, html: {class: "form-horizontal"} do |f| %>
+  <div class="form-group">
+      <%= f.label "Picture: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">   
+        <%= f.file_field :image_url, class: "file-styled" %>
+        <span class="help-block">Accepted formats: gif, png, jpg.</span>
+        <%= image_tag(@product.image_url, size: "250x150", alt: "Product's picture", class: "img-rouded") %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  
+  <div class="form-group">
+      <%= f.label "Name: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_field :name, placeholder: "Product's name (required)", class: "form-control" %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
+  
+  <div class="form-group">
+      <%= f.label "Price: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_field :price, placeholder: "Product's price (required)", class: "form-control" %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.number_field :category_id %>
+  
+  <div class="form-group">
+      <%= f.label "Category: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.collection_select(:category_id, Category.all, :id, :title, {:prompt=> "None"}, {class: "select"}) %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :manufacturer_id %><br>
-    <%= f.number_field :manufacturer_id %>
+  
+  <div class="form-group">
+      <%= f.label "Manufacturer: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.collection_select(:manufacturer_id, Manufacturer.all, :id, :name, {:prompt=> "None"}, {class: "select"}) %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+
+  <div class="form-group">
+      <%= f.label "Description: ", class: "col-lg-3 control-label" %>
+      <div class="col-lg-9">
+        <%= f.text_area :description, rows: "5", cols: "5", placeholder: "Enter product's description here...", class: "form-control" %>
+      </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="text-right">
+      <button type="submit" class="btn btn-success">Save <i class="icon-plus22 position-right"></i></button>
   </div>
 <% end %>

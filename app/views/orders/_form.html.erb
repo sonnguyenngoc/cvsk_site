@@ -1,4 +1,4 @@
-<%= form_for(@order) do |f| %>
+<!--<%= form_for(@order) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -42,4 +42,150 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>-->
+
+<% if @order.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+    <ul>
+    <% @order.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
 <% end %>
+
+<%= form_for @order, html: {class: "form-horizontal"} do |f| %>
+    
+    <div class="form-group">
+        <label class="panel-title col-lg-2">Type:</label>
+        <div class="col-lg-10">
+            <%= f.collection_select(:type_id, Type.all, :id, :title, {:prompt=> "None"}, {class: "select"}) %>
+        </div>
+        <%= render 'dropdown_js' %>
+    </div>
+        
+    <div class="form-group">
+        <label class="panel-title col-lg-2">Customer Name:</label>
+        <div class="col-lg-10">
+            <%= f.text_field :customer_name, placeholder: "Order's customer name (required)", class: "form-control" %>
+        </div>
+    </div>
+        
+    <div class="form-group">
+        <label class="control-label col-lg-2">Customer Phone:</label>
+        <div class="col-lg-10">
+          <%= f.text_field :customer_phone, placeholder: "Order's customer phone (required)", class: "form-control" %>
+        </div>
+    </div>
+        
+    <div class="form-group">
+        <label class="control-label col-lg-2">Customer Email:</label>
+        <div class="col-lg-10">
+          <%= f.text_field :customer_email, placeholder: "Order's customer email", class: "form-control" %>
+        </div>
+    </div>
+        
+    <div class="form-group">
+      <label class="control-label col-lg-2">Number of People:</label>
+      <div class="col-lg-10">
+        <%= f.text_field :many_people, placeholder: "Order's number of people", class: "form-control" %>
+      </div>
+    </div>
+      
+    <div class="form-group">
+        <label class="control-label col-lg-2">Date - Time:</label>
+        <div class="col-lg-10">
+          <div class="col-lg-6 padding-none">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon-calendar5"></i></span>
+                <input type="text" class="form-control pickadate-selectors" placeholder="Try me&hellip; (date)">
+            </div>
+          </div>
+          <div class="col-lg-6 padding-none">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon-watch2"></i></span>
+                <input type="text" class="form-control" id="anytime-time" placeholder="Try me&hellip; (time)">
+            </div>
+          </div>
+          <%= render 'picker_date' %>
+        </div>     
+    </div>
+    
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Product:</label>
+        <div class="col-lg-10 padding-none">
+          <div class="col-lg-10 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          <div class="col-lg-2 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          
+          <div class="col-lg-10 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          <div class="col-lg-2 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          
+          <div class="col-lg-10 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          <div class="col-lg-2 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          
+          <div class="col-lg-10 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          <div class="col-lg-2 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          
+          <div class="col-lg-10 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          <div class="col-lg-2 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          
+          <div class="col-lg-10 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          <div class="col-lg-2 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          
+          <div class="col-lg-10 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+          <div class="col-lg-2 padding-bottom">
+              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
+          </div>
+        </div>
+        
+    </div>
+    
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Message:</label>
+        <div class="col-lg-10">
+            <%= f.text_area :message, rows: "5", cols: "5", placeholder: "Enter order's message here", class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="text-right">
+        <button type="submit" class="btn btn-success">Save <i class="icon-plus22 position-right"></i></button>
+    </div>
+    
+    
+</div>
+<% end %>
+
+<!-- Theme JS files -->
+<%= javascript_include_tag '/assets/js/plugins/forms/selects/select2.min.js' %>
+
+<%= javascript_include_tag '/assets/js/core/app.js' %>
+<%= javascript_include_tag '/assets/js/pages/form_layouts.js' %>
+<!-- /theme JS files -->

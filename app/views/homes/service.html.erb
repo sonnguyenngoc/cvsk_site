@@ -1,0 +1,242 @@
+<div id="teaser">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>DỊCH VỤ</h1>
+                <div class="tl-breadcrumb-wrapper hidden-xs">
+                    <ul class="tl-breadcrumb">
+                        <li>
+                            <a href="<%= root_path %>">
+                                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                        <li>DỊCH VỤ</li>
+                    </ul>
+                </div>
+                <!-- .tl-breadcrumb -->
+
+                <div class="social-bookmarking-wrapper">
+                    <ul class="social-bookmarking">
+                        <li>
+                            <%= link_to '', "http://facebook.com",class: "fb hvr-float-shadow" %>
+                        </li>
+                        <li>
+                            <%= link_to '', "http://youtube.com",class: "yt hvr-float-shadow" %>
+                        </li>
+                        <li>
+                            <%= link_to '', "http://googleplus.com",class: "gp hvr-float-shadow" %>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .row -->
+    </div>
+</div>
+<!-- #teaser -->
+
+<div id="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-9" role="main">
+                <div class="page-content devider">
+
+                    <div class="post-list">
+                        <% @posts.each do |item| %>
+                            <% if item.tag.title == "Dịch vụ" %>
+                                <article class="post">
+                                    <h2 class="title font-roboto"><a href="#"><%= item.title %></a></h2>
+                                    <section class="meta font-roboto">
+                                        <span>Ngày tạo:<a class="date" title="Date" href="#"><%= item.created_at.strftime("%d/%m/%Y") %></a></span>
+                                        <span>Người tạo:<a class="author" title="Author's name" href="#">Administrator</a></span>
+                                        <span class="categories">Nhãn:<a class="category" title="Category1" href="#"><%= item.tag.title %></a></span>
+                                    </section>
+        
+                                    <div class="image">
+                                        <a href="<%= item.image_url %>" rel="prettyPhoto"><img src="<%= item.image_url if item.image_url? %>" style="width: 800px; height: 320px;" alt="<%= item.title %>"></a>
+                                    </div>
+                                    <section class="post-entry excerpt">
+                                        <%= content_tag(:p, class: "text-justify") do %>
+                                            <%= truncate(strip_tags(item.content), length: 250) %>
+                                        <% end %>
+                                    </section>
+                                    <!-- .post-entry -->
+        
+                                    <a title="Read More" href="#" class="read-more-red font-medium">Xem thêm</a>
+                                    <section class="meta dashed"></section>
+                                </article>
+                                <!-- .post -->
+                            <% end %>
+                        <% end %>
+                    </div>
+                    <!-- .post-list -->
+
+                    <div class="pagination">
+                        <ul>
+                            <li><a href="#" class="previous">Previous</a></li>
+                            <li><a href="#" class="current">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#" class="next">Next</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- .page-content -->
+            </div>
+
+            <aside class="col-xs-12 col-sm-12 col-md-3">
+
+                <!-- Widget Recent posts -->
+                <div class="widget widget_recent_entries">
+                    <h3 class="widget-title font-roboto">Dịch vụ mới</h3>
+                    <ul>
+                        <% @new_services.limit(5).each do |item| %>
+                            <% if item.tag.title == "Dịch vụ" %>
+                                <li><a href="#"><%= item.title %></a></li>
+                            <% end %>
+                        <% end %>
+                    </ul>
+                </div>
+                <!-- widget_recent_entries -->
+
+                <!-- Categories widget -->
+                <div class="widget widget_categories">
+                    <h3 class="widget-title">Danh mục</h3>
+                    <ul>
+                        <% @posts.each do |item| %>
+                            <li class="cat-item hvr-grow-shadow"><a href="#"><%= item.tag.title %></a></li>
+                        <% end %>
+                    </ul>  
+                </div>
+                <!-- .widget_categories -->
+
+                <!-- Search widget -->
+                <div class="widget widget_search">
+                    <h3 class="widget-title">Search</h3>
+                    <form action="#" id="searchform" method="get">
+                        <div>
+                            <label for="s" class="screen-reader-text sr-only">Search for:</label>
+                            <input type="text" id="s" name="s" value="" class="form-control float-label" placeholder="SEARCH FOR:" title="Enter search phrase">
+                            <input type="submit" value="Search" id="searchsubmit" class="btn tl-button dark">
+                        </div>
+                    </form>
+                </div>
+                <!-- .widget_search -->
+
+            </aside>
+        </div>
+    </div>
+
+    <div id="prefooter-wrapper">
+        <div class="container">
+            <div class="row">
+
+                <!-- Widget Container 1 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="widget widget-chef">
+                        <h3 class="font-large">Lời giới thiệu</h3>
+                        <div class="image">
+                            <img src="<%= url_for(" /assets/frontend/showcase/82x82.png ") %>" width="82" height="82" />
+                        </div>
+                        <p class="text-justify">Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis, ultricies id, justo. Nulla facilisi. Proin tortor sem, vehicula vitae, facilisis vel, accumsan a, sapien. Vivamus convallis rutrum. Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis. ultricies id, justo. Nulla facilisi. Proin tortor sem, vehicula vitae, facilisis vel, accumsan a, sapien.</p>
+                        <a class="read-more-red font-medium" href="#">Xem tiếp</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <!-- Widget Container 2 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="widget widget-menu-highlights">
+                        <h3 class="font-large">Món ăn nổi bật</h3>
+                        <ul>
+                            <li>
+                                <div class="image"><img src="<%= url_for(" /assets/frontend/showcase/56x56.png ") %>" width="56" height="56" alt=""></div>
+                                <h4 class="title"><a href="" title="">French Wedge</a></h4>
+                                <div class="excerpt">
+                                    <p>Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis, ultricies. </p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <div class="image"><img src="<%= url_for(" /assets/frontend/showcase/56x56.png ") %>" width="56" height="56" alt=""></div>
+                                <h4 class="title"><a href="" title="">Tarte aux pommes</a></h4>
+                                <div class="excerpt">
+                                    <p>Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis, ultricies. </p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+                        <a class="read-more-red font-medium" href="#">Xem tiếp</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <!-- Widget Container 3 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="widget widget-contact-us">
+                        <h3 class="font-large">Đăng ký nhận tin mới</h3>
+                        <form name="contact-us" method="post" class="contact-us-form">
+                            <ul>
+                                <li>
+                                    <input class="form-control float-label" placeholder="Nhập email của bạn" type="text" name="email" title="Please enter your email address" />
+                                </li>
+                                <li><a href="#" role="button" class="tl-button dark submit font-medium">Đăng ký</a></li>
+                            </ul>
+                            <input type="hidden" name="handler" value="contact" />
+                        </form>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- .container -->
+    </div>
+    <!-- #prefooter-wrapper -->
+</div>
+<!-- #main-container -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' %>
+
+<!-- Image preloader -->
+<%= javascript_include_tag '/assets/frontend/js/jquery.waitforimages.min.js' %>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<%= javascript_include_tag '/assets/frontend/js/ie10-viewport-bug-workaround.js' %>
+
+<!-- Easing -->
+<%= javascript_include_tag '/assets/frontend/js/jquery.easing.1.3.js' %>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<%= javascript_include_tag '/assets/frontend/js/bootstrap.min.js' %>
+
+<!-- Hover with delay -->
+<%= javascript_include_tag '/assets/frontend/js/jquery.hoverIntent.minified.js' %>
+
+<!-- Responsive navigation menu -->
+<%= javascript_include_tag '/assets/frontend/js/responsive-nav/responsive-menu-js.js' %>
+
+<%= javascript_include_tag '/assets/frontend/js/bxslider/jquery.bxslider.min.js' %>
+
+<!-- Floatable labels -->
+<%= javascript_include_tag '/assets/frontend/js/floatlabels.min.js' %>
+
+<!-- Selectbox beautyfier -->
+<%= javascript_include_tag '/assets/frontend/js/bootstrap-select.min.js' %>
+
+<!-- Placeholder -->
+<%= javascript_include_tag '/assets/frontend/js/jquery.placeholder.min.js' %>
+
+<!-- Pretty Photo -->
+<%= javascript_include_tag '/assets/frontend/js/pretty-photo/js/jquery.prettyPhoto.js' %>
+
+<!-- Cookies -->
+<%= javascript_include_tag '/assets/frontend/js/jquery.cookie.js' %>
+
+<!-- Main theme JS file -->
+<%= javascript_include_tag '/assets/frontend/js/main.js' %>

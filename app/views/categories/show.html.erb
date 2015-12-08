@@ -1,14 +1,81 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><a href="<%= categories_path %>" class="btn-back"><i class="icon-arrow-left52 position-left"></i></a> <span class="text-semibold">Categories</span> - Management</h4>
+        </div>
+    </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @category.title %>
-</p>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="<%= mains_path %>"><i class="icon-home2 position-left"></i> Home</a></li>
+            <li><a href="<%= categories_path %>">Storage</a></li>
+            <li><a href="<%= categories_path %>">Categories</a></li>
+            <li class="active"><%= @category.title %></li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
 
-<p>
-  <strong>Description:</strong>
-  <%= @category.description %>
-</p>
+<!-- Content area -->
+<div class="content">
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title"><span class="text-semibold"><%= @category.title %></span></h5><br/>
+            
+            <%= content_tag(:p, class: "color-red") do %>
+              <%= notice %>
+            <% end %>
+        
+            <form class="form-horizontal" role="form">
+               
+                <div class="form-group">
+                    <%= label "", "Parent Category: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= label "", "Title: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static ") do %>
+                          <%= @category.title %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= label "", "Description: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static text-justify") do %>
+                          <%= @category.description %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <%= label "", "Created At: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static") do %>
+                          <%= @category.created_at.strftime("%d/%m/%Y") %>
+                        <% end %>
+                    </div>
+                </div>
+            </form>
+        
+            <%= link_to '<i class="icon-backward2 position-left"></i> Back'.html_safe, categories_path, class: "btn btn-primary" %>
+            
+        </div>
+    </div>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+    <!-- Footer -->
+	<div class="footer text-muted">
+		Copyright &copy; 2015 - Nhà hàng Chay vì sức khỏe.
+	</div>
+	<!-- /footer -->
+
+</div>
+<!-- /content area -->
+
+<!-- Theme JS files -->
+<%= javascript_include_tag '/assets/js/plugins/tables/datatables/datatables.min.js' %>
+<%= javascript_include_tag '/assets/js/plugins/forms/selects/select2.min.js' %>
+
+<%= javascript_include_tag '/assets/js/core/app.js' %>
+<!-- /theme JS files -->
