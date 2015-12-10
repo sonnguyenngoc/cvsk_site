@@ -10,23 +10,27 @@ Tag.delete_all
 #....
 Tag.create!(
   title: 'Tin tức',
-  description: 'Tạo các bài viết có nội dung là tin tức'.
+  description: 'Tạo các bài viết có nội dung là tin tức.'
 )
 Tag.create!(
   title: 'Sự kiện',
-  description: 'Tạo các bài viết có nội dung là sự kiện'.
+  description: 'Tạo các bài viết có nội dung là sự kiện.'
 )
 Tag.create!(
   title: 'Dịch vụ',
-  description: 'Tạo các bài viết có nội dung là dịch vụ'.
+  description: 'Tạo các bài viết có nội dung là dịch vụ.'
 )
 Tag.create!(
   title: 'Lời giới thiệu',
-  description: 'Tạo các bài viết có nội dung là lời giới thiệu ngằn gọn về triết lý kinh doanh của nhà hàng'.
+  description: 'Tạo các bài viết có nội dung là lời giới thiệu ngằn gọn về triết lý kinh doanh của nhà hàng.'
 )
 Tag.create!(
   title: 'Giờ mở cửa',
-  description: 'Cập nhật thông tin thời gian hoạt động của nhà hàng'.
+  description: 'Cập nhật thông tin thời gian hoạt động của nhà hàng.'
+)
+Tag.create!(
+  title: 'Liên hệ',
+  description: 'Thay đổi nội dung trong trang liên hệ.'
 )
 #....
 

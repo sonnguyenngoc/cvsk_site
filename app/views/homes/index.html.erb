@@ -2,42 +2,25 @@
     <div id="slider-wrapper" class="bordered-slider-wrapper">
         <div class="container">
             <div class="main-slider simple">
-    
-                <div class="slide" style="background-image: url('/assets/frontend/showcase/940x386.png');">
-                    <h4 class="slide-item-h4">NHÀ HÀNG CHAY VÌ SỨC KHỎE</h4>
-                    <h2 class="slide-item-h2">GỎI ĐU ĐỦ THÁI</h2>
-                    <p class="slide-item-p text-center">Đu đủ xanh bào thật nhuyễn, một ít đậu que thái đôi dọc thân, một ít cà chua bi đỏ ngọt… Tất cả được hòa quyện cùng gia vị chua ngọt, cay nồng...tạo nên món gỏi mang đậm phong cách Thái...</p>
-                    <%= link_to 'Xem tiếp', '', class: 'slide-item-a font-small try-button' %>
-                    <div class="mobile-mask"></div>
-                </div>
-                <!-- .slide -->
-    
-                <div class="slide" style="background-image: url('/assets/frontend/showcase/940x386.png');">
-                    <h4 class="slide-item-h4">NHÀ HÀNG CHAY VÌ SỨC KHỎE</h4>
-                    <h2 class="slide-item-h2">GỎI ĐU ĐỦ THÁI</h2>
-                    <p class="slide-item-p text-center">Đu đủ xanh bào thật nhuyễn, một ít đậu que thái đôi dọc thân, một ít cà chua bi đỏ ngọt… Tất cả được hòa quyện cùng gia vị chua ngọt, cay nồng...tạo nên món gỏi mang đậm phong cách Thái...</p>
-                    <a class="slide-item-a font-small" href="reservation.html" class="try-button">Xem tiếp</a>
-                    <div class="mobile-mask"></div>
-                </div>
-                
-                <!-- .slide -->
-                <div class="slide" style="background-image: url('/assets/frontend/showcase/940x386.png');">
-                    <h4 class="slide-item-h4">NHÀ HÀNG CHAY VÌ SỨC KHỎE</h4>
-                    <h2 class="slide-item-h2">GỎI ĐU ĐỦ THÁI</h2>
-                    <p class="slide-item-p text-center">Đu đủ xanh bào thật nhuyễn, một ít đậu que thái đôi dọc thân, một ít cà chua bi đỏ ngọt… Tất cả được hòa quyện cùng gia vị chua ngọt, cay nồng...tạo nên món gỏi mang đậm phong cách Thái...</p>
-                    <a class="slide-item-a font-small" href="reservation.html" class="try-button">Xem tiếp</a>
-                    <div class="mobile-mask"></div>
-                </div>
-                
-                <!-- .slide -->
-                <div class="slide" style="background-image: url('/assets/frontend/showcase/940x386.png');">
-                    <h4 class="slide-item-h4">NHÀ HÀNG CHAY VÌ SỨC KHỎE</h4>
-                    <h2 class="slide-item-h2">GỎI ĐU ĐỦ THÁI</h2>
-                    <p class="slide-item-p text-center">Đu đủ xanh bào thật nhuyễn, một ít đậu que thái đôi dọc thân, một ít cà chua bi đỏ ngọt… Tất cả được hòa quyện cùng gia vị chua ngọt, cay nồng...tạo nên món gỏi mang đậm phong cách Thái...</p>
-                    <a class="slide-item-a font-small" href="reservation.html" class="try-button">Xem tiếp</a>
-                    <div class="mobile-mask"></div>
-                </div>
-                <!-- .slide -->
+                <% @slide_shows.each do |item| %>
+                    <% if item.tag_name == 'General Manufacturers' %>
+                        <div class="slide" style="background-image: url('<%= item.image_url if item.image_url? %>');  ">
+                            <h4 class="slide-item-h4"><%= item.title_1 %></h4>
+                            <h2 class="slide-item-h2"><%= item.title_2 %></h2>
+                            <p class="slide-item-p text-center"><%= item.description %></p>
+                            <%= link_to 'Xem tiếp', general_manufacturer_homes_path, class: 'slide-item-a font-small try-button' %>
+                            <div class="mobile-mask"></div>                
+                        </div>
+                        <!-- .slide -->
+                    <% else %>
+                        <div class="slide" style="background-image: url('<%= item.image_url if item.image_url? %>');">
+                            <h4 class="slide-item-h4"><%= item.title_1 %></h4>
+                            <h2 class="slide-item-h2"><%= item.title_2 %></h2>
+                            <p class="slide-item-p text-center"><%= item.description %></p>
+                            <div class="mobile-mask"></div>                
+                        </div>
+                    <% end %>
+                <% end %>
     
             </div>
     
@@ -109,17 +92,15 @@
                         <h3 class="widget-title">Tin tức mới</h3>
                         <ul>
                             <% @module_news_posts.each do |item| %>
-                                <% if (item.tag.title != "Sự kiện") && (item.tag.title != "Lời giới thiệu") %>
-                                    <li>
-                                        <span class="meta"><%= item.created_at.strftime("%d/%m/%Y") %></span>
-                                        <h4 class="title">
-                                            <%= link_to (truncate(strip_tags(item.title), length: 50)), item %>
-                                         </h4>
-                                        <%= content_tag(:p, class: "excerpt text-justify") do %>
-                                            <%= truncate(strip_tags(item.content), length: 150) %>
-                                        <% end %>
-                                    </li>
-                                <% end %>
+                                <li>
+                                    <span class="meta"><%= item.created_at.strftime("%d/%m/%Y") %></span>
+                                    <h4 class="title">
+                                        <%= link_to (truncate(strip_tags(item.title), length: 50)), post_content_homes_path %>
+                                     </h4>
+                                    <%= content_tag(:p, class: "excerpt text-justify") do %>
+                                        <%= truncate(strip_tags(item.content), length: 100) %>
+                                    <% end %>
+                                </li>
                             <% end %>
                         </ul>
                     </div>

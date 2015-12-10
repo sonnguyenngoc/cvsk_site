@@ -42,31 +42,28 @@
                 <div class="page-content devider">
 
                     <div class="post-list">
-                        <% @posts.each do |item| %>
-                            <% if item.tag.title == "Dịch vụ" %>
-                                <article class="post">
-                                    <h2 class="title font-roboto"><a href="#"><%= item.title %></a></h2>
-                                    <section class="meta font-roboto">
-                                        <span>Ngày tạo:<a class="date" title="Date" href="#"><%= item.created_at.strftime("%d/%m/%Y") %></a></span>
-                                        <span>Người tạo:<a class="author" title="Author's name" href="#">Administrator</a></span>
-                                        <span class="categories">Nhãn:<a class="category" title="Category1" href="#"><%= item.tag.title %></a></span>
-                                    </section>
-        
-                                    <div class="image">
-                                        <a href="<%= item.image_url %>" rel="prettyPhoto"><img src="<%= item.image_url if item.image_url? %>" style="width: 800px; height: 320px;" alt="<%= item.title %>"></a>
-                                    </div>
-                                    <section class="post-entry excerpt">
-                                        <%= content_tag(:p, class: "text-justify") do %>
-                                            <%= truncate(strip_tags(item.content), length: 250) %>
-                                        <% end %>
-                                    </section>
-                                    <!-- .post-entry -->
-        
-                                    <a title="Read More" href="#" class="read-more-red font-medium">Xem thêm</a>
-                                    <section class="meta dashed"></section>
-                                </article>
-                                <!-- .post -->
-                            <% end %>
+                        <% @module_services.each do |item| %>
+                            <article class="post">
+                                <h2 class="title font-roboto"><%= item.title %></h2>
+                                <section class="meta font-roboto">
+                                    <span>Ngày tạo:<a class="date" title="Date" href="#"><%= item.created_at.strftime("%d/%m/%Y") %></a></span>
+                                    <span>Người tạo:<a class="author" title="Author's name" href="#">Administrator</a></span>
+                                    <span class="categories">Nhãn:<a class="category" title="Category1" href="#"><%= item.tag.title %></a></span>
+                                </section>
+    
+                                <div class="image">
+                                    <a href="<%= item.image_url %>" rel="prettyPhoto"><img src="<%= item.image_url if item.image_url? %>" style="width: 800px; height: 320px;" alt="<%= item.title %>"></a>
+                                </div>
+                                <section class="post-entry excerpt">
+                                    <%= content_tag(:p, class: "text-justify") do %>
+                                        <%= truncate(strip_tags(item.content), length: 250) %>
+                                    <% end %>
+                                </section>
+                                <!-- .post-entry -->
+                                <%= link_to 'Xem thêm', item, class: "read-more-red font-medium" %>
+                                <section class="meta dashed"></section>
+                            </article>
+                            <!-- .post -->
                         <% end %>
                     </div>
                     <!-- .post-list -->
@@ -93,7 +90,7 @@
                 <div class="widget widget_recent_entries">
                     <h3 class="widget-title font-roboto">Dịch vụ mới</h3>
                     <ul>
-                        <% @new_services.limit(5).each do |item| %>
+                        <% @module_new_services.each do |item| %>
                             <% if item.tag.title == "Dịch vụ" %>
                                 <li><a href="#"><%= item.title %></a></li>
                             <% end %>
@@ -106,9 +103,10 @@
                 <div class="widget widget_categories">
                     <h3 class="widget-title">Danh mục</h3>
                     <ul>
-                        <% @posts.each do |item| %>
-                            <li class="cat-item hvr-grow-shadow"><a href="#"><%= item.tag.title %></a></li>
-                        <% end %>
+                        <li class="cat-item hvr-grow-shadow"><%= link_to 'Tin tức', news_homes_path %></li>
+                        <li class="cat-item hvr-grow-shadow"><%= link_to 'Sự kiện', news_homes_path %></li>
+                        <li class="cat-item hvr-grow-shadow"><%= link_to 'Dịch vụ', service_homes_path %></li>
+                        <li class="cat-item hvr-grow-shadow"><%= link_to 'Liên hệ', contact_homes_path %></li>
                     </ul>  
                 </div>
                 <!-- .widget_categories -->

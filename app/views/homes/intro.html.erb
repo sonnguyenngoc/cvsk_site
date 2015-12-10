@@ -41,55 +41,49 @@
           <div class="col-xs-12 col-sm-12 col-md-9 col-md-push-3" role="main">
               <div class="page-content devider">
                   <article>
-                    <% @manufacturers.each do |item| %>
-                        <% if item.name == "Chay vì sức khỏe" %>
-                            <h2 class="title"><strong>NHÀ HÀNG: </strong><%= item.name %></h2>
-                            <hr/>
-                            <section class="post-entry">
-                                <span class="text-justify"><%= (item.intro).html_safe %></span>
-                            </section><!-- .entry-content -->
-                            <div class="dashed" />
-                        <% end %>
-                      <% end %>
+                    <% @main_manufacturer.each do |item| %>
+                        <h2 class="title"><strong>NHÀ HÀNG: </strong><%= item.name %></h2>
+                        <hr/>
+                        <section class="post-entry">
+                            <span class="text-justify"><%= (item.intro).html_safe %></span>
+                        </section><!-- .entry-content -->
+                        <div class="dashed" />
+                    <% end %>
                   </article>
-                  
-                  
                   
               </div>           
           </div>
           
           <aside class="col-xs-12 col-sm-12 col-md-3 col-md-pull-9">
-            <% @manufacturers.each do |item| %>
-                <% if item.name == "Chay vì sức khỏe" %>
-                    <div class="widget widget-menu-highlights">
-                        <h3 class="widget-title">LOGO NHÀ HÀNG</h3>
-                        <a href="/assets/frontend/showcase/550x250.png" rel="prettyPhoto">
-                          <img src="<%= item.image_url if item.image_url? %>" width="250" alt="150">
-                        </a>
-                    </div><!-- .widget-menu-highlights -->
-      
-                    <!-- Widget Recent posts -->
-                    <div class="widget widget_recent_entries">
-                        <h3 class="widget-title">THÔNG TIN</h3>
-                        <ul>
-                            <li>Địa chỉ: <%= item.address %></li>
-                            <li>Email: <%= item.email %></li>
-                            <li>Số điện thoại: <%= item.phone %></li>
-                        </ul>
-                    </div><!-- widget_recent_entries -->
-                    
-                    <div class="widget widget-menu-highlights">
-                        <h3 class="widget-title">HÌNH ẢNH</h3>
-                        <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                        <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                        <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                        <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                        <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                        <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                        <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                        <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                    </div><!-- .widget-menu-highlights -->
-                <% end %>
+            <% @main_manufacturer.each do |item| %>
+                <div class="widget widget-menu-highlights">
+                    <h3 class="widget-title">LOGO NHÀ HÀNG</h3>
+                    <a href="/assets/frontend/showcase/550x250.png" rel="prettyPhoto">
+                      <img src="<%= item.image_url if item.image_url? %>" width="250" alt="150">
+                    </a>
+                </div><!-- .widget-menu-highlights -->
+  
+                <!-- Widget Recent posts -->
+                <div class="widget widget_recent_entries">
+                    <h3 class="widget-title">THÔNG TIN</h3>
+                    <ul>
+                        <li>Địa chỉ: <%= item.address %></li>
+                        <li>Email: <%= item.email %></li>
+                        <li>Số điện thoại: <%= item.phone %></li>
+                    </ul>
+                </div><!-- widget_recent_entries -->
+                
+                <div class="widget widget-menu-highlights">
+                    <h3 class="widget-title">HÌNH ẢNH</h3>
+                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
+                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
+                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
+                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
+                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
+                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
+                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
+                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
+                </div><!-- .widget-menu-highlights -->
             <% end %>
           </aside>
         </div>

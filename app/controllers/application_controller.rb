@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   protected
   def layout_by_resource
     if controller_name == 'homes' && (action_name == 'contact' || action_name == 'news' ||
-                                      action_name == 'intro' || action_name == 'service')
+                                      action_name == 'intro' || action_name == 'service' ||
+                                      action_name == 'menu_product' || action_name == 'general_manufacturer')
       'layout_frontend'
     else
       'application'

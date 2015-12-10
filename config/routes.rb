@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  resources :slide_shows
   resources :homes do
     collection do
       get :contact
       get :news
       get :intro
       get :service
+      get :menu_product
+      get :general_manufacturer
     end
   end
   root 'homes#index'

@@ -1,0 +1,56 @@
+<!-- Page header -->
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><a href="<%= slide_shows_path %>" class="btn-back"><i class="icon-arrow-left52 position-left"></i></a> <span class="text-semibold">Edit</span> - Slideshow</h4>
+        </div>
+    </div>
+
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="<%= mains_path %>"><i class="icon-home2 position-left"></i> Home</a></li>
+            <li><a href="<%= slide_shows_path %>">News & Events</a></li>
+            <li><a href="<%= slide_shows_path %>">Slideshow Management</a></li>
+            <li class="active">Edit Slideshow</li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
+
+<!-- Content area -->
+<div class="content">
+
+    <!-- Horizontal form options -->
+    <div class="row">
+        <div class="col-md-12">
+
+            <!-- Basic layout-->
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h5 class="panel-title">Edit Slideshow</h5>
+                    <div class="heading-elements">
+                        <ul class="icons-list">
+                            <li><a data-action="collapse"></a></li>
+                            <li><a data-action="reload"></a></li>
+                            <li><a data-action="close"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="panel-body">
+                    <%= render 'form' %>
+                </div>
+
+            </div>
+            <!-- /basic layout -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+	<div class="footer text-muted">
+		Copyright &copy; 2015 - Nhà hàng Chay vì sức khỏe.
+	</div>
+	<!-- /footer -->
+
+</div>
+<!-- /content area -->

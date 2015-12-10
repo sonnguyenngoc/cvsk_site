@@ -9,9 +9,10 @@ class HomesController < ApplicationController
     @module_slide_products = Product.joins(:manufacturer).where(manufacturers: { name: 'Chay vì sức khỏe' }).order("created_at DESC").first(8)
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
-    @module_news_posts = Post.order("created_at DESC").first(1)
+    @module_news_posts = Post.joins(:tag).where(tags: { title: 'Tin tức', title: 'Dịch vụ' }).order("created_at DESC").first(2)
     @module_news_events = Post.joins(:tag).where(tags: { title: 'Sự kiện' }).order("created_at DESC").first(1)
     @module_hour_restaurant = Post.joins(:tag).where(tags: { title: 'Giờ mở cửa' }).order("created_at DESC").first(1)
+    @slide_shows = SlideShow.all
   end
 
   # GET /homes/1
@@ -36,18 +37,27 @@ class HomesController < ApplicationController
   
   def news
     @layout_frontend = 'page-header'
-    @posts = Post.all.order('created_at DESC')
+    @module_news_posts = Post.joins(:tag).where(tags: { title: 'Tin tức', title: 'Sự kiện' }).order("created_at DESC")
   end
   
   def intro
     @layout_frontend = 'contact page'
-    @manufacturers = Manufacturer.all
+    @main_manufacturer = Manufacturer.where(manufacturers: { name: 'Chay vì sức khỏe' })
   end
   
   def service
     @layout_frontend = 'single'
-    @posts = Post.all.order('created_at DESC')
-    @new_services = Post.order("created_at DESC")
+    @module_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC")
+    @module_new_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC").first(8)
+  end
+  
+  def menu_product
+    @layout_frontend = 'page menu-card'
+  end
+  
+  def general_manufacturer
+    @layout_frontend = 'tl-gallery page'
+    @general_manufacturer = Manufacturer.all
   end
 
   # POST /homes

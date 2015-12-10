@@ -1,0 +1,169 @@
+<div id="teaser">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>DANH SÁCH NHÀ HÀNG</h1>
+                <div class="tl-breadcrumb-wrapper hidden-xs">
+                    <ul class="tl-breadcrumb">
+                        <li>
+                            <a href="<%= root_path %>">
+                                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                        <li>DANH SÁCH NHÀ HÀNG</li>
+                    </ul>
+                </div>
+                <!-- .tl-breadcrumb -->
+
+                <div class="social-bookmarking-wrapper">
+                    <ul class="social-bookmarking">
+                        <li>
+                            <a class="fb hvr-float-shadow" href="http://facebook.com"></a>
+                        </li>
+                        <li>
+                            <a class="yt hvr-float-shadow" href="http://youtube.com"></a>
+                        </li>
+                        <li>
+                            <a class="gp hvr-float-shadow" href="http://googleplus.com"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .row -->
+    </div>
+</div>
+<!-- #teaser -->
+
+<div id="main-container">
+    <div class="container">
+        <div class="row">
+          <div class="col-xs-12 pull-left">
+              <!-- Archives 2 -->
+              <div class="widget widget_archive">
+                  <h3 class="font-medium">Lọc nhà hàng theo khu vực:</h3>
+                  <select class="form-control font-medium height-select-position" name="archive-dropdown">
+                      <option value="">Chọn khu vực...</option>
+                      <option value="#"> Quận 1</option>
+                      <option value="#"> Quận 2</option>
+                      <option value="#"> Quận 3</option>
+                      <option value="#"> Quận 5</option>
+                      <option value="#"> Quận 7</option>
+                      <option value="#"> Quận 8</option>
+                  </select>
+              </div><!-- .widget_archive -->
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12" role="main">
+                <div class="page-content">
+                    <div class="gallery-list list-cols">
+                        <div class="row">
+                          <% @general_manufacturer.each do |item| %>
+                              <article class="col-sm-3 col-xs-12">
+                                  <h3 class="title"><a href="#"><%= item.name %></a></h3>
+                                  <div class="image">
+                                      <img src="<%= item.image_url if item.image_url? %>" alt="Picture">
+                                  </div>
+                                  <div class="widget widget_recent_entries">
+                                      <ul>
+                                          <li><strong>Địa chỉ:</strong> <%= item.address %></li>
+                                          <li><strong>Email:</strong> <%= item.email %></li>
+                                          <li><strong>Số điện thoại:</strong> <%= item.phone %></li>
+                                      </ul>
+                                  </div><!-- widget_recent_entries -->
+                              </article>
+                              <!-- .post -->
+                          <% end %>   
+                        </div>
+                        <!-- .row -->
+                    </div>
+                    <!-- list-cols -->
+                    
+                    <div class="pagination">
+                        <ul>
+                            <li><a href="#" class="previous">Previous</a></li>
+                            <li><a href="#" class="current">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#" class="next">Next</a></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                <!-- .page-content -->
+            </div>
+        </div>
+    </div>
+
+    <div id="prefooter-wrapper">
+        <div class="container">
+            <div class="row">
+
+                <!-- Widget Container 1 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="widget widget-chef">
+                        <h3 class="font-large">Lời giới thiệu</h3>
+                        <div class="image">
+                            <img src="<%= url_for(" /assets/frontend/showcase/82x82.png ") %>" width="82" height="82" />
+                        </div>
+                        <p class="text-justify">Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis, ultricies id, justo. Nulla facilisi. Proin tortor sem, vehicula vitae, facilisis vel, accumsan a, sapien. Vivamus convallis rutrum. Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis. ultricies id, justo. Nulla facilisi. Proin tortor sem, vehicula vitae, facilisis vel, accumsan a, sapien.</p>
+                        <a class="read-more-red font-medium" href="#">Xem tiếp</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <!-- Widget Container 2 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="widget widget-menu-highlights">
+                        <h3 class="font-large">Món ăn  nổi bật</h3>
+                        <ul>
+                            <li>
+                                <div class="image"><img src="<%= url_for(" /assets/frontend/showcase/56x56.png ") %>" width="56" height="56" alt=""></div>
+                                <h4 class="title"><a href="" title="">French Wedge</a></h4>
+                                <div class="excerpt">
+                                    <p>Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis, ultricies. </p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                            <li>
+                                <div class="image"><img src="<%= url_for(" /assets/frontend/showcase/56x56.png ") %>" width="56" height="56" alt=""></div>
+                                <h4 class="title"><a href="" title="">Tarte aux pommes</a></h4>
+                                <div class="excerpt">
+                                    <p>Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis, ultricies. </p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </li>
+                        </ul>
+                        <a class="read-more-red font-medium" href="#">Xem tiếp</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <!-- Widget Container 3 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="widget widget-contact-us">
+                        <h3 class="font-large">Đăng ký nhận tin mới</h3>
+                        <form name="contact-us" method="post" class="contact-us-form">
+                            <ul>
+                                <li>
+                                    <input class="form-control float-label" placeholder="Nhập email của bạn" type="text" name="email" title="Please enter your email address" />
+                                </li>
+                                <li><a href="#" role="button" class="tl-button dark submit font-medium">Đăng ký</a></li>
+                            </ul>
+                            <input type="hidden" name="handler" value="contact" />
+                        </form>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- .container -->
+    </div>
+    <!-- #prefooter-wrapper -->
+</div>
+<!-- #main-container -->

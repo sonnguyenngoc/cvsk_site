@@ -42,25 +42,23 @@
               <div class="page-content">
                   <div class="post-list list-cols">
                       <div class="row">
-                        <% @posts.each do |item| %>
-                            <% if (item.tag.title != "Dịch vụ") && (item.tag.title !="Lời giới thiệu") && (item.tag.title !="Giờ mở cửa") %>
-                                <article class="post col-sm-4 col-xs-12">
-                                    <h3 class="title"><a href="#"><%= item.title %></a></h3>
-                                    <section class="meta font-roboto">
-                                        <span>Ngày tạo:<a class="date" title="Date" href="#"><%= item.created_at.strftime("%d/%m/%Y") %></a></span>
-                                        <span class="categories">Nhãn:<a class="category" title="Category1" href="#"><%= item.tag.title %></a></span>
-                                    </section>
-                                    <div class="image image-post">
-                                        <a href="<%= item.image_url %>" rel="prettyPhoto"><img src="<%= item.image_url if item.image_url? %>" style="width: 360px; height: 150px;" alt="<%= item.title %>"></a>
-                                    </div>
-                                    <section class="post-entry excerpt">
-                                        <%= content_tag(:p, class: "text-justify") do %>
-                                            <%= truncate(strip_tags(item.content), length: 150) %>
-                                        <% end %>
-                                    </section><!-- .entry-content -->
-                                    <%= link_to "Xem thêm", item, class: "read-more-red font-medium", title: "Read more" %>
-                                </article><!-- .post -->
-                            <% end %>
+                        <% @module_news_posts.each do |item| %>
+                            <article class="post col-sm-4 col-xs-12">
+                                <h3 class="title"><a href="#"><%= item.title %></a></h3>
+                                <section class="meta font-roboto">
+                                    <span>Ngày tạo:<a class="date" title="Date" href="#"><%= item.created_at.strftime("%d/%m/%Y") %></a></span>
+                                    <span class="categories">Nhãn:<a class="category" title="Category1" href="#"><%= item.tag.title %></a></span>
+                                </section>
+                                <div class="image image-post">
+                                    <a href="<%= item.image_url %>" rel="prettyPhoto"><img src="<%= item.image_url if item.image_url? %>" style="width: 360px; height: 150px;" alt="<%= item.title %>"></a>
+                                </div>
+                                <section class="post-entry excerpt">
+                                    <%= content_tag(:p, class: "text-justify") do %>
+                                        <%= truncate(strip_tags(item.content), length: 150) %>
+                                    <% end %>
+                                </section><!-- .entry-content -->
+                                <%= link_to "Xem thêm", item, class: "read-more-red font-medium", title: "Read more" %>
+                            </article><!-- .post -->
                         <% end %>
                       </div>
                   </div><!-- .post-list -->

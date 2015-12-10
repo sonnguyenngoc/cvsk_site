@@ -1,0 +1,60 @@
+<% if @slide_show.errors.any? %>
+    <div id="error_explanation">
+        <% @slide_show.errors.full_messages.each do |message| %>
+            <span class="label label-warning"><%= message %></span>
+        <% end %>
+        <hr/>
+    </div>
+<% end %>
+
+<%= form_for @slide_show, html: {class: "form-horizontal"} do |f| %>
+
+    <div class="form-group">
+        <%= f.label "Picture/Logo: ", class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+          <%= f.file_field :image_url, class: "file-styled" %>
+          <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
+          <%= image_tag(@slide_show.image_url, size: "250x150", alt: "Picture/logo's Manufacturer", class: "img-rouded") %>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <%= f.label "Tag: ", class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+            <%= f.select(:tag_name, ['Products', 'Personal Manufacturer', 'General Manufacturers'], {}, { :class => 'select' })%>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <%= f.label "Title 1: ", class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+            <%= f.text_field :title_1, placeholder: "Slide_show's title (required)", class: "form-control" %>
+        </div>
+    </div>
+        
+    <div class="form-group">
+        <%= f.label "Title 2: ", class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+            <%= f.text_field :title_2, placeholder: "Slide_show's title (required)", class: "form-control" %>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <%= f.label "Description: ", class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+            <%= f.text_area :description, rows: "5", cols: "5", placeholder: "Enter slide_show's description here...", class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="text-right">
+        <button type="submit" class="btn btn-success">Save <i class="icon-plus22 position-right"></i></button>
+    </div>
+<% end %>
+
+<!-- Theme JS files -->
+<%= javascript_include_tag '/assets/js/plugins/forms/styling/uniform.min.js' %>
+<%= javascript_include_tag '/assets/js/core/app.js' %>
+<%= javascript_include_tag '/assets/js/plugins/forms/selects/select2.min.js' %>
+
+<%= javascript_include_tag '/assets/js/pages/form_layouts.js' %>
+<!-- /theme JS files -->
