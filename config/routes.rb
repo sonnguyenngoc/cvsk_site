@@ -8,6 +8,11 @@ Rails.application.routes.draw do
       get :service
       get :menu_product
       get :general_manufacturer
+      get :post_detail
+      get :product_detail
+      get :manufacturer_detail
+      get :reservation
+      get :confirm_order
     end
   end
   root 'homes#index'

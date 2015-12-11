@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h1>LIÊN HỆ</h1>
+                <h1>SẢN PHẨM</h1>
                 <div class="tl-breadcrumb-wrapper hidden-xs">
                     <ul class="tl-breadcrumb">
                         <li>
@@ -10,7 +10,7 @@
                                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             </a>
                         </li>
-                        <li>LIÊN HỆ</li>
+                        <li><%= @products.name %></li>
                     </ul>
                 </div>
                 <!-- .tl-breadcrumb -->
@@ -38,105 +38,40 @@
 <div id="main-container">
     <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-9" role="main">
+          <div class="col-xs-12 col-sm-12 col-md-9 col-md-push-3" role="main">
               <div class="page-content devider">
-
                   <article>
-                    
-                      <h3>NHÀ HÀNG CHAY VÌ SỨC KHỎE</h3>
-                            
-                      <form name="contact_form" class="contact-us-form">
-                          <ul>
-                              <li><input type="text" name="name" placeholder="HỌ & TÊN (Bắt buộc)" title="Please enter ..." class="form-control float-label width50" /></li>
-                              <li><input type="text" name="email" placeholder="ĐỊA CHỈ EMAIL" title="Please enter ..." class="form-control float-label width50" /></li>
-                              <li><input type="text" name="phone" placeholder="SỐ ĐIỆN THOẠI (Bắt buộc)" title="Please enter ..." class="form-control float-label width50" /></li>
-                              <li><input type="text" name="website" placeholder="WEBSITE" title="Please enter ..." class="form-control float-label width50" /></li>
-                              <li><textarea name="message" rows="5" placeholder="LỜI NHẮN (Bắt buộc)" title="Please enter the message ..." class="form-control float-label"></textarea></li>
-                              <li>
-                                  <a role="button" href="#" class="tl-button red submit font-medium">Gửi thông tin</a>
-                                  <a role="button" href="#" class="tl-button dark reset-form font-medium">Nhập lại</a>
-                              </li>
-                          </ul>
-                          <input type="hidden" name="handler" value="contact" />
-                      </form>
-
-                      <div class="google-map">
-                          <h3>Bản đồ</h3>
-                          <div class="google-map-background tl-frame-light">
-                              <div id="google-map-location"></div>
-                          </div>
-                      </div><!--end google-map-->
-
+                      <h2 class="title">Tên sản phẩm: <%= @products.name %></h2>
+                      <section class="post-entry">
+                          <span class="text-justify"><%= (@products.description).html_safe %></span>
+                      </section><!-- .entry-content -->
+                      <div class="dashed" />
                   </article>
-
-              </div>
+                  
+              </div>           
           </div>
-          <aside class="col-xs-12 col-sm-12 col-md-3">
-
-              <!-- Restaurant hours widget -->
-              <!--<div class="widget widget-restaurant-hours">
-                  <h3 class="widget-title">Giờ mở cửa</h3>
-                  <ul class="restaurant-hours">
-                      <li><p class="meta">Breakfast</p></li>
-                      <li>
-                          <label>Monday - Friday</label>
-                          <span>11:00 am - 03:00 pm</span>
-                      </li>
-                      <li>
-                          <label>Monday - Friday</label>
-                          <span>11:00 am - 03:00 pm</span>
-                      </li>
-                  </ul>
-                  <ul class="restaurant-hours">
-                      <li><p class="meta">Lunch</p></li>
-                      <li>
-                          <label>Monday - Friday</label>
-                          <span>11:00 am - 03:00 pm</span>
-                      </li>
-                      <li>
-                          <label>Monday - Friday</label>
-                          <span>11:00 am - 03:00 pm</span>
-                      </li>
-                  </ul>->
-              </div><!-- .widget-restaurant-hours -->
-
-
-              <!-- Today special widget -->
-              <div class="widget widget-today-special">
-                  <h3 class="widget-title">Sự kiện mới</h3>
-                    <% @module_news_events.each do |item| %>
-                        <% if item.tag.title == "Sự kiện" %>
-                            <div class="image"><img src="<%= item.image_url if item.image_url? %>" alt="image description" /></div>
-                            <h4 class="title"><a href=""><%= link_to (truncate(strip_tags(item.title), length: 30)), post_detail_homes_path(:id => item) %></a></h4>
-                            <p class="excerpt text-justify"><%= truncate(strip_tags(item.content), length: 150) %></p>
-                            <%= link_to "Xem tiếp", post_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
-                            <div class="clearfix"></div>
-                            <hr/>
-                        <% end %>
-                    <% end %>
-                
-              </div><!-- .widget -->
-
-
-              <!-- News and events widgets -->
-              <div class="widget widget-news">
-                  <h3 class="widget-title">Tin tức mới</h3>
-                  <ul>
-                    <% @module_news_posts.each do |item| %>
-                        <% if item.tag.title != ("Sự kiện" && "Lời giới thiệu") %>
-                            <li>
-                                <span class="meta"><%= item.created_at.strftime("%d/%m/%Y") %></span>
-                                <h4 class="title">
-                                    <a href="#"><%= link_to (truncate(strip_tags(item.title), length: 50)), post_detail_homes_path(:id => item) %></a>
-                                 </h4>
-                                <p class="excerpt text-justify"><%= truncate(strip_tags(item.content), length: 150) %></p>
-                            </li>
-                            <hr/>
-                        <% end %>
-                    <% end %>
-                  </ul>
-              </div>
-
+          
+          <aside class="col-xs-12 col-sm-12 col-md-3 col-md-pull-9">
+            
+            <h3 class="widget-title"><strong>Nhà hàng:</strong> <%= link_to @products.manufacturer.name, manufacturer_detail_homes_path(id: @products.manufacturer_id) %></h3>
+            
+            <hr/>
+            
+            <div class="widget widget-menu-highlights">
+                <h3 class="widget-title">Hình ảnh</h3>
+                <a href="/assets/frontend/showcase/550x250.png" rel="prettyPhoto">
+                  <img src="<%= @products.image_url if @products.image_url? %>" width="250" alt="150">
+                </a>
+            </div><!-- .widget-menu-highlights -->
+            
+            <!-- Widget Recent posts -->
+            <div class="widget widget_recent_entries">
+                <h3 class="widget-title">THÔNG TIN SẢN PHẨM</h3>
+                <ul>
+                    <li><strong>Giá:</strong> <%= @products.price %></li>
+                    <li><strong>Danh mục:</strong> <%= @products.category.title %></li>
+                </ul>
+            </div><!-- widget_recent_entries -->
           </aside>
         </div>
     </div>
@@ -242,9 +177,6 @@
 
 <!-- Pretty Photo -->
 <%= javascript_include_tag '/assets/frontend/js/pretty-photo/js/jquery.prettyPhoto.js' %>
-
-<%= javascript_include_tag '/assets/frontend/js/googlemap.js' %>
-<%= javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false' %>
 
 <!-- Cookies -->
 <%= javascript_include_tag '/assets/frontend/js/jquery.cookie.js' %>

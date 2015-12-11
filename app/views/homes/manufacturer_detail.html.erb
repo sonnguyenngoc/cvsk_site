@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h1>GIỚI THIỆU</h1>
+                <h1>NHÀ HÀNG</h1>
                 <div class="tl-breadcrumb-wrapper hidden-xs">
                     <ul class="tl-breadcrumb">
                         <li>
@@ -10,7 +10,9 @@
                                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             </a>
                         </li>
-                        <li>GIỚI THIỆU</li>
+                        <li>
+                            <%= @manufacturers.name %>
+                        </li>
                     </ul>
                 </div>
                 <!-- .tl-breadcrumb -->
@@ -38,61 +40,111 @@
 <div id="main-container">
     <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-9 col-md-push-3" role="main">
-              <div class="page-content devider">
-                  <article>
-                    <% @main_manufacturer.each do |item| %>
-                        <h2 class="title"><strong>NHÀ HÀNG: </strong><%= item.name %></h2>
+            <div class="col-xs-12 col-sm-12 col-md-9 col-md-push-3" role="main">
+                <div class="page-content devider">
+                    <article>
+                        <h2 class="title"><strong>NHÀ HÀNG: </strong><%= @manufacturers.name %></h2>
                         <hr/>
                         <section class="post-entry">
-                            <span class="text-justify"><%= (item.intro).html_safe %></span>
-                        </section><!-- .entry-content -->
+                            <span class="text-justify"><%= (@manufacturers.intro).html_safe %></span>
+                        </section>
+                        <!-- .entry-content -->
                         <div class="dashed" />
-                    <% end %>
-                  </article>
-                  
-              </div>           
-          </div>
-          
-          <aside class="col-xs-12 col-sm-12 col-md-3 col-md-pull-9">
-            <% @main_manufacturer.each do |item| %>
+                    </article>
+                </div>
+                
+                <div class="tl-carousel-wrapper">
+                    <h2 class="title">Món ăn của nhà hàng</h2>
+                    <div class="tl-carousel-inner-wrapper">
+                        
+                        <ul class="tl-carousel">
+                            <% @listing_product.each do |item| %>
+                                <% if item.manufacturer_id == @manufacturers.id %>
+                                    <li>
+                                        <span class="meta font-small"><%= link_to item.name, product_detail_homes_path(:id => item) %></span>
+                                        <div class="image image-slideshow-small">
+                                            <img src="<%= item.image_url if item.image_url? %>" class="tl-frame-light" alt="<%= item.name %>" />
+                                        </div>
+                                        <p class="excerpt"><%= truncate(strip_tags(item.description), length: 100) %></p>
+                                        <%= link_to "Xem tiếp", product_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
+                                    </li>
+                                <% end %>
+                            <% end %>
+                        </ul>
+                        <div class="c-pagination visible-xs"></div>
+                    </div>
+                    <!-- #tl-corausel-inner-wrapper -->
+
+                    <div class="tl-carousel-nav hidden-xs">
+                        <span class="c-previous"></span>
+                        <span class="c-next"></span>
+                    </div>
+                </div>
+                <!-- #tl-corausel-wrapper -->
+            </div>
+
+            <aside class="col-xs-12 col-sm-12 col-md-3 col-md-pull-9">
                 <div class="widget widget-menu-highlights">
                     <h3 class="widget-title">LOGO NHÀ HÀNG</h3>
                     <a href="/assets/frontend/showcase/550x250.png" rel="prettyPhoto">
-                      <img src="<%= item.image_url if item.image_url? %>" width="250" alt="150">
-                    </a>
-                </div><!-- .widget-menu-highlights -->
-  
+                  <img src="<%= @manufacturers.image_url if @manufacturers.image_url? %>" width="250" alt="150">
+                </a>
+                </div>
+                <!-- .widget-menu-highlights -->
+
                 <!-- Widget Recent posts -->
                 <div class="widget widget_recent_entries">
                     <h3 class="widget-title">THÔNG TIN</h3>
                     <ul>
-                        <li><strong>Địa chỉ:</strong> <%= item.address %></li>
-                        <li><strong>Email:</strong> <%= item.email %></li>
-                        <li><strong>Số điện thoại:</strong> <%= item.phone %></li>
+                        <li><strong>Địa chỉ:</strong>
+                            <%= @manufacturers.address %>
+                        </li>
+                        <li><strong>Email:</strong>
+                            <%= @manufacturers.email %>
+                        </li>
+                        <li><strong>Số điện thoại:</strong>
+                            <%= @manufacturers.phone %>
+                        </li>
                     </ul>
-                </div><!-- widget_recent_entries -->
-                
+                </div>
+                <!-- widget_recent_entries -->
+
                 <div class="widget widget-menu-highlights">
                     <h3 class="widget-title">HÌNH ẢNH</h3>
-                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                    <div class="hvr-float-shadow line-bottom"><a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a></div>
-                </div><!-- .widget-menu-highlights -->
-            <% end %>
-          </aside>
+                    <div class="hvr-float-shadow line-bottom">
+                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
+                    </div>
+                    <div class="hvr-float-shadow line-bottom">
+                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
+                    </div>
+                    <div class="hvr-float-shadow line-bottom">
+                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
+                    </div>
+                    <div class="hvr-float-shadow line-bottom">
+                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
+                    </div>
+                    <div class="hvr-float-shadow line-bottom">
+                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
+                    </div>
+                    <div class="hvr-float-shadow line-bottom">
+                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
+                    </div>
+                    <div class="hvr-float-shadow line-bottom">
+                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
+                    </div>
+                    <div class="hvr-float-shadow line-bottom">
+                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
+                    </div>
+                </div>
+                <!-- .widget-menu-highlights -->
+            </aside>
         </div>
     </div>
 
     <div id="prefooter-wrapper">
         <div class="container">
             <div class="row">
-    
+
                 <!-- Widget Container 1 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-chef">
@@ -102,13 +154,15 @@
                                 <div class="image hvr-float-shadow">
                                     <img src="<%= item.image_url if item.image_url? %>" width="82" height="82" alt="" />
                                 </div>
-                                <div class="text-justify"><%= item.content.html_safe %></div>
+                                <div class="text-justify">
+                                    <%= item.content.html_safe %>
+                                </div>
                                 <div class="clearfix"></div>
-                            <% end %>
-                        <% end %>
+                                <% end %>
+                                    <% end %>
                     </div>
                 </div>
-    
+
                 <!-- Widget Container 2 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-menu-highlights">
@@ -119,17 +173,19 @@
                                     <div class="image hvr-float-shadow"><img src="<%= item.image_url if item.image_url? %>" width="56" height="56" alt="<%= item.name %>"></div>
                                     <h4 class="title"><a href="" title=""><%= link_to (truncate(strip_tags(item.name), length: 20)), product_detail_homes_path(id: item) %></a></h4>
                                     <div class="excerpt">
-                                        <p><%= truncate(strip_tags(item.description), length: 100) %></p>
+                                        <p>
+                                            <%= truncate(strip_tags(item.description), length: 100) %>
+                                        </p>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
-                            <% end %>
+                                <% end %>
                         </ul>
                         <%= link_to "Xem tiếp", menu_product_homes_path, class: "read-more-red font-medium" %>
-                        <div class="clearfix"></div>
+                            <div class="clearfix"></div>
                     </div>
                 </div>
-    
+
                 <!-- Widget Container 3 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-contact-us">
@@ -146,7 +202,7 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-    
+
             </div>
             <!-- .row -->
         </div>
@@ -176,6 +232,13 @@
 
 <!-- Responsive navigation menu -->
 <%= javascript_include_tag '/assets/frontend/js/responsive-nav/responsive-menu-js.js' %>
+
+<!-- Carousel -->
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/helper-plugins/jquery.ba-throttle-debounce.min.js' %>
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/helper-plugins/jquery.mousewheel.min.js' %>
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/helper-plugins/jquery.touchSwipe.min.js' %>
+
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/jquery.carouFredSel-6.2.1-packed.js' %>
 
 <%= javascript_include_tag '/assets/frontend/js/bxslider/jquery.bxslider.min.js' %>
 

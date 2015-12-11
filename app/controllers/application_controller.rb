@@ -8,7 +8,10 @@ class ApplicationController < ActionController::Base
   def layout_by_resource
     if controller_name == 'homes' && (action_name == 'contact' || action_name == 'news' ||
                                       action_name == 'intro' || action_name == 'service' ||
-                                      action_name == 'menu_product' || action_name == 'general_manufacturer')
+                                      action_name == 'menu_product' || action_name == 'general_manufacturer' ||
+                                      action_name == 'post_detail' || action_name == 'product_detail' ||
+                                      action_name == 'manufacturer_detail' || action_name = 'reservation' ||
+                                      action_name='confirm_order')
       'layout_frontend'
     else
       'application'

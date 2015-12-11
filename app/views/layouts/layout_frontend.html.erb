@@ -9,6 +9,7 @@
     <!-- Bootstrap -->
     <%= stylesheet_link_tag '/assets/frontend/css/bootstrap.min.css' %>
     <%= stylesheet_link_tag '/assets/frontend/css/bootstrap-select.css' %>
+	<%= stylesheet_link_tag '/assets/frontend/css/bootstrap-datetimepicker.min.css' %>
 
     <!-- Pretty Photo -->
     <%= stylesheet_link_tag '/assets/frontend/js/pretty-photo/css/prettyPhoto.css' %>
@@ -17,7 +18,7 @@
     <%= stylesheet_link_tag '/assets/frontend/css/mazzareli-theme.css' %>
 
     <!-- Color Sheme -->
-    <%= stylesheet_link_tag '/assets/frontend/css/color-shemes/turquoise/turquoise.css' %>
+    <%= stylesheet_link_tag '/assets/frontend/css/color-shemes/yellow/yellow.css' %>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -60,7 +61,7 @@
                             </div>
 
                             <!-- Book a table -->
-                            <a href="#" class="book-a-table pull-right hidden-xs font-large">Đặt bàn Online</a>
+							<%= link_to "Đặt bàn Online", reservation_homes_path, class: "book-a-table pull-right hidden-xs font-large" %>
 
                             <!-- Navigation itself -->
                             <div class="navbar-right" id="main-navigation">

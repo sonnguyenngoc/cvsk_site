@@ -61,7 +61,7 @@
                         <div class="row">
                           <% @general_manufacturer.each do |item| %>
                               <article class="col-sm-3 col-xs-12">
-                                  <h3 class="title"><a href="#"><%= item.name %></a></h3>
+                                  <h3 class="title"><%= link_to item.name, manufacturer_detail_homes_path(:id => item) %></h3>
                                   <div class="image">
                                       <img src="<%= item.image_url if item.image_url? %>" alt="Picture">
                                   </div>
@@ -101,47 +101,44 @@
     <div id="prefooter-wrapper">
         <div class="container">
             <div class="row">
-
+    
                 <!-- Widget Container 1 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-chef">
                         <h3 class="font-large">Lời giới thiệu</h3>
-                        <div class="image">
-                            <img src="<%= url_for(" /assets/frontend/showcase/82x82.png ") %>" width="82" height="82" />
-                        </div>
-                        <p class="text-justify">Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis, ultricies id, justo. Nulla facilisi. Proin tortor sem, vehicula vitae, facilisis vel, accumsan a, sapien. Vivamus convallis rutrum. Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis. ultricies id, justo. Nulla facilisi. Proin tortor sem, vehicula vitae, facilisis vel, accumsan a, sapien.</p>
-                        <a class="read-more-red font-medium" href="#">Xem tiếp</a>
-                        <div class="clearfix"></div>
+                        <% @module_introduction.each do |item| %>
+                            <% if item.tag.title == "Lời giới thiệu" %>
+                                <div class="image hvr-float-shadow">
+                                    <img src="<%= item.image_url if item.image_url? %>" width="82" height="82" alt="" />
+                                </div>
+                                <div class="text-justify"><%= item.content.html_safe %></div>
+                                <div class="clearfix"></div>
+                            <% end %>
+                        <% end %>
                     </div>
                 </div>
-
+    
                 <!-- Widget Container 2 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-menu-highlights">
-                        <h3 class="font-large">Món ăn  nổi bật</h3>
+                        <h3 class="font-large">Món ăn mới</h3>
                         <ul>
-                            <li>
-                                <div class="image"><img src="<%= url_for(" /assets/frontend/showcase/56x56.png ") %>" width="56" height="56" alt=""></div>
-                                <h4 class="title"><a href="" title="">French Wedge</a></h4>
-                                <div class="excerpt">
-                                    <p>Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis, ultricies. </p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
-                            <li>
-                                <div class="image"><img src="<%= url_for(" /assets/frontend/showcase/56x56.png ") %>" width="56" height="56" alt=""></div>
-                                <h4 class="title"><a href="" title="">Tarte aux pommes</a></h4>
-                                <div class="excerpt">
-                                    <p>Suspendisse dictu m suscipit odio. Nulla dui arcu, fermentum quis, mattis quis, ultricies. </p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </li>
+                            <% @module_new_products.each do |item| %>
+                                <li>
+                                    <div class="image hvr-float-shadow"><img src="<%= item.image_url if item.image_url? %>" width="56" height="56" alt="<%= item.name %>"></div>
+                                    <h4 class="title"><a href="" title=""><%= link_to (truncate(strip_tags(item.name), length: 20)), product_detail_homes_path(id: item) %></a></h4>
+                                    <div class="excerpt">
+                                        <p><%= truncate(strip_tags(item.description), length: 100) %></p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                            <% end %>
                         </ul>
-                        <a class="read-more-red font-medium" href="#">Xem tiếp</a>
+                        <%= link_to "Xem tiếp", menu_product_homes_path, class: "read-more-red font-medium" %>
                         <div class="clearfix"></div>
                     </div>
                 </div>
-
+    
                 <!-- Widget Container 3 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-contact-us">
@@ -158,7 +155,7 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-
+    
             </div>
             <!-- .row -->
         </div>

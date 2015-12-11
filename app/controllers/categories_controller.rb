@@ -5,6 +5,7 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @categories = Category.all
+    @parent_categories = ParentCategory.all
   end
 
   # GET /categories/1
@@ -69,6 +70,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:title, :description, {parent_ids: []})
+      params.require(:category).permit(:title, :description, {parent_ids: []}, :level)
     end
 end

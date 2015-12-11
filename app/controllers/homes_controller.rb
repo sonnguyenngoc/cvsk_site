@@ -31,33 +31,80 @@ class HomesController < ApplicationController
   
   def contact
     @layout_frontend = 'contact page'
-    @new_posts = Post.order("created_at DESC")
+    @module_news_posts = Post.joins(:tag).where(tags: { title: 'Tin tức', title: 'Sự kiện' }).order("created_at DESC").first(2)
     @module_news_events = Post.joins(:tag).where(tags: { title: 'Sự kiện' }).order("created_at DESC").first(2)
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
   
   def news
     @layout_frontend = 'page-header'
-    @module_news_posts = Post.joins(:tag).where(tags: { title: 'Tin tức', title: 'Sự kiện' }).order("created_at DESC")
+    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Sự kiện' ").order("created_at DESC")
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
   
   def intro
     @layout_frontend = 'contact page'
     @main_manufacturer = Manufacturer.where(manufacturers: { name: 'Chay vì sức khỏe' })
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
   
   def service
     @layout_frontend = 'single'
     @module_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC")
     @module_new_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC").first(8)
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
   
   def menu_product
+    @parent_categories = Category.where("categories.level = '1'")
     @layout_frontend = 'page menu-card'
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
   
   def general_manufacturer
     @layout_frontend = 'tl-gallery page'
     @general_manufacturer = Manufacturer.all
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
+  end
+  
+  def post_detail
+    @layout_frontend = 'contact page'
+    @posts = Post.find(params[:id])
+    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Sự kiện' OR tags.title = 'Dịch vụ' ").order("created_at DESC").first(4)
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
+  end
+  
+  def product_detail
+    @layout_frontend = 'contact page'
+    @products = Product.find(params[:id])
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
+  end
+  
+  def manufacturer_detail
+    @layout_frontend = 'contact page'
+    @manufacturers = Manufacturer.find(params[:id])
+    @listing_product = Product.all
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
+  end
+  
+  def reservation
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
+  end
+  
+  def confirm_order
+    @layout_frontend = 'reservation page'
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
 
   # POST /homes
