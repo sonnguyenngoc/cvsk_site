@@ -9,7 +9,7 @@ class HomesController < ApplicationController
     @module_slide_products = Product.joins(:manufacturer).where(manufacturers: { name: 'Chay vì sức khỏe' }).order("created_at DESC").first(8)
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
-    @module_news_posts = Post.joins(:tag).where(tags: { title: 'Tin tức', title: 'Dịch vụ' }).order("created_at DESC").first(2)
+    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Dịch vụ' ").order("created_at DESC").first(2)
     @module_news_events = Post.joins(:tag).where(tags: { title: 'Sự kiện' }).order("created_at DESC").first(1)
     @module_hour_restaurant = Post.joins(:tag).where(tags: { title: 'Giờ mở cửa' }).order("created_at DESC").first(1)
     @slide_shows = SlideShow.all
@@ -30,8 +30,9 @@ class HomesController < ApplicationController
   end
   
   def contact
+    @contact = Contact.new
     @layout_frontend = 'contact page'
-    @module_news_posts = Post.joins(:tag).where(tags: { title: 'Tin tức', title: 'Sự kiện' }).order("created_at DESC").first(2)
+    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Dịch vụ' ").order("created_at DESC").first(2)
     @module_news_events = Post.joins(:tag).where(tags: { title: 'Sự kiện' }).order("created_at DESC").first(2)
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
@@ -47,6 +48,7 @@ class HomesController < ApplicationController
   def intro
     @layout_frontend = 'contact page'
     @main_manufacturer = Manufacturer.where(manufacturers: { name: 'Chay vì sức khỏe' })
+    @listing_images = ManufacturerImage.all
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
@@ -92,6 +94,7 @@ class HomesController < ApplicationController
     @layout_frontend = 'contact page'
     @manufacturers = Manufacturer.find(params[:id])
     @listing_product = Product.all
+    @listing_images = ManufacturerImage.all
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
@@ -110,6 +113,7 @@ class HomesController < ApplicationController
   # POST /homes
   # POST /homes.json
   def create
+    
     @home = Home.new(home_params)
 
     respond_to do |format|

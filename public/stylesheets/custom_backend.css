@@ -15,4 +15,24 @@
 }
 .padding-bottom {
     padding-bottom: 9px;
+}.text-justify {
+    text-align: justify;
+}
+.text-center {
+    text-align: center;
+}
+.font-smaller {
+    font-size: smaller;
+}
+.font-small {
+    font-size: small;
+}
+.font-medium {
+    font-size: medium;
+}
+.font-large {
+    font-size: large;
+}
+.font-larger {
+    font-size: larger;
 }

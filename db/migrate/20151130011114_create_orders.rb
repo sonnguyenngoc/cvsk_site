@@ -6,7 +6,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string :customer_email
       t.string :customer_phone
       t.integer :many_people
-      t.datetime :order_date
+      t.string :order_date
       t.text :message
 
       t.timestamps null: false

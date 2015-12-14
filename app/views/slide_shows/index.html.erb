@@ -54,7 +54,9 @@
 						</div></td>
                         <td><%= link_to (truncate(strip_tags(item.title_1), length: 20)), item %></td>
                         <td><%= truncate(strip_tags(item.title_2), length: 20) %></td>
-                        <td><%= truncate(strip_tags(item.description), length: 50) %></td>
+                        <td><%= truncate(strip_tags(item.description), length: 50) %><br/>
+							<strong><%= truncate(strip_tags(item.link), length: 30) %></strong>
+						</td>
                         <td><span class="label label-success"><%= item.tag_name %></span></td>
                         <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
                         <td class="text-center">

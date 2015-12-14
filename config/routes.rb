@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :contacts
+  devise_for :users
   resources :slide_shows
   resources :homes do
     collection do

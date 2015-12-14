@@ -1,24 +1,112 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+    <div class="page-header-content">
+        <div class="page-title">
+            <h4><a href="<%= slide_shows_path %>" class="btn-back"><i class="icon-arrow-left52 position-left"></i></a> <span class="text-semibold">Slideshow</span> - Management</h4>
+        </div>
+    </div>
 
-<p>
-  <strong>Image url:</strong>
-  <%= @slide_show.image_url %>
-</p>
+    <div class="breadcrumb-line">
+        <ul class="breadcrumb">
+            <li><a href="<%= mains_path %>"><i class="icon-home2 position-left"></i> Home</a></li>
+            <li><a href="<%= slide_shows_path %>">News & Events</a></li>
+            <li><a href="<%= slide_shows_path %>">Slideshow</a></li>
+            <li class="active"><%= @slide_show.tag_name %></li>
+        </ul>
+    </div>
+</div>
+<!-- /page header -->
 
-<p>
-  <strong>Title 1:</strong>
-  <%= @slide_show.title_1 %>
-</p>
+<!-- Content area -->
+<div class="content">
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title"><span class="text-semibold"><%= @slide_show.tag_name %></span></h5>
+            
+            <%= content_tag(:p, class: "color-red") do %>
+              <%= notice %>
+            <% end %>
+        
+            <form class="form-horizontal" role="form">
+               
+				<div class="form-group">
+					<%= label "", "Picture/Logo: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+						<%= image_tag(@slide_show.image_url, size: "250x150", alt: "Picture/logo's Manufacturer", class: "img-rouded") %>
+                    </div>
+                </div>
+				
+                <div class="form-group">
+                    <%= label "", "Title 1: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static text-justify") do %>
+                          <%= @slide_show.title_1 %>
+                        <% end %>
+                    </div>
+                </div>
+                    
+                <div class="form-group">
+                    <%= label "", "Title 2: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static text-justify") do %>
+                          <%= @slide_show.title_2 %>
+                        <% end %>
+                    </div>
+                </div>
+					
+                <div class="form-group">
+                    <%= label "", "Description: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static text-justify") do %>
+                          <%= (@slide_show.description).html_safe %>
+                        <% end %>
+                    </div>
+                </div>
+					
+                <div class="form-group">
+                    <%= label "", "Tag: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static") do %>
+                          <%= @slide_show.tag_name %>
+                        <% end %>
+                    </div>
+                </div>
+					
+                <div class="form-group">
+                    <%= label "", "Link: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static text-justify text-primary") do %>
+                          <%= link_to @slide_show.link, @slide_show.link, target: "_blank" %>
+                        <% end %>
+                    </div>
+                </div>
+					
+                <div class="form-group">
+                    <%= label "", "Created At: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+                        <%= content_tag(:p, class: "form-control-static") do %>
+                          <%= @slide_show.created_at.strftime("%d/%m/%Y") %>
+                        <% end %>
+                    </div>
+                </div>
+            </form>
+        
+            <%= link_to '<i class="icon-backward2 position-left"></i> Back'.html_safe, slide_shows_path, class: "btn btn-primary" %>
+            
+        </div>
+    </div>
 
-<p>
-  <strong>Title 2:</strong>
-  <%= @slide_show.title_2 %>
-</p>
+    <!-- Footer -->
+	<div class="footer text-muted">
+		Copyright &copy; 2015 - Nhà hàng Chay vì sức khỏe.
+	</div>
+	<!-- /footer -->
 
-<p>
-  <strong>Description:</strong>
-  <%= @slide_show.description %>
-</p>
+</div>
+<!-- /content area -->
 
-<%= link_to 'Edit', edit_slide_show_path(@slide_show) %> |
-<%= link_to 'Back', slide_shows_path %>
+<!-- Theme JS files -->
+<%= javascript_include_tag '/assets/js/plugins/tables/datatables/datatables.min.js' %>
+<%= javascript_include_tag '/assets/js/plugins/forms/selects/select2.min.js' %>
+
+<%= javascript_include_tag '/assets/js/core/app.js' %>
+<!-- /theme JS files -->

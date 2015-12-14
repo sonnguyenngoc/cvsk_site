@@ -44,21 +44,56 @@
                   <article>
                     
                       <h3>NHÀ HÀNG CHAY VÌ SỨC KHỎE</h3>
-                            
-                      <form name="contact_form" class="contact-us-form">
-                          <ul>
-                              <li><input type="text" name="name" placeholder="HỌ & TÊN (Bắt buộc)" title="Please enter ..." class="form-control float-label width50" /></li>
-                              <li><input type="text" name="email" placeholder="ĐỊA CHỈ EMAIL" title="Please enter ..." class="form-control float-label width50" /></li>
-                              <li><input type="text" name="phone" placeholder="SỐ ĐIỆN THOẠI (Bắt buộc)" title="Please enter ..." class="form-control float-label width50" /></li>
-                              <li><input type="text" name="website" placeholder="WEBSITE" title="Please enter ..." class="form-control float-label width50" /></li>
-                              <li><textarea name="message" rows="5" placeholder="LỜI NHẮN (Bắt buộc)" title="Please enter the message ..." class="form-control float-label"></textarea></li>
+                      <% if @contact.errors.any? %>
+                        <div id="error_explanation">
+                          <h6><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h6>
+                      
+                          <% @contact.errors.full_messages.each do |message| %>
+                            <p class="label label-warning"><%= message %></p>
+                          <% end %>
+                        </div>
+                      <% end %>
+                      <%= form_for @contact, html: {class: "contact-us-form"} do |f| %>
+                            <ul>
+                              <li><%= f.text_field :name, class: "form-control float-label width50", placeholder: "HỌ & TÊN (Bắt buộc)" %></li>
+                              <li><%= f.text_field :email, class: "form-control float-label width50", placeholder: "ĐỊA CHỈ EMAIL" %></li>
+                              <li><%= f.text_field :phone, class: "form-control float-label width50", placeholder: "SỐ ĐIỆN THOẠI (Bắt buộc)" %></li>
+                              <li><%= f.text_field :website, class: "form-control float-label width50", placeholder: "WEBSITE" %></li>
+                              <li><%= f.text_area :message, class: "form-control float-label", placeholder: "LỜI NHẮN (Bắt buộc)" %></li>
                               <li>
-                                  <a role="button" href="#" class="tl-button red submit font-medium">Gửi thông tin</a>
-                                  <a role="button" href="#" class="tl-button dark reset-form font-medium">Nhập lại</a>
+                                  <%= button_tag "Gửi thông tin", class: "tl-button red submit font-medium" %>
+                                  <%= link_to "Nhập lại", "#", class: "tl-button dark reset-form font-medium" %>
                               </li>
                           </ul>
                           <input type="hidden" name="handler" value="contact" />
-                      </form>
+                      <% end %>
+                      
+                      <script type="text/javascript">
+
+                        function checkForm(form)
+                        {
+                          // validation fails if the input is blank
+                          if(form.inputfield.value == "") {
+                            alert("Error: Input is empty!");
+                            form.inputfield.focus();
+                            return false;
+                          }
+                      
+                          // regular expression to match only alphanumeric characters and spaces
+                          var re = /^[\w ]+$/;
+                      
+                          // validation fails if the input doesn't match our regular expression
+                          if(!re.test(form.inputfield.value)) {
+                            alert("Error: Input contains invalid characters!");
+                            form.inputfield.focus();
+                            return false;
+                          }
+                      
+                          // validation was successful
+                          return true;
+                        }
+                      
+                      </script>
 
                       <div class="google-map">
                           <h3>Bản đồ</h3>

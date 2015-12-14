@@ -100,13 +100,13 @@
           <div class="col-lg-6 padding-none">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon-calendar5"></i></span>
-                <input type="text" class="form-control pickadate-selectors" placeholder="Try me&hellip; (date)">
+                <%= f.text_field :order_date, value: @order.order_date.strftime("%d %B, %Y") ,class: "form-control pickadate-selectors" %>
             </div>
           </div>
           <div class="col-lg-6 padding-none">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon-watch2"></i></span>
-                <input type="text" class="form-control" id="anytime-time" placeholder="Try me&hellip; (time)">
+                <%= text_field_tag "order_time", @order.order_date.strftime("%H:%I"), class: "form-control", id: "anytime-time" %>
             </div>
           </div>
           <%= render 'picker_date' %>
@@ -114,65 +114,31 @@
     </div>
     
     <div class="form-group">
-        <label class="col-lg-2 control-label">Product:</label>
-        <div class="col-lg-10 padding-none">
-          <div class="col-lg-10 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          <div class="col-lg-2 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          
-          <div class="col-lg-10 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          <div class="col-lg-2 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          
-          <div class="col-lg-10 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          <div class="col-lg-2 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          
-          <div class="col-lg-10 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          <div class="col-lg-2 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          
-          <div class="col-lg-10 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          <div class="col-lg-2 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          
-          <div class="col-lg-10 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          <div class="col-lg-2 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          
-          <div class="col-lg-10 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-          <div class="col-lg-2 padding-bottom">
-              <%= f.text_field :many_people, placeholder: "", class: "form-control" %>
-          </div>
-        </div>
-        
-    </div>
-    
-    <div class="form-group">
         <label class="col-lg-2 control-label">Message:</label>
         <div class="col-lg-10">
             <%= f.text_area :message, rows: "5", cols: "5", placeholder: "Enter order's message here", class: "form-control" %>
         </div>
+    </div>
+        
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Product:</label>
+      <div class="col-lg-10">
+          <%= f.fields_for :order_details do |ff| %>
+              <%= ff.hidden_field :id %>
+              <div class="col-lg-9 padding-bottom">
+                  <%= ff.collection_select(:product_id, Product.all, :id, :name, {:include_blank => "None"}, {class: "select"}) %>
+              </div> 
+            
+              <div class="col-lg-2 padding-bottom">
+                  <%= ff.text_field :quantity, placeholder: "", class: "form-control" %>
+              </div>
+              
+              <div class="col-lg-1 padding-bottom">
+                  <%= ff.check_box :_destroy %>
+                  <%= ff.label :_destroy, 'Remove' %>
+              </div>
+          <% end %>
+      </div>
     </div>
 
     <div class="text-right">

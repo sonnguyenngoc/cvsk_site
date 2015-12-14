@@ -8,27 +8,27 @@
 
 Tag.delete_all
 #....
-Tag.create!(
+Tag.create(
   title: 'Tin tức',
   description: 'Tạo các bài viết có nội dung là tin tức.'
 )
-Tag.create!(
+Tag.create(
   title: 'Sự kiện',
   description: 'Tạo các bài viết có nội dung là sự kiện.'
 )
-Tag.create!(
+Tag.create(
   title: 'Dịch vụ',
   description: 'Tạo các bài viết có nội dung là dịch vụ.'
 )
-Tag.create!(
+Tag.create(
   title: 'Lời giới thiệu',
   description: 'Tạo các bài viết có nội dung là lời giới thiệu ngằn gọn về triết lý kinh doanh của nhà hàng.'
 )
-Tag.create!(
+Tag.create(
   title: 'Giờ mở cửa',
   description: 'Cập nhật thông tin thời gian hoạt động của nhà hàng.'
 )
-Tag.create!(
+Tag.create(
   title: 'Liên hệ',
   description: 'Thay đổi nội dung trong trang liên hệ.'
 )
@@ -36,7 +36,34 @@ Tag.create!(
 
 Manufacturer.delete_all
 #....
-Manufacturer.create!(
-  name: 'Chay vì sức khỏe'
+Manufacturer.create(
+  name: 'Chay vì sức khỏe',
+  email: 'info@cvsk.com.vn',
+  address: 'TP.HCM',
+  phone: '0918 214 859'
 )
+#....
+
+Category.delete_all
+#....
+Category.create(
+  title: 'Điểm tâm',
+  description: '',
+  level: '1'
+)
+Category.create(
+  title: 'Thực đơn chính',
+  description: '',
+  level: '1'
+)
+Category.create(
+  title: 'Thức uống',
+  description: '',
+  level: '1'
+)
+#....
+
+User.delete_all
+#....
+User.create(:email => "admin@chayvisuckhoe.com", :password => "aA456321@", :password_confirmation => "aA456321@")
 #....

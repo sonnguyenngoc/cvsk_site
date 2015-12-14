@@ -15,7 +15,11 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+    @order.order_date = Time.now
     @order.order_details.build
+    10.times do
+      order_detail = @order.order_details.build
+    end
   end
 
   # GET /orders/1/edit
@@ -27,7 +31,9 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-
+    #order[order_date]      order_time
+    @order.order_date = (params[:order][:order_date] + " " + params[:order_time]).to_datetime
+    
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -71,6 +77,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:type_id, :customer_name, :customer_email, :customer_phone, :many_people, :order_date, :message, order_details_attributes: [:order_id, :product_id, :quantity])
+      params.require(:order).permit(:type_id, :customer_name, :customer_email, :customer_phone, :many_people, :order_date, :order_time, :message, order_details_attributes: [:id, :order_id, :product_id, :quantity, :_destroy])
     end
 end

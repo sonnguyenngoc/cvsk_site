@@ -110,31 +110,12 @@
                 <!-- widget_recent_entries -->
 
                 <div class="widget widget-menu-highlights">
-                    <h3 class="widget-title">HÌNH ẢNH</h3>
-                    <div class="hvr-float-shadow line-bottom">
-                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
-                    </div>
-                    <div class="hvr-float-shadow line-bottom">
-                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
-                    </div>
-                    <div class="hvr-float-shadow line-bottom">
-                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
-                    </div>
-                    <div class="hvr-float-shadow line-bottom">
-                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
-                    </div>
-                    <div class="hvr-float-shadow line-bottom">
-                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
-                    </div>
-                    <div class="hvr-float-shadow line-bottom">
-                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
-                    </div>
-                    <div class="hvr-float-shadow line-bottom">
-                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
-                    </div>
-                    <div class="hvr-float-shadow line-bottom">
-                        <a href="/assets/frontend/showcase/140x140.png" rel="prettyPhoto"><img src="/assets/frontend/showcase/56x56.png" width="56" height="56" alt=""></a>
-                    </div>
+                    <h3 class="widget-title">HÌNH ẢNH LIÊN QUAN</h3>
+                    <% @listing_images.each do |item| %>
+                        <div class="hvr-float-shadow line-bottom">
+                            <a href="<%= item.listing_image_url %>" rel="prettyPhoto"><%= image_tag(item.listing_image_url, size: "80x80", alt: "Hình ảnh liên quan", class: "img-rouded padding-bottom") %></a>
+                        </div>
+					<% end %>
                 </div>
                 <!-- .widget-menu-highlights -->
             </aside>

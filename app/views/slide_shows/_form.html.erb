@@ -42,7 +42,14 @@
     <div class="form-group">
         <%= f.label "Description: ", class: "col-lg-2 control-label" %>
         <div class="col-lg-10">
-            <%= f.text_area :description, rows: "5", cols: "5", placeholder: "Enter slide_show's description here...", class: "form-control" %>
+            <%= f.text_area :description, rows: "5", cols: "5", placeholder: "Enter slide_show's description here... (required)", class: "form-control" %>
+        </div>
+    </div>
+        
+    <div class="form-group">
+        <%= f.label "Link to: ", class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+            <%= f.text_field :link, placeholder: "Slide_show's link", class: "form-control" %>
         </div>
     </div>
 

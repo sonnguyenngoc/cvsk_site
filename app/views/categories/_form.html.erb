@@ -13,12 +13,12 @@
         
         <div class="form-group field">
             <%= f.label "Title: ", class: "col-lg-3 control-label" %>
-            <div class="col-lg-7">
+            <div class="col-lg-6">
               <%= f.text_field :title, placeholder: "Category's title (required)", class: "form-control" %>
             </div>
             <%= f.label "Level: ", class: "col-lg-1 control-label" %>
-            <div class="col-lg-1">
-              <%= f.text_field :level, class: "form-control" %>
+            <div class="col-lg-2">
+              <%= f.select(:level, ['2', '1'], {}, { :class => 'select' })%>
             </div>
         </div>
 

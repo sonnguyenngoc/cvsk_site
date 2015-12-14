@@ -11,4 +11,6 @@ class Manufacturer < ActiveRecord::Base
   
   mount_uploader :image_url, AvatarUploader
   has_many :products
+  has_many :manufacturer_images
+  accepts_nested_attributes_for :manufacturer_images, :reject_if => lambda { |a| a[:listing_image_url].blank? }, :allow_destroy => true
 end

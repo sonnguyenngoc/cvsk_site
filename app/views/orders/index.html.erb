@@ -83,8 +83,6 @@
 					<th>Email</th>
 					<th>Phone</th>
                     <th>OrderDate</th>
-                    <th>People</th>
-                    <th>ProductList</th>
                     <th>Message</th>
                     <th>CreatedAt</th>
                     <th class="text-center">Actions</th>
@@ -93,13 +91,14 @@
 			<tbody>
               <% @orders.each do |item| %>
 				<tr>
-                    <td><%= item.type %></td>
-                    <td><%= link_to item.customer_name, item %></td>
+                    <td><%= link_to item.type.title, item %></td>
+                    <td><%= item.customer_name %></td>
                     <td><%= item.customer_email %></td>
                     <td><%= item.customer_phone %></td>
-					<td><%= item.order_date %></td>
-                    <td><%= item.many_people %></td>
-                    <td>001</td>
+					<td>
+						<%= item.order_date.strftime("%d/%m/%Y") %><br/>
+						<%= item.order_date.strftime("%H:%I") %>
+					</td>
                     <td><%= item.message %></td>
                     <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
                     <td class="text-center">

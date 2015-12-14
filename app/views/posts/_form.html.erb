@@ -27,8 +27,12 @@
         
     <div class="form-group">
         <%= f.label "Tag: ", class: "col-lg-2 control-label" %>
-        <div class="col-lg-10">
+        <div class="col-lg-7">
             <%= f.collection_select(:tag_id, Tag.all, :id, :title, {:prompt => "Please select..."}, {class: "select"}) %>
+        </div>
+        <%= f.label "Run Events: ", class: "col-lg-1 control-label" %>
+        <div class="col-lg-2">
+            <%= f.select(:tag, ['True', 'False'], {:prompt=> "Please select..."}, { :class => 'select' })%>
         </div>
         <%= render 'dropdown_js' %>
     </div>

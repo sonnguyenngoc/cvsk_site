@@ -84,16 +84,15 @@
                                                     
                                                                         <div class="price-heading">
                                                                             <h4>
-                                                                                <a href="#"><%= item.name %></a>
+                                                                                <a href="#"><%= link_to item.name, product_detail_homes_path(id: item) %></a>
                                                                                 <span><%= item.price %></span>
                                                                             </h4>
                                                                         </div>
                                                                         <p class="text-justify"><%= item.description %></p>
                                                                         <button type="button" class="btn btn-primary btn-xs pull-right">Thêm vào giỏ hàng</button>
                                                                     </li>
-                                                                    <hr/>
                                                                 <% end %>
-                                                                
+                                                                <hr/>
                                                             <% end %>
                                                         </ul>
                                                     <% end %>

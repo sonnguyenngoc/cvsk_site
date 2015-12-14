@@ -10,11 +10,16 @@ class ManufacturersController < ApplicationController
   # GET /manufacturers/1
   # GET /manufacturers/1.json
   def show
+    @listing_images = ManufacturerImage.all
   end
 
   # GET /manufacturers/new
   def new
     @manufacturer = Manufacturer.new
+    @manufacturer.manufacturer_images.build
+    5.times do
+      manufacturer_image = @manufacturer.manufacturer_images.build
+    end
   end
 
   # GET /manufacturers/1/edit
@@ -69,6 +74,6 @@ class ManufacturersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def manufacturer_params
-      params.require(:manufacturer).permit(:image_url, :name, :address, :phone, :email, :intro)
+      params.require(:manufacturer).permit(:image_url, :name, :address, :phone, :email, :intro, manufacturer_images_attributes: [:id, :manufacturer_id, :listing_image_url, :quantity, :_destroy])
     end
 end

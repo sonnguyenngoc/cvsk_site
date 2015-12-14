@@ -12,11 +12,14 @@
                             <div class="mobile-mask"></div>                
                         </div>
                         <!-- .slide -->
+                    <% elsif item.tag_name == 'Personal Manufacturers' %>
+                        
                     <% else %>
                         <div class="slide" style="background-image: url('<%= item.image_url if item.image_url? %>');">
                             <h4 class="slide-item-h4"><%= item.title_1 %></h4>
                             <h2 class="slide-item-h2"><%= item.title_2 %></h2>
                             <p class="slide-item-p text-center"><%= item.description %></p>
+                            <%= link_to 'Xem tiếp', item.link, class: 'slide-item-a font-small try-button' %>
                             <div class="mobile-mask"></div>                
                         </div>
                     <% end %>
@@ -31,34 +34,31 @@
     <!-- #slider-wrapper -->
     
     <div id="featured">
-    
-        <div class="container">
+                
+         <div class="container">
             <div class="tl-carousel-wrapper">
                 <div class="tl-carousel-inner-wrapper">
                     <ul class="tl-carousel">
                         <% @module_slide_products.each do |item| %>
-                            <li>
-                                <h3 class="title font-medium"><%= link_to 'Nhà hàng: '+item.manufacturer.name, manufacturer_detail_homes_path(id: item.manufacturer_id) %></h3>
-                                <span class="meta font-small"><%= link_to item.name, product_detail_homes_path(:id => item) %></span>
-                                
-                                <div class="image image-slideshow-small">
+                            <li >
+                                <span class="meta"><a href="#"><%= link_to 'Nhà hàng: '+item.manufacturer.name, manufacturer_detail_homes_path(id: item.manufacturer_id) %> </a></span>
+                                <h3 class="title"><a href="#"><%= link_to item.name, product_detail_homes_path(:id => item) %></a></h3>
+                                <div class="image  image-slideshow-small">
                                     <img src="<%= item.image_url if item.image_url? %>" class="tl-frame-light" alt="<%= item.name %>" />
                                 </div>
-                                <p class="excerpt"><%= truncate(strip_tags(item.description), length: 100) %></p>
+                                <p class="excerpt"><%= truncate(strip_tags(item.description), length: 115) %></p>
                                 <%= link_to "Xem tiếp", product_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
                             </li>
                         <% end %>
                     </ul>
                     <div class="c-pagination visible-xs"></div>
-                </div>
-                <!-- #tl-corausel-inner-wrapper -->
-    
+                </div><!-- #tl-corausel-inner-wrapper -->
+
                 <div class="tl-carousel-nav hidden-xs">
                     <span class="c-previous"></span>
                     <span class="c-next"></span>
                 </div>
-            </div>
-            <!-- #tl-corausel-wrapper -->
+            </div><!-- #tl-corausel-wrapper -->
         </div>
     
     </div>
@@ -178,7 +178,7 @@
                                 </li>
                             <% end %>
                         </ul>
-                        <a class="read-more-red font-medium" href="#">Xem tiếp</a>
+                        <%= link_to "Xem tiếp", menu_product_homes_path, class: "read-more-red font-medium" %>
                         <div class="clearfix"></div>
                     </div>
                 </div>

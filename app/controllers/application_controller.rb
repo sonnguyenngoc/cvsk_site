@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  #before_action :authenticate_user!
   protect_from_forgery with: :exception
   
   protected
@@ -13,7 +14,10 @@ class ApplicationController < ActionController::Base
                                       action_name == 'manufacturer_detail' || action_name = 'reservation' ||
                                       action_name='confirm_order')
       'layout_frontend'
+    elsif (devise_controller? && resource_name == :user && action_name != 'edit') || controller_name == 'passwords'
+      'login'
     else
+      authenticate_user!
       'application'
     end
   end

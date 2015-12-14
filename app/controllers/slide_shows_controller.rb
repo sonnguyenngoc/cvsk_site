@@ -69,6 +69,6 @@ class SlideShowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def slide_show_params
-      params.require(:slide_show).permit(:image_url, :title_1, :title_2, :tag_name,:description)
+      params.require(:slide_show).permit(:image_url, :title_1, :title_2, :tag_name, :link,:description)
     end
 end
