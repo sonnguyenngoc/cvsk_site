@@ -5,7 +5,7 @@
             <tr>
                 <th>Tên món ăn</th>
                 <th>Giá tiền</th>
-                <th>Mô tả</th>
+                <th>Số lượng</th>
                 <th class="text-center">Xóa</th>
             </tr>
         </thead>
@@ -14,7 +14,7 @@
             <tr>
                 <td>Cơm tấm chay</td>
                 <td>20.000đ</td>
-                <td>ABC XYZ</td>
+                <td>1</td>
                 <td class="text-center">
                     <button type="button" class="btn btn-primary btn-xs">X</button>
                 </td>
@@ -22,7 +22,7 @@
             <tr>
                 <td>Cơm tấm chay</td>
                 <td>20.000đ</td>
-                <td>ABC XYZ</td>
+                <td>2</td>
                 <td class="text-center">
                     <button type="button" class="btn btn-primary btn-xs">X</button>
                 </td>
@@ -30,7 +30,7 @@
             <tr>
                 <td>Cơm tấm chay</td>
                 <td>20.000đ</td>
-                <td>ABC XYZ</td>
+                <td>3</td>
                 <td class="text-center">
                     <button type="button" class="btn btn-primary btn-xs">X</button>
                 </td>
@@ -49,7 +49,7 @@
             <tr>
                 <th>Tên món ăn</th>
                 <th>Giá tiền</th>
-                <th>Mô tả</th>
+                <th>Số lượng</th>
                 <th class="text-center">Xóa</th>
             </tr>
         </thead>
@@ -58,7 +58,7 @@
             <tr>
                 <td>Cơm tấm chay</td>
                 <td>20.000đ</td>
-                <td>ABC XYZ</td>
+                <td>1</td>
                 <td class="text-center">
                     <button type="button" class="btn btn-primary btn-xs">X</button>
                 </td>
@@ -66,7 +66,7 @@
             <tr>
                 <td>Cơm tấm chay</td>
                 <td>20.000đ</td>
-                <td>ABC XYZ</td>
+                <td>2</td>
                 <td class="text-center">
                     <button type="button" class="btn btn-primary btn-xs">X</button>
                 </td>
@@ -74,7 +74,7 @@
             <tr>
                 <td>Cơm tấm chay</td>
                 <td>20.000đ</td>
-                <td>ABC XYZ</td>
+                <td>3</td>
                 <td class="text-center">
                     <button type="button" class="btn btn-primary btn-xs">X</button>
                 </td>
@@ -86,5 +86,5 @@
     </div>
 </article>
 <hr/>
-<a class="tl-button dark pull-left">CHỌN MÓN KHÁC</a>
+<%= link_to "CHỌN MÓN KHÁC", menu_product_homes_path, class: "tl-button dark pull-left" %>
 <%= link_to "ĐẶT HÀNG", confirm_order_homes_path, class: "tl-button red pull-right" %>

@@ -42,7 +42,7 @@
                         <% @module_slide_products.each do |item| %>
                             <li >
                                 <span class="meta"><a href="#"><%= link_to 'Nhà hàng: '+item.manufacturer.name, manufacturer_detail_homes_path(id: item.manufacturer_id) %> </a></span>
-                                <h3 class="title"><a href="#"><%= link_to item.name, product_detail_homes_path(:id => item) %></a></h3>
+                                <h3 class="title"><a href="#"><%= link_to item.name, product_detail_homes_path(id: item) %></a></h3>
                                 <div class="image  image-slideshow-small">
                                     <img src="<%= item.image_url if item.image_url? %>" class="tl-frame-light" alt="<%= item.name %>" />
                                 </div>
@@ -71,16 +71,25 @@
                 <!-- Today special widget -->
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-today-special">
-                        <h3 class="widget-titlee">Sự kiện mới</h3>
-                        <% @module_news_events.each do |item| %>
-                            <% if item.tag.title == "Sự kiện" %>
+                        
+                        <% if @module_run_events.count > 0 %>
+                            <h3 class="widget-titlee">Sự kiện đang diển ra</h3>
+                            <% @module_run_events.each do |item| %>
+                                <div class="image hvr-float-shadow line-bottom">
+                                    <a href="<%= post_detail_homes_path(id: item) %>"><%= image_tag(item.image_url, size: "350x150", alt: "Hình ảnh sự kiện", class: "img-rouded") %></a>
+                                </div>
+                            <% end %>
+                        <% else %>
+                            <h3 class="widget-titlee">Sự kiện mới</h3>
+                            <% @module_news_events.each do |item| %>
                                 <div class="image"><img src="<%= item.image_url if item.image_url? %>" alt="image description" /></div>
                                 <h4 class="title"><a href=""><%= link_to (truncate(strip_tags(item.title), length: 50)), post_detail_homes_path(:id => item) %></a></h4>
                                 <p class="excerpt text-justify"><%= truncate(strip_tags(item.content), length: 150) %></p>
                                 <%= link_to "Xem tiếp", post_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
-                                <div class="clearfix"></div>
+                                <div class="clearfix line-bottom"></div>
                             <% end %>
                         <% end %>
+                        
                     </div>
                     <!-- .widget -->
                 </div>

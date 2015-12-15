@@ -41,7 +41,7 @@
                     <th>Title</th>
                     <th>Content</th>
                     <th>General Benefit</th>
-                    <th>Tag</th>
+                    <th>Tag/Run</th>
                     <th>Created At</th>
                     <th class="text-center">Actions</th>
                 </tr>
@@ -55,7 +55,14 @@
                         <td><%= link_to (truncate(strip_tags(item.title), length: 20)), item %></td>
                         <td><%= truncate(strip_tags(item.content), length: 50) %></td>
                         <td><%= truncate(strip_tags(item.general_benefit), length: 50) %></td>
-                        <td><span class="label label-success"><%= item.tag.title %></span></td>
+                        <td>
+							<span class="label label-success"><%= item.tag.title %></span>
+							<% if item.run_check =="False" and item.tag.title == "Sự kiện" %>
+								<span class="label label-danger"><%= item.run_check %></span>
+							<% elsif item.run_check =="True" and item.tag.title == "Sự kiện" %>
+								<span class="label bg-blue"><%= item.run_check %></span>
+							<% end %>
+						</td>
                         <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
                         <td class="text-center">
                             <ul class="icons-list">

@@ -85,7 +85,7 @@
 				<div class="form-group">
 					<%= label "", "Related Images: ", class: "control-label col-sm-2 text-semibold" %>
                     <div class="col-sm-10">
-						<% @listing_images.each do |item| %>
+						<% @manufacturer.manufacturer_images.each do |item| %>
 							<div class="col-sm-4">
 								<%= image_tag(item.listing_image_url, size: "250x150", alt: "Picture/logo's Manufacturer", class: "img-rouded padding-bottom") %>
 							</div>

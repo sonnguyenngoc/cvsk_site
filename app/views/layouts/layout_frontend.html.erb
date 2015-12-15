@@ -68,7 +68,7 @@
                                 <ul id="main-menu" class="nav navbar-nav">
                                     <li class="font-large"><a href="<%= root_path %>">Trang chủ</a></li>
                                     <li class="font-large"><a href="<%= menu_product_homes_path %>">Thực đơn</a></li>
-                                    <li class="font-large"><a href="#">Hình ảnh</a></li>
+                                    <li class="font-large"><a href="<%= picture_homes_path %>">Hình ảnh</a></li>
                                     <li class="font-large"><a href="<%= news_homes_path %>">Tin tức</a></li>
                                     <li class="font-large"><a href="<%= service_homes_path %>">Dịch vụ</a></li>
                                     <li class="font-large"><a href="<%= intro_homes_path %>">Giới thiệu</a></li>
@@ -82,11 +82,9 @@
                 <!-- .container -->
             </div>
         </header>
-
         
             <%= yield %>
         
-
         <footer id="footer">
             <div class="container">
                 <div class="pull-left">

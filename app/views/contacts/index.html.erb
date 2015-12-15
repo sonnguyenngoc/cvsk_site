@@ -53,7 +53,9 @@
                         <td><%= item.phone %></td>
 						<td><%= item.website %></td>
                         <td><%= truncate(strip_tags(item.message), length: 50) %></td>
-                        <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
+                        <td>
+							<%= item.created_at.strftime("%d/%m/%Y") %>
+						</td>
                         <td class="text-center">
                             <ul class="icons-list">
                                 <li class="dropdown">

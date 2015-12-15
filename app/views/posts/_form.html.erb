@@ -27,12 +27,12 @@
         
     <div class="form-group">
         <%= f.label "Tag: ", class: "col-lg-2 control-label" %>
-        <div class="col-lg-7">
+        <div class="col-lg-6">
             <%= f.collection_select(:tag_id, Tag.all, :id, :title, {:prompt => "Please select..."}, {class: "select"}) %>
         </div>
-        <%= f.label "Run Events: ", class: "col-lg-1 control-label" %>
+        <%= f.label "Run Events: ", class: "col-lg-2 control-label" %>
         <div class="col-lg-2">
-            <%= f.select(:tag, ['True', 'False'], {:prompt=> "Please select..."}, { :class => 'select' })%>
+            <%= f.select(:run_check, ['False', 'True'], {}, { :class => 'select' })%>
         </div>
         <%= render 'dropdown_js' %>
     </div>
@@ -60,4 +60,5 @@
 <%= javascript_include_tag '/assets/js/pages/form_layouts.js' %>
 <%= javascript_include_tag '/ckeditor/ckeditor.js' %>
 <%= javascript_include_tag '/assets/js/pages/editor_ckeditor.js' %>
+<%= javascript_include_tag '//cdn.ckeditor.com/4.5.6/full/ckeditor.js' %>
 <!-- /theme JS files -->

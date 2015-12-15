@@ -40,3 +40,11 @@
 .height-select-position {
     height: 44px;
 }
+.picture-custom {
+    width: 360px;
+    height: 150px;
+    text-align: center;
+}
+.width50 {
+    width: 50% !important;
+}

@@ -10,7 +10,6 @@ class ManufacturersController < ApplicationController
   # GET /manufacturers/1
   # GET /manufacturers/1.json
   def show
-    @listing_images = ManufacturerImage.all
   end
 
   # GET /manufacturers/new

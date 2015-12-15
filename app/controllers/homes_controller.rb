@@ -9,8 +9,9 @@ class HomesController < ApplicationController
     @module_slide_products = Product.joins(:manufacturer).where(manufacturers: { name: 'Chay vì sức khỏe' }).order("created_at DESC").first(8)
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
-    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Dịch vụ' ").order("created_at DESC").first(2)
-    @module_news_events = Post.joins(:tag).where(tags: { title: 'Sự kiện' }).order("created_at DESC").first(1)
+    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Dịch vụ' ").order("created_at DESC").first(3)
+    @module_news_events = Post.joins(:tag).where(tags: { title: 'Sự kiện' }).order("created_at DESC").first(2)
+    @module_run_events = Post.joins(:tag).where("tags.title = 'Sự kiện' AND posts.run_check = 'True' ").order("created_at DESC").first(3)
     @module_hour_restaurant = Post.joins(:tag).where(tags: { title: 'Giờ mở cửa' }).order("created_at DESC").first(1)
     @slide_shows = SlideShow.all
   end
@@ -56,13 +57,15 @@ class HomesController < ApplicationController
   def service
     @layout_frontend = 'single'
     @module_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC")
-    @module_new_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC").first(8)
+    @module_new_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC").first(4)
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
   
   def menu_product
     @parent_categories = Category.where("categories.level = '1'")
+    @module_general_benefit = Post.joins(:tag).where("tags.title = 'Sự kiện' AND posts.general_benefit != ''").order("created_at DESC").first(3)
+    @module_menu_content = MenuContent.order("created_at DESC").first(1)
     @layout_frontend = 'page menu-card'
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
@@ -78,7 +81,7 @@ class HomesController < ApplicationController
   def post_detail
     @layout_frontend = 'contact page'
     @posts = Post.find(params[:id])
-    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Sự kiện' OR tags.title = 'Dịch vụ' ").order("created_at DESC").first(4)
+    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Sự kiện' OR tags.title = 'Dịch vụ' ").order("created_at DESC").first(5)
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
@@ -99,6 +102,14 @@ class HomesController < ApplicationController
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
   
+  def picture_detail
+    @layout_frontend = 'contact page'
+    @posts = Post.find(params[:id])
+    @module_new_pictures = Post.joins(:tag).where(tags: { title: 'Hình ảnh' }).order("created_at DESC").first(5)
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
+  end
+  
   def reservation
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
@@ -106,6 +117,13 @@ class HomesController < ApplicationController
   
   def confirm_order
     @layout_frontend = 'reservation page'
+    @module_new_products = Product.order("created_at DESC").first(2)
+    @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
+  end
+  
+  def picture
+    @layout_frontend = 'tl-gallery page'
+    @module_pictures = Post.joins(:tag).where(tags: { title: 'Hình ảnh' })
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end

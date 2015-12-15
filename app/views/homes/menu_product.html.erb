@@ -44,18 +44,23 @@
                     <article>
                         <div class="row">
                             <div class="col-md-6 col-xs-12">
-                                <h2>H2 It's okay to make a mess, experiments can lead to beautiful things.</h2>
-                                <p>Phasellus blandit nibh vel turpis. Curabitur commodo. Praesent massa lectus, vulputate sed, vestibulum eu, vestibulum eu, dolor. Integer ante. Proin ac odio in urna cursus ultricies. Quisque tincidunt lacus in ante. Donec adipiscing.</p>
-                                <p>Phasellus blandit nibh vel turpis. Curabitur commodo. Praesent massa lectus, vulputate sed, vestibulum eu, vestibulum eu, dolor. Integer ante. Proin ac odio in urna cursus ultricies. Quisque tincidunt lacus in ante. Donec adipiscing.</p>
+                                <% @module_menu_content.each do |f| %>
+                                    <h2><%= f.title %></h2>
+                                    <span class="text-justify"><%= (f.content).html_safe %></span>
+                                <% end %>
+                                <% @module_general_benefit.each do |ff| %>
+                                    <p class="text-justify"> &omicron; <%= ff.general_benefit %></p>
+                                <% end %>
                             </div>
                             <div class="col-md-6 col-xs-12">
                                 <div class="menu-of-the-day">
                                     <h3 class="title">Thực đơn trong ngày</h3>
                                     <ul>
-                                        <li><h2 class="title"><a href="">Nấm kim chi chiên giòn</a><span>25.000đ</span></h2></li>
-                                        <li><h2 class="title"><a href="">Miến xào Singapore</a><span>35.000đ</span></h2></li>
-                                        <li><h2 class="title"><a href="">Nấm kim chi chiên giòn</a><span>25.000đ</span></h2></li>
-                                        <li><h2 class="title"><a href="">Miến xào Singapore</a><span>35.000đ</span></h2></li>
+                                        <% @module_menu_content.each do |f| %>
+                                            <% f.listing_menu_products.each do |ff| %>
+                                                <li><h2 class="title"><%= link_to ff.product.name, product_detail_homes_path(id: ff) %></a><span><%= ff.product.price %></span></h2></li>
+                                            <% end %>
+                                        <% end %>
                                     </ul>
                                 </div>
                                 <!-- .menu-off-the-day-->

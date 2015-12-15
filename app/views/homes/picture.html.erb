@@ -1,0 +1,142 @@
+<div id="teaser">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>HÌNH ẢNH</h1>
+                <div class="tl-breadcrumb-wrapper hidden-xs">
+                    <ul class="tl-breadcrumb">
+                        <li>
+                            <a href="<%= root_path %>">
+                                <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                        <li>HÌNH ẢNH</li>
+                    </ul>
+                </div>
+                <!-- .tl-breadcrumb -->
+
+                <div class="social-bookmarking-wrapper">
+                    <ul class="social-bookmarking">
+                        <li>
+                            <a class="fb hvr-float-shadow" href="http://facebook.com"></a>
+                        </li>
+                        <li>
+                            <a class="yt hvr-float-shadow" href="http://youtube.com"></a>
+                        </li>
+                        <li>
+                            <a class="gp hvr-float-shadow" href="http://googleplus.com"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- .row -->
+    </div>
+</div>
+<!-- #teaser -->
+
+<div id="main-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12" role="main">
+                <div class="page-content">
+                    <div class="gallery-list list-cols">
+                        <div class="row">
+                          <% @module_pictures.each do |item| %>
+                              <article class="col-sm-4 col-xs-12">
+                                  <h3 class="title"><%= link_to item.title, picture_detail_homes_path(id: item) %></h3>
+                                  <div class="image image-post">
+                                      <img src="<%= item.image_url if item.image_url? %>" style="width: 360px; height: 150px;" alt="<%= item.title %>">
+                                  </div>
+                              </article>
+                              <!-- .post -->
+                          <% end %>   
+                        </div>
+                        <!-- .row -->
+                    </div>
+                    <!-- list-cols -->
+                    
+                    <div class="pagination">
+                        <ul>
+                            <li><a href="#" class="previous">Previous</a></li>
+                            <li><a href="#" class="current">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#" class="next">Next</a></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                <!-- .page-content -->
+            </div>
+        </div>
+    </div>
+
+    <div id="prefooter-wrapper">
+        <div class="container">
+            <div class="row">
+    
+                <!-- Widget Container 1 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="widget widget-chef">
+                        <h3 class="font-large">Lời giới thiệu</h3>
+                        <% @module_introduction.each do |item| %>
+                            <% if item.tag.title == "Lời giới thiệu" %>
+                                <div class="image hvr-float-shadow">
+                                    <img src="<%= item.image_url if item.image_url? %>" width="82" height="82" alt="" />
+                                </div>
+                                <div class="text-justify"><%= item.content.html_safe %></div>
+                                <div class="clearfix"></div>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+    
+                <!-- Widget Container 2 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="widget widget-menu-highlights">
+                        <h3 class="font-large">Món ăn mới</h3>
+                        <ul>
+                            <% @module_new_products.each do |item| %>
+                                <li>
+                                    <div class="image hvr-float-shadow"><img src="<%= item.image_url if item.image_url? %>" width="56" height="56" alt="<%= item.name %>"></div>
+                                    <h4 class="title"><a href="" title=""><%= link_to (truncate(strip_tags(item.name), length: 20)), product_detail_homes_path(id: item) %></a></h4>
+                                    <div class="excerpt">
+                                        <p><%= truncate(strip_tags(item.description), length: 100) %></p>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </li>
+                            <% end %>
+                        </ul>
+                        <%= link_to "Xem tiếp", menu_product_homes_path, class: "read-more-red font-medium" %>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+    
+                <!-- Widget Container 3 -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="widget widget-contact-us">
+                        <h3 class="font-large">Đăng ký nhận tin mới</h3>
+                        <form name="contact-us" method="post" class="contact-us-form">
+                            <ul>
+                                <li>
+                                    <input class="form-control float-label" placeholder="Nhập email của bạn" type="text" name="email" title="Please enter your email address" />
+                                </li>
+                                <li><a href="#" role="button" class="tl-button dark submit font-medium">Đăng ký</a></li>
+                            </ul>
+                            <input type="hidden" name="handler" value="contact" />
+                        </form>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+    
+            </div>
+            <!-- .row -->
+        </div>
+        <!-- .container -->
+    </div>
+    <!-- #prefooter-wrapper -->
+</div>
+<!-- #main-container -->

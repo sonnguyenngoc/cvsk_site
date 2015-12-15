@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :menu_contents
   resources :contacts
   devise_for :users
   resources :slide_shows
@@ -15,6 +16,8 @@ Rails.application.routes.draw do
       get :manufacturer_detail
       get :reservation
       get :confirm_order
+      get :picture
+      get :picture_detail
     end
   end
   root 'homes#index'

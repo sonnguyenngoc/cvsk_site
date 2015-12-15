@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214085128) do
+ActiveRecord::Schema.define(version: 20151215133529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 20151214085128) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "listing_menu_products", force: :cascade do |t|
+    t.integer  "menu_content_id"
+    t.integer  "product_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "mains", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,6 +65,13 @@ ActiveRecord::Schema.define(version: 20151214085128) do
     t.string   "phone"
     t.string   "email"
     t.text     "intro"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "menu_contents", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -100,6 +114,13 @@ ActiveRecord::Schema.define(version: 20151214085128) do
     t.datetime "updated_at",      null: false
     t.string   "image_url"
     t.string   "run_check"
+  end
+
+  create_table "product_of_events", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|

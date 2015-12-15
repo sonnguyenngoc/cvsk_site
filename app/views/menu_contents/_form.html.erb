@@ -1,0 +1,53 @@
+<% if @menu_content.errors.any? %>
+    <div id="error_explanation">
+        <% @menu_content.errors.full_messages.each do |message| %>
+            <span class="label label-warning"><%= message %></span>
+        <% end %>
+        <hr/>
+    </div>
+<% end %>
+
+<%= form_for @menu_content, html: {class: "form-horizontal"} do |f| %>
+    
+    <div class="form-group">
+        <%= f.label "Title: ", class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+            <%= f.text_field :title, placeholder: "Menu content's title (required)", class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="mb-15">
+        <%= f.text_area :content, rows: "4", cols: "4", id: "editor-full" %>
+    </div>
+    
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Product:</label>
+      <div class="col-lg-10">
+          <%= f.fields_for :listing_menu_products do |ff| %>
+              <%= ff.hidden_field :id %>
+              <div class="col-lg-11 padding-bottom">
+                  <%= ff.collection_select(:product_id, Product.all, :id, :name, {:include_blank => "None"}, {class: "select"}) %>
+              </div>
+              
+              <div class="col-lg-1 padding-bottom">
+                  <%= ff.check_box :_destroy %>
+                  <%= ff.label :_destroy, 'Remove' %>
+              </div>
+          <% end %>
+      </div>
+    </div>
+
+    <div class="text-right">
+        <button type="submit" class="btn btn-success">Save <i class="icon-plus22 position-right"></i></button>
+    </div>
+<% end %>
+
+<!-- Theme JS files -->
+<%= javascript_include_tag '/assets/js/plugins/forms/selects/select2.min.js' %>
+<%= javascript_include_tag '/assets/js/plugins/forms/styling/uniform.min.js' %>
+<%= javascript_include_tag '/assets/js/core/app.js' %>
+
+<%= javascript_include_tag '/assets/js/pages/form_layouts.js' %>
+<%= javascript_include_tag '/ckeditor/ckeditor.js' %>
+<%= javascript_include_tag '/assets/js/pages/editor_ckeditor.js' %>
+<!-- /theme JS files -->
