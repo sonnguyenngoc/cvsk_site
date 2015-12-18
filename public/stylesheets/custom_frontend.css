@@ -48,3 +48,6 @@
 .width50 {
     width: 50% !important;
 }
+.margin-line-menu li {
+    margin-bottom: 80px;
+}

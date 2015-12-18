@@ -77,7 +77,7 @@
                                                 <h2><%= f.title %></h2>
                                                     <% f.children.each do |ff| %>
                                                         <h3 class="price-category-heading"><%= ff.title %></h3>
-                                                        <ul class="price-items">
+                                                        <ul class="margin-line-menu">
                                                             <% ff.products.each do |item| %>
                                                                 <% if item.category.title == ff.title %>
                                                                     <li>
