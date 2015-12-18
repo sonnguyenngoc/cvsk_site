@@ -35,7 +35,7 @@
   <div class="form-group">
       <%= f.label "Category: ", class: "col-lg-3 control-label" %>
       <div class="col-lg-9">
-        <%= f.collection_select(:category_id, Category.all, :id, :title, {:prompt=> "None"}, {class: "select"}) %>
+          <%= f.collection_select(:category_id, Category.where(categories: { level: 2 }), :id, :title, {:prompt=> "None"}, {class: "select"}) %>
       </div>
   </div>
   

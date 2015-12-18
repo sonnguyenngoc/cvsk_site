@@ -33,7 +33,7 @@
             <%= f.label "Parent: ", class: "col-lg-3 control-label" %>
             <div class="col-lg-9">
               <% Category.all.each do |category| %>
-                <% if @category.id != category.id %>
+                <% if @category.id != category.id and category.level == 1 %>
                   <div class="row-fluid">
                     <div class="checkbox">
                       <%= check_box_tag 'category[parent_ids][]', category.id, @category.parent.include?(category), :id => "category_#{category.id}" %>

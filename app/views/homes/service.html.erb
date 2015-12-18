@@ -40,32 +40,29 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-9" role="main">
                 <div class="page-content devider">
+                    <% @module_services.each do |item| %>
+                        <article class="post">
+                            <h2 class="title font-roboto"><%= link_to item.title, post_detail_homes_path(:id => item) %></h2>
+                            <section class="meta font-roboto">
+                                <span>Ngày tạo:<a class="date" title="Date" href="#"><%= item.created_at.strftime("%d/%m/%Y") %></a></span>
+                                <span>Người tạo:<a class="author" title="Author's name" href="#">Administrator</a></span>
+                                <span class="categories">Nhãn:<a class="category" title="Category1" href="#"><%= item.tag.title %></a></span>
+                            </section>
 
-                    <div class="post-list">
-                        <% @module_services.each do |item| %>
-                            <article class="post">
-                                <h2 class="title font-roboto"><%= link_to item.title, post_detail_homes_path(:id => item) %></h2>
-                                <section class="meta font-roboto">
-                                    <span>Ngày tạo:<a class="date" title="Date" href="#"><%= item.created_at.strftime("%d/%m/%Y") %></a></span>
-                                    <span>Người tạo:<a class="author" title="Author's name" href="#">Administrator</a></span>
-                                    <span class="categories">Nhãn:<a class="category" title="Category1" href="#"><%= item.tag.title %></a></span>
-                                </section>
-    
-                                <div class="image">
-                                    <a href="<%= item.image_url %>" rel="prettyPhoto"><img src="<%= item.image_url if item.image_url? %>" style="width: 800px; height: 320px;" alt="<%= item.title %>"></a>
-                                </div>
-                                <section class="post-entry excerpt">
-                                    <%= content_tag(:p, class: "text-justify") do %>
-                                        <%= truncate(strip_tags(item.content), length: 250) %>
-                                    <% end %>
-                                </section>
-                                <!-- .post-entry -->
-                                <%= link_to 'Xem thêm', post_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
-                                <section class="meta dashed"></section>
-                            </article>
-                            <!-- .post -->
-                        <% end %>
-                    </div>
+                            <div class="image">
+                                <a href="<%= item.image_url %>" rel="prettyPhoto"><img src="<%= item.image_url if item.image_url? %>" style="width: 800px; height: 320px;" alt="<%= item.title %>"></a>
+                            </div>
+                            <section class="post-entry excerpt">
+                                <%= content_tag(:p, class: "text-justify") do %>
+                                    <%= truncate(strip_tags(item.content), length: 250) %>
+                                <% end %>
+                            </section>
+                            <!-- .post-entry -->
+                            <%= link_to 'Xem thêm', post_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
+                            <section class="meta dashed"></section>
+                        </article>
+                        <!-- .post -->
+                    <% end %>
                     <!-- .post-list -->
 
                     <div class="pagination">

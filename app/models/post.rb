@@ -9,4 +9,6 @@ class Post < ActiveRecord::Base
   }
 
   belongs_to :tag
+  has_many :product_of_events
+  accepts_nested_attributes_for :product_of_events, :reject_if => lambda { |a| a[:product_id].blank? }, :allow_destroy => true
 end

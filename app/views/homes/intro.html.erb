@@ -58,7 +58,7 @@
             <% @main_manufacturer.each do |item| %>
                 <div class="widget widget-menu-highlights">
                     <h3 class="widget-title">LOGO NHÀ HÀNG</h3>
-                    <a href="/assets/frontend/showcase/550x250.png" rel="prettyPhoto">
+                    <a href="<%= item.image_url if item.image_url? %>" rel="prettyPhoto">
                       <img src="<%= item.image_url if item.image_url? %>" width="250" alt="150">
                     </a>
                 </div><!-- .widget-menu-highlights -->

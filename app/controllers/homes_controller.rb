@@ -89,6 +89,8 @@ class HomesController < ApplicationController
   def product_detail
     @layout_frontend = 'contact page'
     @products = Product.find(params[:id])
+    @listing_product = Product.all
+    @posts = Post.all
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
@@ -103,7 +105,7 @@ class HomesController < ApplicationController
   end
   
   def picture_detail
-    @layout_frontend = 'contact page'
+    @layout_frontend = 'page-header'
     @posts = Post.find(params[:id])
     @module_new_pictures = Post.joins(:tag).where(tags: { title: 'Hình ảnh' }).order("created_at DESC").first(5)
     @module_new_products = Product.order("created_at DESC").first(2)

@@ -50,7 +50,15 @@
               <% @categories.each do |item| %>
                     <tr>
                         <td><%= link_to (truncate(strip_tags(item.title), length: 20)), item %></td>
-						<td></td>
+						<td>
+							<% if item.parent.count == 0 %>
+								<p class="text-danger"><strong>Parent Category</strong></p>
+							<% else %>
+								<% item.parent.each do |parent| %>
+									<%= parent.title %>
+								<% end %>
+							<% end %>
+						</td>
                         <td><%= truncate(strip_tags(item.description), length: 50) %></td>
 						<td><%= item.level %></td>
                         <td><%= item.created_at.strftime("%d/%m/%Y") %></td>

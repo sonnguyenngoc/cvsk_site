@@ -47,6 +47,23 @@
             <%= f.text_area :general_benefit, rows: "5", cols: "5", placeholder: "Enter post's general benefit here...", class: "form-control" %>
         </div>
     </div>
+        
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Product of Events:</label>
+      <div class="col-lg-10">
+          <%= f.fields_for :product_of_events do |ff| %>
+              <%= ff.hidden_field :id %>
+              <div class="col-lg-11 padding-bottom">
+                  <%= ff.collection_select(:product_id, Product.all, :id, :name, {:include_blank => "None"}, {class: "select"}) %>
+              </div>
+              
+              <div class="col-lg-1 padding-bottom">
+                  <%= ff.check_box :_destroy %>
+                  <%= ff.label :_destroy, 'Remove' %>
+              </div>
+          <% end %>
+      </div>
+    </div>
 
     <div class="text-right">
         <button type="submit" class="btn btn-success">Save <i class="icon-plus22 position-right"></i></button>

@@ -41,7 +41,7 @@
                     <th>Title</th>
                     <th>Content</th>
                     <th>General Benefit</th>
-                    <th>Tag/Run</th>
+                    <th>Tag/Run Events</th>
                     <th>Created At</th>
                     <th class="text-center">Actions</th>
                 </tr>
@@ -52,7 +52,12 @@
 						<td><div class="media-left">
 							<img src="<%= item.image_url if item.image_url? %>" style="width: 82px; height: 56px;" class="img-rounded" alt="">
 						</div></td>
-                        <td><%= link_to (truncate(strip_tags(item.title), length: 20)), item %></td>
+                        <td>
+							<%= link_to (truncate(strip_tags(item.title), length: 40)), item %>
+							<% if item.product_of_events.count > 0 %>
+								<span class="label bg-success">Products Of Events</span>
+							<% end %>
+						</td>
                         <td><%= truncate(strip_tags(item.content), length: 50) %></td>
                         <td><%= truncate(strip_tags(item.general_benefit), length: 50) %></td>
                         <td>

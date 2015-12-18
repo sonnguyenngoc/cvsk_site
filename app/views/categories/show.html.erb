@@ -31,6 +31,17 @@
                 <div class="form-group">
                     <%= label "", "Parent Category: ", class: "control-label col-sm-2 text-semibold" %>
                     <div class="col-sm-10">
+						<% if @category.parent.count == 0 %>
+							<%= content_tag(:p, class: "form-control-static") do %>
+								<strong>Parent Category</strong>
+							<% end %>
+						<% else %>
+							<% @category.parent.each do |parent| %>
+								<%= content_tag(:p, class: "form-control-static") do %>
+									<%= parent.title %>
+								<% end %>
+							<% end %>
+						<% end %>
                     </div>
                 </div>
                 <div class="form-group">

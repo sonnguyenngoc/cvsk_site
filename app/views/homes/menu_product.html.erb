@@ -49,7 +49,7 @@
                                     <span class="text-justify"><%= (f.content).html_safe %></span>
                                 <% end %>
                                 <% @module_general_benefit.each do |ff| %>
-                                    <p class="text-justify"> &omicron; <%= ff.general_benefit %></p>
+                                    <p class="text-justify"> <strong>&omicron;</strong> <%= ff.general_benefit %></p>
                                 <% end %>
                             </div>
                             <div class="col-md-6 col-xs-12">
@@ -58,7 +58,7 @@
                                     <ul>
                                         <% @module_menu_content.each do |f| %>
                                             <% f.listing_menu_products.each do |ff| %>
-                                                <li><h2 class="title"><%= link_to ff.product.name, product_detail_homes_path(id: ff) %></a><span><%= ff.product.price %></span></h2></li>
+                                                <li><h2 class="title"><%= link_to ff.product.name, product_detail_homes_path(id: ff.product_id) %></a><span><%= ff.product.price %></span></h2></li>
                                             <% end %>
                                         <% end %>
                                     </ul>

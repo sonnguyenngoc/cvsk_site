@@ -15,6 +15,10 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @post.product_of_events.build
+    4.times do
+       product_of_event = @post.product_of_events.build
+    end
   end
 
   # GET /posts/1/edit
@@ -69,6 +73,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:tag_id, :title, :content, :general_benefit, :image_url, :run_check)
+      params.require(:post).permit(:tag_id, :title, :content, :general_benefit, :image_url, :run_check, product_of_events_attributes: [:id, :post_id, :product_id, :_destroy])
     end
 end

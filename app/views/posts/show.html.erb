@@ -79,6 +79,32 @@
                         <% end %>
                     </div>
                 </div>
+					
+				<div class="form-group">
+                    <%= label "", "Products of Events: ", class: "control-label col-sm-2 text-semibold" %>
+                    <div class="col-sm-10">
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Name</th>
+										<th>Price</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% @post.product_of_events.each_with_index do |item,index| %>
+										<tr class="<%= (index%2 == 0 ? "" : "alpha-teal") %>">
+											<td><%= item.product_id %></td>
+											<td><%= item.product.name %></td>
+											<td><%= item.product.price %></td>
+										</tr>
+									<% end %>
+								</tbody>
+							</table>
+						</div>
+                    </div>
+                </div>
             </form>
         
             <%= link_to '<i class="icon-backward2 position-left"></i> Back'.html_safe, posts_path, class: "btn btn-primary" %>

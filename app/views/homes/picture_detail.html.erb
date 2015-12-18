@@ -55,7 +55,7 @@
           <aside class="col-xs-12 col-sm-12 col-md-3 col-md-pull-9">
             <div class="widget widget-menu-highlights">
                 <h3 class="widget-title">Hình ảnh</h3>
-                <a href="/assets/frontend/showcase/550x250.png" rel="prettyPhoto">
+                <a href="<%= @posts.image_url if @posts.image_url? %>" rel="prettyPhoto">
                   <img src="<%= @posts.image_url if @posts.image_url? %>" width="250" alt="150">
                 </a>
             </div><!-- .widget-menu-highlights -->

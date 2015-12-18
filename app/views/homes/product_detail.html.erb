@@ -48,6 +48,35 @@
                       <div class="dashed" />
                   </article>
                   
+                  <div class="tl-carousel-wrapper">
+                    <h2 class="title">Món ăn cùng nhà hàng</h2>
+                    <div class="tl-carousel-inner-wrapper">
+                        
+                        <ul class="tl-carousel">
+                            <% @listing_product.each do |item| %>
+                                 <% if @products.manufacturer_id == item.manufacturer_id %>
+                                    <li>
+                                        <span class="meta font-small"><%= link_to item.name, product_detail_homes_path(:id => item) %></span>
+                                        <div class="image image-slideshow-small">
+                                            <img src="<%= item.image_url if item.image_url? %>" class="tl-frame-light" alt="<%= item.name %>" />
+                                        </div>
+                                        <p class="excerpt"><%= truncate(strip_tags(item.description), length: 100) %></p>
+                                        <%= link_to "Xem tiếp", product_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
+                                    </li>
+                                <% end %>
+                            <% end %>
+                        </ul>
+                        <div class="c-pagination visible-xs"></div>
+                    </div>
+                    <!-- #tl-corausel-inner-wrapper -->
+
+                    <div class="tl-carousel-nav hidden-xs">
+                        <span class="c-previous"></span>
+                        <span class="c-next"></span>
+                    </div>
+                </div>
+                <!-- #tl-corausel-wrapper -->
+                  
               </div>           
           </div>
           
@@ -59,7 +88,7 @@
             
             <div class="widget widget-menu-highlights">
                 <h3 class="widget-title">Hình ảnh</h3>
-                <a href="/assets/frontend/showcase/550x250.png" rel="prettyPhoto">
+                <a href="<%= @products.image_url if @products.image_url? %>" rel="prettyPhoto">
                   <img src="<%= @products.image_url if @products.image_url? %>" width="250" alt="150">
                 </a>
             </div><!-- .widget-menu-highlights -->
@@ -70,6 +99,7 @@
                 <ul>
                     <li><strong>Giá:</strong> <%= @products.price %></li>
                     <li><strong>Danh mục:</strong> <%= @products.category.title %></li>
+
                 </ul>
                 <button type="button" class="btn btn-primary btn-xs pull-left">Thêm vào giỏ hàng</button>
             </div><!-- widget_recent_entries -->
@@ -164,6 +194,13 @@
 
 <!-- Responsive navigation menu -->
 <%= javascript_include_tag '/assets/frontend/js/responsive-nav/responsive-menu-js.js' %>
+
+<!-- Carousel -->
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/helper-plugins/jquery.ba-throttle-debounce.min.js' %>
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/helper-plugins/jquery.mousewheel.min.js' %>
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/helper-plugins/jquery.touchSwipe.min.js' %>
+
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/jquery.carouFredSel-6.2.1-packed.js' %>
 
 <%= javascript_include_tag '/assets/frontend/js/bxslider/jquery.bxslider.min.js' %>
 
