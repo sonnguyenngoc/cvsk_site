@@ -101,7 +101,7 @@
                     <li><strong>Danh mục:</strong> <%= @products.category.title %></li>
 
                 </ul>
-                <button type="button" class="btn btn-primary btn-xs pull-left">Thêm vào giỏ hàng</button>
+                <%= button_to 'Thêm vào giỏ hàng', line_items_path(product_id: @products) %>
             </div><!-- widget_recent_entries -->
           </aside>
         </div>

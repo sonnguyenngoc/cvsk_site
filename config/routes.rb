@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :line_items
   resources :carts
   resources :menu_contents
   resources :contacts
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
       get :product_detail
       get :manufacturer_detail
       get :reservation
+      patch :reservation
       get :confirm_order
       get :picture
       get :picture_detail

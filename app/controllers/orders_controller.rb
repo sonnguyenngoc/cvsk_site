@@ -1,5 +1,8 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  
+  include CurrentCart
+  before_action :set_cart, only: [:confirm_order]
 
   # GET /orders
   # GET /orders.json
@@ -44,6 +47,28 @@ class OrdersController < ApplicationController
       end
     end
   end
+  
+  def confirm_order
+    @order = Order.new(order_params)
+    #order[order_date]      order_time
+    @order.order_date = (params[:order][:order_date] + " " + params[:order_time]).to_datetime
+    
+    respond_to do |format|
+      if @order.save
+        
+        @cart.line_items.each do |item|
+          @order.order_details.create()
+        end
+        
+        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.json { render :show, status: :created, location: @order }
+      else
+        format.html { render :new }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json

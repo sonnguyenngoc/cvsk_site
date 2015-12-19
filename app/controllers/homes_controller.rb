@@ -2,6 +2,9 @@ class HomesController < ApplicationController
   before_action :set_home, only: [:show, :edit, :update, :destroy]
   layout "layout_frontend"
   
+  include CurrentCart
+  before_action :set_cart, only: [:reservation]
+  
   # GET /homes
   # GET /homes.json
   def index
@@ -113,14 +116,28 @@ class HomesController < ApplicationController
   end
   
   def reservation
+    
+    if params[:line_items].present?
+        params[:line_items].each do |row|
+          lt = LineItem.find(row[1]["id"])
+          lt.update_attribute(:quantity, row[1]["quantity"])
+        end
+    end
+    
+    @cart.remove_item(params[:line_item_id]) if params[:do] == "remove"
+    @cart.remove_manu(params[:manu_id]) if params[:do]  == "remove_manu"
+    
+    @manufacturers = Manufacturer.all
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
   
   def confirm_order
+    @order = Order.new
     @layout_frontend = 'reservation page'
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
+    
   end
   
   def picture

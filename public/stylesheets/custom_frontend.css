@@ -51,3 +51,9 @@
 .margin-line-menu li {
     margin-bottom: 80px;
 }
+.size-quantity {
+    width: 50%;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}

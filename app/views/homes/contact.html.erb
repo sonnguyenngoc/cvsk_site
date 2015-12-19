@@ -53,7 +53,7 @@
                           <% end %>
                         </div>
                       <% end %>
-                      <%= form_for @contact, html: {class: "contact-us-form", onsubmit: "checkForm();"} do |f| %>
+                      <%= form_for @contact, html: {class: "contact-us-form", onsubmit: "return checkForm();"} do |f| %>
                             <ul>
                               <li>
                                 <%= f.text_field :name, class: "form-control float-label width50", placeholder: "HỌ & TÊN (Bắt buộc)" %>
