@@ -10,13 +10,6 @@ function checkForm() {
     } else if (message == "") {
         return false;
     }
-    if (!checkEmail(email)) {
-        return false;
-    }
+    alert("Cảm ơn bạn đã gửi tin nhắn liên hệ!");
     return true;
-}
-
-function checkEmail(inputvalue) {
-    var pattern = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
-    return pattern.test(inputvalue);
 }

@@ -56,16 +56,16 @@
                       <%= form_for @contact, html: {class: "contact-us-form", onsubmit: "return checkForm();"} do |f| %>
                             <ul>
                               <li>
-                                <%= f.text_field :name, class: "form-control float-label width50", placeholder: "HỌ & TÊN (Bắt buộc)" %>
+                                <%= f.text_field :name, class: "form-control float-label width50", placeholder: "HỌ & TÊN (Bắt buộc)", required: true %>
                               </li>
                               <li>
-                                <%= f.text_field :email, class: "form-control float-label width50", placeholder: "ĐỊA CHỈ EMAIL" %>
+                                <%= f.email_field :email, class: "form-control float-label width50", placeholder: "ĐỊA CHỈ EMAIL" %>
                               </li>
                               <li>
-                                <%= f.text_field :phone, class: "form-control float-label width50", placeholder: "SỐ ĐIỆN THOẠI (Bắt buộc)" %>                              </li>
+                                <%= f.text_field :phone, class: "form-control float-label width50", placeholder: "SỐ ĐIỆN THOẠI (Bắt buộc)", required: true %>                              </li>
                               <li><%= f.text_field :website, class: "form-control float-label width50", placeholder: "WEBSITE" %></li>
                               <li>
-                                <%= f.text_area :message, class: "form-control float-label", placeholder: "LỜI NHẮN (Bắt buộc)" %>
+                                <%= f.text_area :message, class: "form-control float-label", placeholder: "LỜI NHẮN (Bắt buộc)", required: true %>
                               </li>
                               <li>
                                   <%= button_tag "Gửi thông tin", class: "tl-button red submit font-medium" %>

@@ -38,19 +38,20 @@ Manufacturer.delete_all
 #....
 Manufacturer.create(
   name: 'Chay vì sức khỏe',
-  email: 'info@cvsk.com.vn',
+  email: 'info@chayvisuckhoe.com',
   address: 'TP.HCM',
   phone: '0918 214 859'
+)
+Manufacturer.create(
+  name: 'Thiện Nhân',
+  email: 'info@thiennhan.com',
+  address: 'Q.Gò Vấp, TP.HCM',
+  phone: '0123 456 789'
 )
 #....
 
 Category.delete_all
 #....
-Category.create(
-  title: 'Điểm tâm',
-  description: '',
-  level: '1'
-)
 Category.create(
   title: 'Thực đơn chính',
   description: '',

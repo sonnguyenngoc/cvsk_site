@@ -94,7 +94,7 @@
                                                                             </h4>
                                                                         </div>
                                                                         <p class="text-justify"><%= item.description %></p>
-                                                                        <button type="button" class="btn btn-primary btn-xs pull-right">Thêm vào giỏ hàng</button>
+                                                                        <%= button_to 'Thêm vào giỏ hàng', line_items_path(product_id: item), class: "btn btn-primary btn-xs pull-right" %>
                                                                     </li>
                                                                 <% end %>
                                                                 <hr/>

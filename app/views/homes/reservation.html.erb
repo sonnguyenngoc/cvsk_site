@@ -37,13 +37,15 @@
 
 <div id="main-container">
     <div class="container">
-        
-        
-
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-9 col-md-push-3" role="main">
               <div class="page-content devider">
+                <% if @cart.manufacturers.count != 0 %>
                   <%= render "menu_cart" %>
+                <% else %>
+                    <p>GIỎ HÀNG TRỐNG......</p>
+                    <%= link_to "TIẾP TỤC MUA HÀNG", menu_product_homes_path, class: "btn btn-danger" %>
+                <% end %>
               </div>           
           </div>
           <aside class="col-xs-12 col-sm-12 col-md-3 col-md-pull-9">

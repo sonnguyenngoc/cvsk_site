@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :newsletters
   resources :line_items
   resources :carts
   resources :menu_contents

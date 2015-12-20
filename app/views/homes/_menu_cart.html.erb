@@ -18,6 +18,7 @@
                         <th>Tên món ăn</th>
                         <th>Giá tiền</th>
                         <th class="text-left">Số lượng</th>
+                        <th class="text-left">Số tiền</th>
                         <th class="text-center">Xóa</th>
                     </tr>
                 </thead>
@@ -27,20 +28,22 @@
                             <tr>
                                 <td>
                                     <input type="hidden" name="line_items[<%= @count %>][id]" value="<%= ff.id %>">
-                                    <%= ff.product.name %></td>
-                                <td><%= ff.product.price %></td>
+                                    <%= ff.product.name %>
+                                </td>
+                                <td><%= ff.product.price.to_i %> đ</td>
                                 <td class="text-left"><input type="text" name="line_items[<%= @count %>][quantity]" value="<%= ff.quantity %>" class="size-quantity"></td>
+                                <td class="text-left"><%= number_with_delimiter ff.total.to_i %> đ</td>
                                 <td class="text-center">
-                                    <%= link_to "X" ,reservation_homes_path(do: 'remove', line_item_id: ff.id), class: "btn btn-primary btn-xs"  %>
+                                    <%= link_to "X" , reservation_homes_path(do: 'remove', line_item_id: ff.id), class: "btn btn-primary btn-xs"  %>
                                 </td>
                             </tr>
                         <% @count += 1 %>
                     <% end %>
                 </tbody>
             </table>
-            <div class="pull-right">
+            <!--<div class="pull-right">
               <strong>Tổng tiền: </strong><p class="label label-primary">250.000đ</p>
-            </div>
+            </div>-->
         </article>
         <hr/>
     <% end %>
