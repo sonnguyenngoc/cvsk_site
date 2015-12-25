@@ -44,15 +44,6 @@
                   <article>
                     
                       <h3>NHÀ HÀNG CHAY VÌ SỨC KHỎE</h3>
-                      <% if @contact.errors.any? %>
-                        <div id="error_explanation">
-                          <h6><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h6>
-                      
-                          <% @contact.errors.full_messages.each do |message| %>
-                            <p class="label label-warning"><%= message %></p>
-                          <% end %>
-                        </div>
-                      <% end %>
                       <%= form_for @contact, html: {class: "contact-us-form", onsubmit: "return checkForm();"} do |f| %>
                             <ul>
                               <li>
@@ -68,7 +59,10 @@
                                 <%= f.text_area :message, class: "form-control float-label", placeholder: "LỜI NHẮN (Bắt buộc)", required: true %>
                               </li>
                               <li>
-                                  <%= button_tag "Gửi thông tin", class: "tl-button red submit font-medium" %>
+                                <div class="g-recaptcha" data-sitekey="6LfqhRMTAAAAAOIAdd745yJ9VjD6a0GA-5DUf8V5"></div>
+                              </li>
+                              <li>
+                                  <%= f.submit "Gửi thông tin", class: "tl-button red submit font-medium" %>
                                   <%= link_to "Nhập lại", "#", class: "tl-button dark reset-form font-medium" %>
                               </li>
                           </ul>
@@ -201,15 +195,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-contact-us">
                         <h3 class="font-large">Đăng ký nhận tin mới</h3>
-                        <form name="contact-us" method="post" class="contact-us-form">
-                            <ul>
-                                <li>
-                                    <input class="form-control float-label" placeholder="Nhập email của bạn" type="text" name="email" title="Please enter your email address" />
-                                </li>
-                                <li><a href="#" role="button" class="tl-button dark submit font-medium">Đăng ký</a></li>
-                            </ul>
-                            <input type="hidden" name="handler" value="contact" />
-                        </form>
+                        <%= render 'newsletter' %>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -267,5 +253,8 @@
 <!-- Main theme JS file -->
 <%= javascript_include_tag '/assets/frontend/js/main.js' %>
 
-<!-- Main theme JS file -->
+<!-- Contact Validation -->
 <%= javascript_include_tag 'contact-validation.js' %>
+
+<!-- Newsletter Validation -->
+<%= javascript_include_tag 'newsletter-validation.js' %>

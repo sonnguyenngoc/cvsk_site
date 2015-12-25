@@ -28,7 +28,7 @@ class NewslettersController < ApplicationController
 
     respond_to do |format|
       if @newsletter.save
-        format.html { redirect_to @newsletter, notice: 'Newsletter was successfully created.' }
+        format.html { redirect_to homes_path, notice: 'Cảm ơn bạn đã đăng ký nhận tin.' }
         format.json { render :show, status: :created, location: @newsletter }
       else
         format.html { render :new }

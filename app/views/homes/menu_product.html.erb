@@ -58,7 +58,7 @@
                                     <ul>
                                         <% @module_menu_content.each do |f| %>
                                             <% f.listing_menu_products.each do |ff| %>
-                                                <li><h2 class="title"><%= link_to ff.product.name, product_detail_homes_path(id: ff.product_id) %></a><span><%= ff.product.price %></span></h2></li>
+                                                <li><h2 class="title"><%= link_to ff.product.name, product_detail_homes_path(id: ff.product_id) %></a><span><%= number_with_delimiter ff.product.price.to_i %> đ</span></h2></li>
                                             <% end %>
                                         <% end %>
                                     </ul>
@@ -90,7 +90,7 @@
                                                                         <div class="price-heading">
                                                                             <h4>
                                                                                 <a href="#"><%= link_to item.name, product_detail_homes_path(id: item) %></a>
-                                                                                <span><%= item.price %></span>
+                                                                                <span><%= number_with_delimiter item.price.to_i %> đ</span>
                                                                             </h4>
                                                                         </div>
                                                                         <p class="text-justify"><%= item.description %></p>
@@ -170,15 +170,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-contact-us">
                         <h3 class="font-large">Đăng ký nhận tin mới</h3>
-                        <form name="contact-us" method="post" class="contact-us-form">
-                            <ul>
-                                <li>
-                                    <input class="form-control float-label" placeholder="Nhập email của bạn" type="text" name="email" title="Please enter your email address" />
-                                </li>
-                                <li><a href="#" role="button" class="tl-button dark submit font-medium">Đăng ký</a></li>
-                            </ul>
-                            <input type="hidden" name="handler" value="contact" />
-                        </form>
+                        <%= render 'newsletter' %>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -232,3 +224,6 @@
 
 <!-- Main theme JS file -->
 <%= javascript_include_tag '/assets/frontend/js/main.js' %>
+
+<!-- Newsletter Validation -->
+<%= javascript_include_tag 'newsletter-validation.js' %>

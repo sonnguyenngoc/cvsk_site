@@ -1,6 +1,5 @@
 function checkForm() {
     name = document.getElementById("contact_name").value;
-    email = document.getElementById("contact_email").value;
     phone = document.getElementById("contact_phone").value;
     message = document.getElementById("contact_message").value;
     if (name == "") {

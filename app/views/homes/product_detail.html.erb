@@ -152,15 +152,7 @@
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-contact-us">
                         <h3 class="font-large">Đăng ký nhận tin mới</h3>
-                        <form name="contact-us" method="post" class="contact-us-form">
-                            <ul>
-                                <li>
-                                    <input class="form-control float-label" placeholder="Nhập email của bạn" type="text" name="email" title="Please enter your email address" />
-                                </li>
-                                <li><a href="#" role="button" class="tl-button dark submit font-medium">Đăng ký</a></li>
-                            </ul>
-                            <input type="hidden" name="handler" value="contact" />
-                        </form>
+                        <%= render 'newsletter' %>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -221,3 +213,6 @@
 
 <!-- Main theme JS file -->
 <%= javascript_include_tag '/assets/frontend/js/main.js' %>
+
+<!-- Newsletter Validation -->
+<%= javascript_include_tag 'newsletter-validation.js' %>

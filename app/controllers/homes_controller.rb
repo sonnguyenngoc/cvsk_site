@@ -8,6 +8,7 @@ class HomesController < ApplicationController
   # GET /homes
   # GET /homes.json
   def index
+    @newsletter = Newsletter.new
     @class_body = 'home'
     @module_slide_products = Product.joins(:manufacturer).where(manufacturers: { name: 'Chay vì sức khỏe' }).order("created_at DESC").first(8)
     @module_new_products = Product.order("created_at DESC").first(2)
@@ -34,6 +35,7 @@ class HomesController < ApplicationController
   end
   
   def contact
+    @newsletter = Newsletter.new
     @contact = Contact.new
     @layout_frontend = 'contact page'
     @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Dịch vụ' ").order("created_at DESC").first(2)
@@ -43,6 +45,7 @@ class HomesController < ApplicationController
   end
   
   def news
+    @newsletter = Newsletter.new
     @layout_frontend = 'page-header'
     @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Sự kiện' ").order("created_at DESC")
     @module_new_products = Product.order("created_at DESC").first(2)
@@ -50,6 +53,7 @@ class HomesController < ApplicationController
   end
   
   def intro
+    @newsletter = Newsletter.new
     @layout_frontend = 'contact page'
     @main_manufacturer = Manufacturer.where(manufacturers: { name: 'Chay vì sức khỏe' })
     @listing_images = ManufacturerImage.all
@@ -58,14 +62,16 @@ class HomesController < ApplicationController
   end
   
   def service
+    @newsletter = Newsletter.new
     @layout_frontend = 'single'
-    @module_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC")
+    @module_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC").paginate(page: params[:page], per_page: 3)
     @module_new_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC").first(4)
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
   
   def menu_product
+    @newsletter = Newsletter.new
     @parent_categories = Category.where("categories.level = '1'")
     @module_general_benefit = Post.joins(:tag).where("tags.title = 'Sự kiện' AND posts.general_benefit != ''").order("created_at DESC").first(3)
     @module_menu_content = MenuContent.order("created_at DESC").first(1)
@@ -75,6 +81,7 @@ class HomesController < ApplicationController
   end
   
   def general_manufacturer
+    @newsletter = Newsletter.new
     @layout_frontend = 'tl-gallery page'
     @general_manufacturer = Manufacturer.all
     @module_new_products = Product.order("created_at DESC").first(2)
@@ -82,6 +89,7 @@ class HomesController < ApplicationController
   end
   
   def post_detail
+    @newsletter = Newsletter.new
     @layout_frontend = 'contact page'
     @posts = Post.find(params[:id])
     @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Sự kiện' OR tags.title = 'Dịch vụ' ").order("created_at DESC").first(5)
@@ -90,6 +98,7 @@ class HomesController < ApplicationController
   end
   
   def product_detail
+    @newsletter = Newsletter.new
     @layout_frontend = 'contact page'
     @products = Product.find(params[:id])
     @listing_product = Product.all
@@ -99,6 +108,7 @@ class HomesController < ApplicationController
   end
   
   def manufacturer_detail
+    @newsletter = Newsletter.new
     @layout_frontend = 'contact page'
     @manufacturers = Manufacturer.find(params[:id])
     @listing_product = Product.all
@@ -108,6 +118,7 @@ class HomesController < ApplicationController
   end
   
   def picture_detail
+    @newsletter = Newsletter.new
     @layout_frontend = 'page-header'
     @posts = Post.find(params[:id])
     @module_new_pictures = Post.joins(:tag).where(tags: { title: 'Hình ảnh' }).order("created_at DESC").first(5)
@@ -116,6 +127,7 @@ class HomesController < ApplicationController
   end
   
   def reservation
+    @newsletter = Newsletter.new
     
     if params[:line_items].present?
         params[:line_items].each do |row|
@@ -133,6 +145,19 @@ class HomesController < ApplicationController
   end
   
   def confirm_order
+    @newsletter = Newsletter.new
+    
+    if params[:line_items].present?
+        params[:line_items].each do |row|
+          lt = LineItem.find(row[1]["id"])
+          lt.update_attribute(:quantity, row[1]["quantity"])
+        end
+    end
+    
+    @cart.remove_item(params[:line_item_id]) if params[:do] == "remove"
+    @cart.remove_manu(params[:manu_id]) if params[:do]  == "remove_manu"
+    
+    @manufacturers = Manufacturer.all
     @order = Order.new
     @layout_frontend = 'reservation page'
     @module_new_products = Product.order("created_at DESC").first(2)
@@ -141,6 +166,7 @@ class HomesController < ApplicationController
   end
   
   def picture
+    @newsletter = Newsletter.new
     @layout_frontend = 'tl-gallery page'
     @module_pictures = Post.joins(:tag).where(tags: { title: 'Hình ảnh' })
     @module_new_products = Product.order("created_at DESC").first(2)

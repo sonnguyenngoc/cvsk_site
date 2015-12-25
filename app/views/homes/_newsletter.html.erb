@@ -1,0 +1,10 @@
+<%= form_for @newsletter, html: {class: "contact-us-form", onsubmit: "return checkForm();"} do |f| %>
+    <ul>
+        <li>
+            <%= f.email_field :email, class: "form-control float-label", placeholder: "Nhập email của bạn để đăng ký", required: true %>
+        </li>
+        <li>
+            <%= f.submit 'Đăng ký', class: "tl-button dark submit font-medium"  %>
+        </li>
+    </ul>
+<% end %>
