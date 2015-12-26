@@ -56,16 +56,8 @@
                     </div>
                     <!-- list-cols -->
                     
-                    <div class="pagination">
-                        <ul>
-                            <li><a href="#" class="previous">Previous</a></li>
-                            <li><a href="#" class="current">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#" class="next">Next</a></li>
-                        </ul>
+                    <div class="digg_pagination">
+                        <%= will_paginate @module_pictures, :container => false %>
                     </div>
                     
                 </div>

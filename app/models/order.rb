@@ -10,5 +10,11 @@ class Order < ActiveRecord::Base
     end
     return amount
   end
+  
+  def save_from_cart(cart)
+    cart.line_items.each do |li|
+      self.order_details.create(product_id: li.product_id, quantity: li.quantity)
+    end
+  end
  
 end

@@ -9,7 +9,7 @@
     <% @cart.manufacturers.uniq.each do |f| %>
         <article>
             <h3>
-                <strong><%= f.name %></strong>
+                <strong><%= link_to f.name, manufacturer_detail_homes_path(:id => f) %></strong>
                 <%= link_to "X", reservation_homes_path(do: 'remove_manu'), manu_id: f.id, class: "btn btn-danger btn-sm pull-right" %>
             </h3>
             <table class="table">
@@ -68,10 +68,10 @@
         <div class="container-fluid bd-example-row">
           <div class="row">
                 <div class="col-md-6">
-                    <p class="text-left"><%= link_to "GIAO HÀNG", confirm_order_homes_path, class: "btn btn-warning", type: "giaohang" %></p>
+                    <p class="text-left"><%= link_to "GIAO HÀNG", confirm_order_homes_path(type_id: 2), class: "btn btn-warning" %></p>
                 </div>
                 <div class="col-md-6">
-                    <p class="text-right"><%= link_to "ĐẶT MÓN", '#', class: "btn btn-info" %></p>
+                    <p class="text-right"><%= link_to "ĐẶT MÓN", confirm_order_homes_path(type_id: 1), class: "btn btn-info" %></p>
                 </div>
           </div>
         </div>

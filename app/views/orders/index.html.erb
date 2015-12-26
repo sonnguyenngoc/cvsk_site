@@ -97,7 +97,7 @@
                     <td><%= item.customer_phone %></td>
 					<td>
 						<%= item.order_date.strftime("%d/%m/%Y") %><br/>
-						<%= item.order_date.strftime("%H:%I") %>
+						<%= item.order_date.strftime("%I:%M %p") %>
 					</td>
                     <td><%= item.message %></td>
                     <td><%= item.created_at.strftime("%d/%m/%Y") %></td>

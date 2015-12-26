@@ -47,7 +47,7 @@ class HomesController < ApplicationController
   def news
     @newsletter = Newsletter.new
     @layout_frontend = 'page-header'
-    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Sự kiện' ").order("created_at DESC")
+    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Sự kiện' ").order("created_at DESC").paginate(page: params[:page], per_page: 3)
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
@@ -73,7 +73,7 @@ class HomesController < ApplicationController
   def menu_product
     @newsletter = Newsletter.new
     @parent_categories = Category.where("categories.level = '1'")
-    @module_general_benefit = Post.joins(:tag).where("tags.title = 'Sự kiện' AND posts.general_benefit != ''").order("created_at DESC").first(3)
+    @module_general_benefit = Post.joins(:tag).where("tags.title = 'Sự kiện' AND posts.general_benefit != ''").order("created_at DESC").first(9)
     @module_menu_content = MenuContent.order("created_at DESC").first(1)
     @layout_frontend = 'page menu-card'
     @module_new_products = Product.order("created_at DESC").first(2)
@@ -159,6 +159,7 @@ class HomesController < ApplicationController
     
     @manufacturers = Manufacturer.all
     @order = Order.new
+    @order.type_id = params[:type_id]
     @layout_frontend = 'reservation page'
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
@@ -168,7 +169,7 @@ class HomesController < ApplicationController
   def picture
     @newsletter = Newsletter.new
     @layout_frontend = 'tl-gallery page'
-    @module_pictures = Post.joins(:tag).where(tags: { title: 'Hình ảnh' })
+    @module_pictures = Post.joins(:tag).where(tags: { title: 'Hình ảnh' }).order("created_at DESC").paginate(page: params[:page], per_page: 9)
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end

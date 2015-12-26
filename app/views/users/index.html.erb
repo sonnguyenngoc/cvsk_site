@@ -2,15 +2,15 @@
 <div class="page-header">
     <div class="page-header-content">
         <div class="page-title">
-            <h4><a href="<%= mains_path %>" class="btn-back"><i class="icon-arrow-left52 position-left"></i></a> <span class="text-semibold">Types</span> - Management</h4>
+            <h4><a href="<%= mains_path %>" class="btn-back"><i class="icon-arrow-left52 position-left"></i></a> <span class="text-semibold">User</span> - Management</h4>
         </div>
     </div>
 
     <div class="breadcrumb-line">
         <ul class="breadcrumb">
             <li><a href="<%= mains_path %>"><i class="icon-home2 position-left"></i> Home</a></li>
-            <li><a href="<%= tags_path %>">Orders Management</a></li>
-            <li class="active">Types</li>
+            <li><a href="<%= users_path %>">Manage</a></li>
+            <li class="active">Users</li>
         </ul>
     </div>
 </div>
@@ -22,9 +22,9 @@
     <!-- Basic datatable -->
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <%= link_to 'New Type', new_type_path, class: 'btn btn-primary' %>
+            <%= link_to 'New User', new_user_path, class: 'btn btn-primary' %>
             <hr/>
-            <h5 class="panel-title">Listing <span class="text-semibold">Type</span></h5>
+            <h5 class="panel-title">Listing <span class="text-semibold">User</span></h5>
             <div class="heading-elements">
                 <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
@@ -34,23 +34,21 @@
             </div>
         </div>
         
-        <table class="table datatable-type">
+        <table class="table datatable-user">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th>Description</th>
+                    <th>Email</th>
                     <th>Created At</th>
                     <th>Status</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
-              <% @types.each do |item| %>
+              <% @users.each do |item| %>
                     <tr>
-                        <td><%= link_to item.title, item %></td>
-                        <td><%= truncate(strip_tags(item.description), length: 50) %></td>
+                        <td><%= item.email %></td>
                         <td><%= item.created_at.strftime("%d/%m/%Y") %></td>
-                        <td><span class="label label-info">Active</span></td>
+                        <td><span class="label label-info">Admin</span></td>
                         <td class="text-center">
                             <ul class="icons-list">
                                 <li class="dropdown">
@@ -60,7 +58,7 @@
     
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li>
-                                            <%= link_to '<i class="glyphicon glyphicon-edit"></i> Edit'.html_safe, edit_type_path(item) %>
+                                            <%= link_to '<i class="glyphicon glyphicon-edit"></i> Edit'.html_safe, edit_user_path(item) %>
                                         </li>
                                         <li>
                                             <%= link_to '<i class="icon-cross2"></i> Destroy'.html_safe, item, method: :delete, data: {confirm: 'Are you sure?'} %>
@@ -91,5 +89,5 @@
 <%= javascript_include_tag '/assets/js/plugins/forms/selects/select2.min.js' %>
 
 <%= javascript_include_tag '/assets/js/core/app.js' %>
-<%= javascript_include_tag '/javascripts/datatables_type.js' %>
+<%= javascript_include_tag '/javascripts/datatables_user.js' %>
 <!-- /theme JS files -->

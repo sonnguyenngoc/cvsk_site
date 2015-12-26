@@ -106,7 +106,7 @@
           <div class="col-lg-6 padding-none">
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon-watch2"></i></span>
-                <%= text_field_tag "order_time", @order.order_date.strftime("%H:%I"), class: "form-control", id: "anytime-time" %>
+                <%= text_field_tag "order_time", @order.order_date.strftime("%I:%M %p"), class: "form-control", id: "anytime-time" %>
             </div>
           </div>
           <%= render 'picker_date' %>

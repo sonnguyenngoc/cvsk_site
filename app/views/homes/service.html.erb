@@ -64,8 +64,9 @@
                         <!-- .post -->
                     <% end %>
                     <!-- .post-list -->
-                    <%= will_paginate @module_services %>
-
+                    <div class="digg_pagination">
+                        <%= will_paginate @module_services, :container => false %>
+                    </div>
                 </div>
                 <!-- .page-content -->
             </div>
@@ -96,19 +97,6 @@
                     </ul>  
                 </div>
                 <!-- .widget_categories -->
-
-                <!-- Search widget -->
-                <div class="widget widget_search">
-                    <h3 class="widget-title">Search</h3>
-                    <form action="#" id="searchform" method="get">
-                        <div>
-                            <label for="s" class="screen-reader-text sr-only">Search for:</label>
-                            <input type="text" id="s" name="s" value="" class="form-control float-label" placeholder="SEARCH FOR:" title="Enter search phrase">
-                            <input type="submit" value="Search" id="searchsubmit" class="btn tl-button dark">
-                        </div>
-                    </form>
-                </div>
-                <!-- .widget_search -->
 
             </aside>
         </div>

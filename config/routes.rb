@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :menu_contents
   resources :contacts
   devise_for :users
+  resources :users
   resources :slide_shows
   resources :homes do
     collection do

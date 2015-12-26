@@ -1,0 +1,7 @@
+if !params[:order_time].nil?
+          format.html { redirect_to @order, notice: 'Order was successfully created.' }
+          format.json { render :show, status: :created, location: @order }
+        else
+          #tạo trang cảm ơn
+          format.html { redirect_to @order, notice: 'Cảm ơn bạn đã đăng ký.' }
+          format.json { render :show, status: :created, location: @order }

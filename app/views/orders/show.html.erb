@@ -69,7 +69,7 @@
                     <div class="col-sm-10">
                         <%= content_tag(:p, class: "form-control-static") do %>
                           <%= @order.order_date.strftime("%d/%m/%Y") %><br/>
-						  <strong><%= @order.order_date.strftime("%H:%M") %></strong>
+						  <strong><%= @order.order_date.strftime("%I:%M %p") %></strong>
                         <% end %>
                     </div>
                 </div>
