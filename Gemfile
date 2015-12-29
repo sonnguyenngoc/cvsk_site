@@ -54,3 +54,4 @@ gem 'devise'
 gem 'recaptcha', :require => "recaptcha/rails"
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'will_paginate-bootstrap'
+gem "cancan"
