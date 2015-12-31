@@ -40,8 +40,8 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
   
-  RECAPTCHA_PUBLIC_KEY = '6LfqhRMTAAAAAOIAdd745yJ9VjD6a0GA-5DUf8V5'
-  RECAPTCHA_PRIVATE_KEY = '6LfqhRMTAAAAANiaF9LNFB6NzOzMjjmWfeqn9ySK'
+  YOUR_PUBLIC_KEY = '6LfqhRMTAAAAAOIAdd745yJ9VjD6a0GA-5DUf8V5'
+  YOUR_PRIVATE_KEY = '6LfqhRMTAAAAANiaF9LNFB6NzOzMjjmWfeqn9ySK'
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true

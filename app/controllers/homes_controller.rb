@@ -84,6 +84,7 @@ class HomesController < ApplicationController
     @newsletter = Newsletter.new
     @layout_frontend = 'tl-gallery page'
     @general_manufacturer = Manufacturer.all.paginate(page: params[:page], per_page: 9)
+    @search_manu = Manufacturer.search(params[:search]) if params[:search].present?
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
@@ -163,7 +164,6 @@ class HomesController < ApplicationController
     @layout_frontend = 'reservation page'
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
-    
   end
   
   def picture
