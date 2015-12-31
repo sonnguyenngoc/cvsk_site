@@ -41,9 +41,9 @@
                     <% end %>
                 </tbody>
             </table>
-            <!--<div class="pull-right">
-              <strong>Tổng tiền: </strong><p class="label label-primary">250.000đ</p>
-            </div>-->
+            <div class="pull-right">
+              <strong>Tổng tiền: </strong><p class="label label-primary"><%= number_with_delimiter  @cart.sum_total.to_i %> đ</p>
+            </div>
         </article>
         <hr/>
     <% end %>

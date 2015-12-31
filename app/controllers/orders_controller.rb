@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.all.order("created_at DESC")
   end
 
   # GET /orders/1
@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
           #
           @order.save_from_cart(@cart)
           #tạo trang cảm ơn
-          format.html { redirect_to @order, notice: 'Cảm ơn bạn đã đăng ký.' }
+          format.html { redirect_to finish_order_homes_path, notice: '' }
           format.json { render :show, status: :created, location: @order }
         end
       else

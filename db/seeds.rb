@@ -68,3 +68,7 @@ User.delete_all
 #....
 User.create(:email => "admin@chayvisuckhoe.com", :password => "aA456321@", :password_confirmation => "aA456321@")
 #....
+
+['registered', 'chef', 'admin'].each do |role|
+  Role.find_or_create_by({name: role})
+end

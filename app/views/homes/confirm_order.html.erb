@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h1>ĐẶT HÀNG/GIAO HÀNG</h1>
+                <h1>ĐẶT HÀNG</h1>
                 <div class="tl-breadcrumb-wrapper hidden-xs">
                     <ul class="tl-breadcrumb">
                         <li>
@@ -10,7 +10,7 @@
                                 <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
                             </a>
                         </li>
-                        <li>ĐẶT HÀNG/GIAO HÀNG</li>
+                        <li>ĐẶT HÀNG</li>
                     </ul>
                 </div>
                 <!-- .tl-breadcrumb -->
@@ -42,14 +42,14 @@
               <div class="page-content devider">
 
                   <article class="post">
-                    <%= form_for @order, html: {class: "reservation-form"} do |f| %>
+                    <%= form_for @order, html: {class: "reservation-form", onsubmit: "return checkForm();"} do |f| %>
                           <ul>
-                              <li><%= f.text_field :many_people, placeholder: "Số người đặt", class: "form-control float-label width50" %></li>
+                              <li><%= f.text_field :many_people, placeholder: "Số người đặt (Bắt buộc)", class: "form-control float-label width50", required: true %></li>
                               <li>
                                 <div class="form-group width50">
                                     
                                     <div class='input-group date datepicker'>
-                                          <%= f.text_field :order_date, placeholder: "Ngày/Giờ (required)", class: "form-control float-label" %>
+                                          <%= f.text_field :order_date, placeholder: "Ngày/Giờ (Bắt buộc)", class: "form-control float-label", required: true %>
                                           <span class="input-group-addon">
                                               <span class="glyphicon glyphicon-time"></span>
                                           </span>
@@ -57,17 +57,44 @@
                                 </div>
                               </li>
                               <!--<li><input type="text" name="date"  placeholder="DATE/TIME" class="form-control float-label width25 datepicker" required="required" /></li>-->
-                              <li><%= f.text_field :customer_name, placeholder: "Tên người đặt (required)", class: "form-control float-label width50" %></li>
-                              <li><%= f.text_field :customer_email, placeholder: "Email người đặt", class: "form-control float-label width50" %></li>
-                              <li><%= f.text_field :customer_phone, placeholder: "Số điện thoại (required)", class: "form-control float-label width50" %></li>
+                              <li><%= f.text_field :customer_name, placeholder: "Tên người đặt (Bắt buộc)", class: "form-control float-label width50", required: true %></li>
+                              <li><%= f.email_field :customer_email, placeholder: "Email người đặt", class: "form-control float-label width50" %></li>
+                              <li><%= f.text_field :customer_phone, placeholder: "Số điện thoại (Bắt buộc)", class: "form-control float-label width50", required: true %></li>
                               <li><%= f.collection_select(:type_id, Type.all, :id, :title, {}, {class: "form-control width50"}) %></li>
-                              <li><%= f.text_area :message, rows: "5", cols: "5", placeholder: "Lời nhắn", class: "form-control float-label" %></li>
+                              <li><%= f.text_area :message, rows: "5", cols: "5", placeholder: "Lời nhắn (Bắt buộc)", class: "form-control float-label", required: true %></li>
                               <li>
-                                  <%= f.submit 'Xác nhận', class: "tl-button red submit" %>
-                                  <a role="button" href="#" class="tl-button dark reset-form">Reset</a>
+                                  <%= link_to "Xác nhận", "#", class: "tl-button red submit", "data-toggle" => "modal", "data-target" => "#myModal" %>
+                                  <%= link_to "Nhập lại", "#", class: "tl-button dark reset-form" %>
                               </li>
                           </ul>
                           <input type="hidden" name="handler" value="book" />
+                          
+                           <!-- Modal -->
+                            <div id="myModal" class="modal fade" role="dialog">
+                              <div class="modal-dialog">
+                            
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h4 class="modal-title">Bạn có đồng ý đặt hàng?</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="container-fluid bd-example-row">
+                                      <div class="row">
+                                        <p class="text-center">
+                                            <%= f.submit 'Đồng ý đặt hàng', class: "btn btn-success" %>
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                  </div>
+                                </div>
+                            
+                              </div>
+                            </div>
+                          
                     <% end %>
                   </article>
 
@@ -180,4 +207,4 @@
 <%= javascript_include_tag '/assets/frontend/js/main.js' %>
 
 <!-- Newsletter Validation -->
-<%= javascript_include_tag 'newsletter-validation.js' %>
+<%= javascript_include_tag 'order-validation.js' %>

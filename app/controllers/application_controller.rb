@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
                                       action_name == 'menu_product' || action_name == 'general_manufacturer' ||
                                       action_name == 'post_detail' || action_name == 'product_detail' ||
                                       action_name == 'manufacturer_detail' || action_name = 'reservation' ||
-                                      action_name='confirm_order' || action_name='picture' || action_name='picture_detail')
+                                      action_name='confirm_order' || action_name='picture' || action_name='picture_detail' ||
+                                      action_name='finish_order')
       'layout_frontend'
     elsif (devise_controller? && resource_name == :user && action_name != 'edit') || controller_name == 'passwords'
       'login'

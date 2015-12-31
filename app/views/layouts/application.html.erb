@@ -71,7 +71,9 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
                         <li>
-							<%= link_to('<i class="icon-switch2"></i> Logout'.html_safe, destroy_user_session_path, :method => :delete) %>
+							<% if user_signed_in? %>
+								<%= link_to('<i class="icon-switch2"></i> Logout'.html_safe, destroy_user_session_path, :method => :delete) %>
+							<%end%>
 						</li>
                     </ul>
                 </li>
@@ -168,6 +170,7 @@
 
             <!-- Main content -->
             <div class="content-wrapper">
+				
                 <%= yield %>
             </div>
             <!-- /main content -->
