@@ -45,7 +45,7 @@
                     <%= label "", "Price: ", class: "control-label col-sm-2 text-semibold" %>
                     <div class="col-sm-10">
                         <%= content_tag(:p, class: "form-control-static") do %>
-                          <%= @product.price %>
+                          <%= number_with_delimiter @product.price.to_i %> đ
                         <% end %>
                     </div>
                 </div>

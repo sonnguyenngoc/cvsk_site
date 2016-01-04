@@ -10,27 +10,27 @@ Tag.delete_all
 #....
 Tag.create(
   title: 'Tin tức',
-  description: 'Tạo các bài viết có nội dung là tin tức.'
+  description: 'Tạo các bài viết có nội dung là tin tức (Trang tin tức).'
 )
 Tag.create(
   title: 'Sự kiện',
-  description: 'Tạo các bài viết có nội dung là sự kiện.'
+  description: 'Tạo các bài viết có nội dung là sự kiện (Trang tin tức).'
 )
 Tag.create(
   title: 'Dịch vụ',
-  description: 'Tạo các bài viết có nội dung là dịch vụ.'
+  description: 'Tạo các bài viết có nội dung là dịch vụ (Trang dịch vụ).'
 )
 Tag.create(
   title: 'Lời giới thiệu',
-  description: 'Tạo các bài viết có nội dung là lời giới thiệu ngằn gọn về triết lý kinh doanh của nhà hàng.'
+  description: 'Tạo các bài viết có nội dung là lời giới thiệu (Lời giới thiệu ở cuối trang).'
 )
 Tag.create(
   title: 'Giờ mở cửa',
   description: 'Cập nhật thông tin thời gian hoạt động của nhà hàng.'
 )
 Tag.create(
-  title: 'Liên hệ',
-  description: 'Thay đổi nội dung trong trang liên hệ.'
+  title: 'Hình ảnh',
+  description: 'Tạo các bài viết có nội dung là hình ảnh (Trang hình ảnh).'
 )
 #....
 
@@ -66,9 +66,10 @@ Category.create(
 
 User.delete_all
 #....
-User.create(:email => "admin@chayvisuckhoe.com", :password => "aA456321@", :password_confirmation => "aA456321@")
+User.create(:email => "admin@chayvisuckhoe.com", :password => "aA456321@", :password_confirmation => "aA456321@", :user_name => "Administrator", :role_id => 1)
+User.create(:email => "chef@chayvisuckhoe.com", :password => "aA456321@", :password_confirmation => "aA456321@", :user_name => "Chef", :role_id => 2)
 #....
 
-['registered', 'chef', 'admin'].each do |role|
+['admin', 'chef'].each do |role|
   Role.find_or_create_by({name: role})
 end
