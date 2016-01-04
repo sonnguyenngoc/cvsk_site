@@ -20,14 +20,16 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.order_date = Time.now
     @order.order_details.build
-    10.times do
-      order_detail = @order.order_details.build
-    end
+    
+
   end
 
   # GET /orders/1/edit
   def edit
     @order.order_details.build
+    5.times do
+      order_detail = @order.order_details.build
+    end
   end
 
   # POST /orders

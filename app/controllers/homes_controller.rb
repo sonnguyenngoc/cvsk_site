@@ -47,7 +47,7 @@ class HomesController < ApplicationController
   def news
     @newsletter = Newsletter.new
     @layout_frontend = 'page-header'
-    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Sự kiện' ").order("created_at DESC").paginate(page: params[:page], per_page: 3)
+    @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Sự kiện' ").order("created_at DESC").paginate(page: params[:page], per_page: 6)
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
   end
