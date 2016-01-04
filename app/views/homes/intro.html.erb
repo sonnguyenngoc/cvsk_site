@@ -45,7 +45,7 @@
                         <h2 class="title"><strong>NHÀ HÀNG: </strong><%= item.name %></h2>
                         <hr/>
                         <section class="post-entry">
-                            <span class="text-justify"><%= item.intro.html_safe %></span>
+                            <span class="text-justify"><%= item.intro.html_safe if item.intro? %></span>
                         </section><!-- .entry-content -->
                         <div class="dashed" />
                     <% end %>
@@ -59,7 +59,7 @@
                 <div class="widget widget-menu-highlights">
                     <h3 class="widget-title">LOGO NHÀ HÀNG</h3>
                     <a href="<%= item.image_url if item.image_url? %>" rel="prettyPhoto">
-                      <img src="<%= item.image_url if item.image_url? %>" width="250" alt="150">
+                      <img src="<%= item.image_url if item.image_url? %>" width="250" alt="Logo nhà hàng">
                     </a>
                 </div><!-- .widget-menu-highlights -->
   

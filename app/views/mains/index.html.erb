@@ -20,6 +20,9 @@
 
     <!-- Main charts -->
     <div class="row ">
+		<% flash.each do |name, msg| %>
+			<div id="flash_notice" class="text-success">Signed in successfully.</div>
+		<% end %>
         <h1 class="text-center text-teal">WELCOME TO ADMINISTRATOR</h1>
     </div>
     <!-- /main charts -->

@@ -98,9 +98,9 @@
             <div class="widget widget_recent_entries">
                 <h3 class="widget-title">THÔNG TIN SẢN PHẨM</h3>
                 <ul>
-                    <li><strong>Giá:</strong> <%= @products.price %></li>
+                    <li><strong>Giá:</strong> <%= number_with_delimiter @products.price.to_i %> đ</li>
                     <li><strong>Danh mục:</strong> <%= @products.category.title %></li>
-
+                    
                 </ul>
             </div><!-- widget_recent_entries -->
           </aside>

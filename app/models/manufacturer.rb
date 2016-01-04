@@ -13,4 +13,13 @@ class Manufacturer < ActiveRecord::Base
   has_many :products
   has_many :manufacturer_images
   accepts_nested_attributes_for :manufacturer_images, :reject_if => lambda { |a| a[:listing_image_url].blank? }, :allow_destroy => true
+
+  def self.search(search)
+    if search
+      self.where("address like ?", "%#{search}%")
+    else
+      self.all
+    end
+  end
+
 end

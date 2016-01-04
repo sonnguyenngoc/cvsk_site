@@ -11,7 +11,7 @@ class Cart < ActiveRecord::Base
     self.line_items.includes(:product).where(products: {manufacturer_id: manu_id}).destroy_all
   end
   
-  def total
+  def sum_total
     amount = 0.0
     line_items.each do |od|
       amount += od.total

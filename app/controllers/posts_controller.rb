@@ -23,6 +23,10 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post.product_of_events.build
+    4.times do
+       product_of_event = @post.product_of_events.build
+    end
   end
 
   # POST /posts

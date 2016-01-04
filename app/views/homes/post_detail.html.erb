@@ -38,44 +38,79 @@
 <div id="main-container">
     <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-9 col-md-push-3" role="main">
-              <div class="page-content devider">
-                  <article>
-                      <h2 class="title"><%= @posts.title %></h2>
-                      <hr/>
-                      <section class="post-entry">
-                          <span class="text-justify"><%= (@posts.content).html_safe %></span>
-                      </section><!-- .entry-content -->
-                      <div class="dashed" />
-                  </article>    
-              </div>           
-          </div>
-          
-          <aside class="col-xs-12 col-sm-12 col-md-3 col-md-pull-9">
-            <div class="widget widget-menu-highlights">
-                <h3 class="widget-title">Hình ảnh</h3>
-                <a href="<%= @posts.image_url if @posts.image_url? %>" rel="prettyPhoto">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-md-push-3" role="main">
+                <div class="page-content devider">
+                    <article>
+                        <h2 class="title"><%= @posts.title %></h2>
+                        <hr/>
+                        <section class="post-entry">
+                            <span class="text-justify"><%= (@posts.content).html_safe %></span>
+                        </section>
+                        <!-- .entry-content -->
+                        <div class="dashed" />
+                    </article>
+                    
+                    <% if @posts.product_of_events.count > 0 %>
+                    <div class="tl-carousel-wrapper">
+                        <h2 class="title">Món ăn thuộc sự kiện</h2>
+                        <div class="tl-carousel-inner-wrapper">
+                            <ul class="tl-carousel">
+                                <% @posts.product_of_events.each do |item| %>
+                                    <li>
+                                        <span class="meta font-small"><%= link_to item.product.name, product_detail_homes_path(:id => item.product_id) %></span>
+                                        <div class="image image-slideshow-small">
+                                            <img src="<%= item.product.image_url if item.product.image_url? %>" class="tl-frame-light" alt="<%= item.product.name %>" />
+                                        </div>
+                                        <p class="excerpt">
+                                            <%= truncate(strip_tags(item.product.description), length: 100) %>
+                                        </p>
+                                        <%= link_to "Xem tiếp", product_detail_homes_path(:id => item.product_id), class: "read-more-red font-medium" %>
+                                    </li>
+                                <% end %>
+                            </ul>
+                            <div class="c-pagination visible-xs"></div>
+                        </div>
+                        <!-- #tl-corausel-inner-wrapper -->
+
+                        <div class="tl-carousel-nav hidden-xs">
+                            <span class="c-previous"></span>
+                            <span class="c-next"></span>
+                        </div>
+                    </div>
+                    <!-- #tl-corausel-wrapper -->
+                    <% end %>
+                </div>
+            </div>
+
+            <aside class="col-xs-12 col-sm-12 col-md-3 col-md-pull-9">
+                <div class="widget widget-menu-highlights">
+                    <h3 class="widget-title">Hình ảnh</h3>
+                    <a href="<%= @posts.image_url if @posts.image_url? %>" rel="prettyPhoto">
                   <img src="<%= @posts.image_url if @posts.image_url? %>" width="250" alt="150">
                 </a>
-            </div><!-- .widget-menu-highlights -->
-            
-            <!-- Widget Recent posts -->
-            <div class="widget widget_recent_entries">
-                <h3 class="widget-title">Bài viết mới nhất</h3>
-                <ul>
-                  <% @module_news_posts.each do |item| %>
-                    <li><%= link_to item.title, post_detail_homes_path(:id => item) %></li>
-                  <% end %>
-                </ul>
-            </div><!-- widget_recent_entries -->
-          </aside>
+                </div>
+                <!-- .widget-menu-highlights -->
+
+                <!-- Widget Recent posts -->
+                <div class="widget widget_recent_entries">
+                    <h3 class="widget-title">Bài viết mới nhất</h3>
+                    <ul>
+                        <% @module_news_posts.each do |item| %>
+                            <li>
+                                <%= link_to item.title, post_detail_homes_path(:id => item) %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+                <!-- widget_recent_entries -->
+            </aside>
         </div>
     </div>
 
     <div id="prefooter-wrapper">
         <div class="container">
             <div class="row">
-    
+
                 <!-- Widget Container 1 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-chef">
@@ -85,13 +120,15 @@
                                 <div class="image hvr-float-shadow">
                                     <img src="<%= item.image_url if item.image_url? %>" width="82" height="82" alt="" />
                                 </div>
-                                <div class="text-justify"><%= item.content.html_safe %></div>
+                                <div class="text-justify">
+                                    <%= item.content.html_safe %>
+                                </div>
                                 <div class="clearfix"></div>
                             <% end %>
                         <% end %>
                     </div>
                 </div>
-    
+
                 <!-- Widget Container 2 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-menu-highlights">
@@ -102,26 +139,28 @@
                                     <div class="image hvr-float-shadow"><img src="<%= item.image_url if item.image_url? %>" width="56" height="56" alt="<%= item.name %>"></div>
                                     <h4 class="title"><a href="" title=""><%= link_to (truncate(strip_tags(item.name), length: 20)), product_detail_homes_path(id: item) %></a></h4>
                                     <div class="excerpt">
-                                        <p><%= truncate(strip_tags(item.description), length: 100) %></p>
+                                        <p>
+                                            <%= truncate(strip_tags(item.description), length: 100) %>
+                                        </p>
                                     </div>
                                     <div class="clearfix"></div>
                                 </li>
-                            <% end %>
+                                <% end %>
                         </ul>
                         <%= link_to "Xem tiếp", menu_product_homes_path, class: "read-more-red font-medium" %>
                         <div class="clearfix"></div>
                     </div>
                 </div>
-    
+
                 <!-- Widget Container 3 -->
                 <div class="col-md-4 col-sm-6">
                     <div class="widget widget-contact-us">
                         <h3 class="font-large">Đăng ký nhận tin mới</h3>
                         <%= render 'newsletter' %>
-                        <div class="clearfix"></div>
+                            <div class="clearfix"></div>
                     </div>
                 </div>
-    
+
             </div>
             <!-- .row -->
         </div>
@@ -151,6 +190,13 @@
 
 <!-- Responsive navigation menu -->
 <%= javascript_include_tag '/assets/frontend/js/responsive-nav/responsive-menu-js.js' %>
+
+<!-- Carousel -->
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/helper-plugins/jquery.ba-throttle-debounce.min.js' %>
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/helper-plugins/jquery.mousewheel.min.js' %>
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/helper-plugins/jquery.touchSwipe.min.js' %>
+
+<%= javascript_include_tag '/assets/frontend/js/carouFredSel/jquery.carouFredSel-6.2.1-packed.js' %>
 
 <%= javascript_include_tag '/assets/frontend/js/bxslider/jquery.bxslider.min.js' %>
 

@@ -105,18 +105,22 @@
 										<th>SubTotal</th>
 									</tr>
 								</thead>
-								<% if @order.order_details.any? %>
-									 <% @order.order_details.each do |item| %>
-										<tbody>
-											<td><%= item.product.name %></td>
-											<td><%= number_with_delimiter item.price.to_i %> đ</td>
-											<td class="text-center"><%= item.quantity %></td>
-											<td><span class="label label-flat border-success text-success-600 font-small"><%= number_with_delimiter item.total.to_i %> đ</span></td>
-										</tbody>	
-									 <% end %>
-								<% else %>
-									<%= content_tag(:p, class: "form-control-static") do %>
-										None Available
+								
+								<tbody>
+									<% if @order.order_details.any? %>
+										<% @order.order_details.each_with_index do |item,index| %>
+											<tr class="<%= (index%2 == 1 ? "" : "alpha-teal") %>">
+												<td><%= item.product.name %></td>
+												<td><%= number_with_delimiter item.price.to_i %> đ</td>
+												<td class="text-center"><%= item.quantity %></td>
+												<td><span class="label label-flat border-success text-success-600 font-small"><%= number_with_delimiter item.total.to_i %> đ</span></td>
+											</tr>
+										<% end %>
+									<% else %>	
+								</tbody>	
+									 
+								<%= content_tag(:p, class: "form-control-static") do %>
+									None Available
 									<% end %>
 								<% end %>
 								</table>

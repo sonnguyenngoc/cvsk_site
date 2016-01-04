@@ -23,6 +23,7 @@ class ManufacturersController < ApplicationController
 
   # GET /manufacturers/1/edit
   def edit
+    @manufacturer.manufacturer_images.build
   end
 
   # POST /manufacturers

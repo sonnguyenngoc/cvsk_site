@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :carts
   resources :menu_contents
   resources :contacts
-  devise_for :users
+  # replace devise_for :users with:
+  devise_for :users,  :controllers => { :registrations => "users/registrations" }
   resources :users
   resources :slide_shows
   resources :homes do
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
       get :confirm_order
       get :picture
       get :picture_detail
+      get :finish_order
     end
   end
   root 'homes#index'

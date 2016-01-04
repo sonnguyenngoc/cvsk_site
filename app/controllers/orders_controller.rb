@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.all.order("created_at DESC")
   end
 
   # GET /orders/1
@@ -20,14 +20,16 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.order_date = Time.now
     @order.order_details.build
-    10.times do
-      order_detail = @order.order_details.build
-    end
+    
+
   end
 
   # GET /orders/1/edit
   def edit
     @order.order_details.build
+    5.times do
+      order_detail = @order.order_details.build
+    end
   end
 
   # POST /orders
@@ -39,15 +41,22 @@ class OrdersController < ApplicationController
     
     respond_to do |format|
       if @order.save
-          if !params[:order_time].nil?
+        if !params[:order_time].nil?
           format.html { redirect_to @order, notice: 'Order was successfully created.' }
           format.json { render :show, status: :created, location: @order }
         else
-          #
-          @order.save_from_cart(@cart)
-          #tạo trang cảm ơn
-          format.html { redirect_to @order, notice: 'Cảm ơn bạn đã đăng ký.' }
-          format.json { render :show, status: :created, location: @order }
+          if verify_recaptcha(model: @order) && @order.save_from_cart(@cart)
+            #tạo trang cảm ơn
+            format.html { redirect_to finish_order_homes_path, notice: '' }
+            format.json { render :show, status: :created, location: @order }
+          end
+          
+          #verify_recaptcha
+          #if verify_recaptcha(model: @order) && @order.save_from_cart(@cart)
+            #format.html { redirect_to finish_order_homes_path, notice: '' }
+            #format.json { render :show, status: :created, location: @order }
+          #end
+          
         end
       else
         format.html { render :new }

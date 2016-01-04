@@ -87,7 +87,6 @@
 								<table class="table">
 									<thead>
 										<tr>
-											<th>ID</th>
 											<th>Name</th>
 											<th>Price</th>
 										</tr>
@@ -95,9 +94,8 @@
 									<tbody>
 										<% @post.product_of_events.each_with_index do |item,index| %>
 											<tr class="<%= (index%2 == 0 ? "" : "alpha-teal") %>">
-												<td><%= item.product_id %></td>
 												<td><%= item.product.name %></td>
-												<td><%= item.product.price %></td>
+												<td><%= number_with_delimiter item.product.price.to_i %> đ</td>
 											</tr>
 										<% end %>
 									</tbody>

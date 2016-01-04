@@ -42,15 +42,12 @@
               <!-- Archives 2 -->
               <div class="widget widget_archive">
                   <h3 class="font-medium">Lọc nhà hàng theo khu vực:</h3>
-                  <select class="form-control font-medium height-select-position" name="archive-dropdown">
-                      <option value="">Chọn khu vực...</option>
-                      <option value="#"> Quận 1</option>
-                      <option value="#"> Quận 2</option>
-                      <option value="#"> Quận 3</option>
-                      <option value="#"> Quận 5</option>
-                      <option value="#"> Quận 7</option>
-                      <option value="#"> Quận 8</option>
-                  </select>
+                  <% form_tag @search_manu, :method => 'get' do %>
+                    <p>
+                      <%= text_field_tag :search, params[:search] %>
+                      <%= submit_tag "Search", :address => nil %>
+                    </p>
+                  <% end %>
               </div><!-- .widget_archive -->
           </div>
         </div>
@@ -80,16 +77,8 @@
                     </div>
                     <!-- list-cols -->
                     
-                    <div class="pagination">
-                        <ul>
-                            <li><a href="#" class="previous">Previous</a></li>
-                            <li><a href="#" class="current">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#" class="next">Next</a></li>
-                        </ul>
+                    <div class="digg_pagination">
+                        <%= will_paginate @general_manufacturer, :container => false %>
                     </div>
                     
                 </div>
