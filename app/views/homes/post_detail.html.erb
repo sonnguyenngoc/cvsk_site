@@ -48,37 +48,37 @@
                         </section>
                         <!-- .entry-content -->
                         <div class="dashed" />
+                        
+                        <% if @posts.product_of_events.count > 0 %>
+                            <div class="tl-carousel-wrapper">
+                                <h2 class="title">Món ăn thuộc sự kiện</h2>
+                                <div class="tl-carousel-inner-wrapper">
+                                    <ul class="tl-carousel">
+                                        <% @posts.product_of_events.each do |item| %>
+                                            <li>
+                                                <span class="meta font-small"><%= link_to item.product.name, product_detail_homes_path(:id => item.product_id) %></span>
+                                                <div class="image product-image">
+                                                    <img src="<%= item.product.image_url if item.product.image_url? %>" alt="<%= item.product.name %>" />
+                                                </div>
+                                                <p class="excerpt">
+                                                    <%= truncate(strip_tags(item.product.description), length: 100) %>
+                                                </p>
+                                                <%= link_to "Xem tiếp", product_detail_homes_path(:id => item.product_id), class: "read-more-red font-medium" %>
+                                            </li>
+                                        <% end %>
+                                    </ul>
+                                    <div class="c-pagination visible-xs"></div>
+                                </div>
+                                <!-- #tl-corausel-inner-wrapper -->
+        
+                                <div class="tl-carousel-nav hidden-xs">
+                                    <span class="c-previous"></span>
+                                    <span class="c-next"></span>
+                                </div>
+                            </div>
+                            <!-- #tl-corausel-wrapper -->
+                            <% end %>
                     </article>
-                    
-                    <% if @posts.product_of_events.count > 0 %>
-                    <div class="tl-carousel-wrapper">
-                        <h2 class="title">Món ăn thuộc sự kiện</h2>
-                        <div class="tl-carousel-inner-wrapper">
-                            <ul class="tl-carousel">
-                                <% @posts.product_of_events.each do |item| %>
-                                    <li>
-                                        <span class="meta font-small"><%= link_to item.product.name, product_detail_homes_path(:id => item.product_id) %></span>
-                                        <div class="image image-slideshow-small">
-                                            <img src="<%= item.product.image_url if item.product.image_url? %>" class="tl-frame-light" alt="<%= item.product.name %>" />
-                                        </div>
-                                        <p class="excerpt">
-                                            <%= truncate(strip_tags(item.product.description), length: 100) %>
-                                        </p>
-                                        <%= link_to "Xem tiếp", product_detail_homes_path(:id => item.product_id), class: "read-more-red font-medium" %>
-                                    </li>
-                                <% end %>
-                            </ul>
-                            <div class="c-pagination visible-xs"></div>
-                        </div>
-                        <!-- #tl-corausel-inner-wrapper -->
-
-                        <div class="tl-carousel-nav hidden-xs">
-                            <span class="c-previous"></span>
-                            <span class="c-next"></span>
-                        </div>
-                    </div>
-                    <!-- #tl-corausel-wrapper -->
-                    <% end %>
                 </div>
             </div>
 
@@ -86,7 +86,7 @@
                 <div class="widget widget-menu-highlights">
                     <h3 class="widget-title">Hình ảnh</h3>
                     <a href="<%= @posts.image_url if @posts.image_url? %>" rel="prettyPhoto">
-                  <img src="<%= @posts.image_url if @posts.image_url? %>" width="250" alt="150">
+                    <img src="<%= @posts.image_url if @posts.image_url? %>" class="border-logo" width="250" alt="150">
                 </a>
                 </div>
                 <!-- .widget-menu-highlights -->

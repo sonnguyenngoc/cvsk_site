@@ -51,7 +51,8 @@ gem 'will_paginate'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'devise'
-gem 'recaptcha', require: "recaptcha/rails"
+gem 'recaptcha', '~> 0.3.5'
+gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'will_paginate-bootstrap'
 gem "cancan"

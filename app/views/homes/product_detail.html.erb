@@ -47,38 +47,37 @@
                           <span class="text-justify"><%= (@products.description).html_safe %></span>
                       </section><!-- .entry-content -->
                       <div class="dashed" />
+                      
+                      <div class="tl-carousel-wrapper">
+                            <h2 class="title">Món ăn cùng nhà hàng</h2>
+                            <div class="tl-carousel-inner-wrapper">
+                                
+                                <ul class="tl-carousel">
+                                    <% @listing_product.each do |item| %>
+                                         <% if @products.manufacturer_id == item.manufacturer_id %>
+                                            <li>
+                                                <span class="meta font-small"><%= link_to item.name, product_detail_homes_path(:id => item) %></span>
+                                                <div class="image product-image">
+                                                    <img src="<%= item.image_url.product if item.image_url? %>" alt="<%= item.name %>" />
+                                                </div>
+                                                <p class="excerpt"><%= truncate(strip_tags(item.description), length: 100) %></p>
+                                                <%= link_to "Xem tiếp", product_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
+                                            </li>
+                                        <% end %>
+                                    <% end %>
+                                </ul>
+                                <div class="c-pagination visible-xs"></div>
+                            </div>
+                            <!-- #tl-corausel-inner-wrapper -->
+        
+                            <div class="tl-carousel-nav hidden-xs">
+                                <span class="c-previous"></span>
+                                <span class="c-next"></span>
+                            </div>
+                        </div>
+                        <!-- #tl-corausel-wrapper -->
                   </article>
-                  
-                  <div class="tl-carousel-wrapper">
-                    <h2 class="title">Món ăn cùng nhà hàng</h2>
-                    <div class="tl-carousel-inner-wrapper">
-                        
-                        <ul class="tl-carousel">
-                            <% @listing_product.each do |item| %>
-                                 <% if @products.manufacturer_id == item.manufacturer_id %>
-                                    <li>
-                                        <span class="meta font-small"><%= link_to item.name, product_detail_homes_path(:id => item) %></span>
-                                        <div class="image image-slideshow-small">
-                                            <img src="<%= item.image_url if item.image_url? %>" class="tl-frame-light" alt="<%= item.name %>" />
-                                        </div>
-                                        <p class="excerpt"><%= truncate(strip_tags(item.description), length: 100) %></p>
-                                        <%= link_to "Xem tiếp", product_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
-                                    </li>
-                                <% end %>
-                            <% end %>
-                        </ul>
-                        <div class="c-pagination visible-xs"></div>
-                    </div>
-                    <!-- #tl-corausel-inner-wrapper -->
-
-                    <div class="tl-carousel-nav hidden-xs">
-                        <span class="c-previous"></span>
-                        <span class="c-next"></span>
-                    </div>
-                </div>
-                <!-- #tl-corausel-wrapper -->
-                  
-              </div>           
+              </div>
           </div>
           
           <aside class="col-xs-12 col-sm-12 col-md-3 col-md-pull-9">
@@ -90,7 +89,7 @@
             <div class="widget widget-menu-highlights">
                 <h3 class="widget-title">Hình ảnh</h3>
                 <a href="<%= @products.image_url if @products.image_url? %>" rel="prettyPhoto">
-                  <img src="<%= @products.image_url if @products.image_url? %>" width="250" alt="150">
+                  <img src="<%= @products.image_url if @products.image_url? %>" class="border-logo" width="250" alt="150">
                 </a>
             </div><!-- .widget-menu-highlights -->
             

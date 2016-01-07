@@ -24,6 +24,9 @@ class ManufacturersController < ApplicationController
   # GET /manufacturers/1/edit
   def edit
     @manufacturer.manufacturer_images.build
+    5.times do
+      manufacturer_image = @manufacturer.manufacturer_images.build
+    end
   end
 
   # POST /manufacturers

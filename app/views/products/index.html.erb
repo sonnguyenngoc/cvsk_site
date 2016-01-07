@@ -55,7 +55,7 @@
 						<img src="<%= item.image_url() if item.image_url? %>" style="width: 82px; height: 56px;" class="img-rounded" alt="">
 					</div></td>
                     <td><%= link_to (truncate(strip_tags(item.name), length: 20)), item %></td>
-                    <td><%= item.price %></td>
+                    <td><%= number_with_delimiter item.price.to_i %> đ</td>
                     <td><span class="label label-success"><%= item.category.title %></span></td>
 					<td><span class="label label-success"><%= item.manufacturer.name %></span></td>
 					<td><%= truncate(strip_tags(item.description), length: 50) %></td>

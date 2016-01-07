@@ -24,11 +24,11 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
+    captcha_message = "Quý khách chưa xác nhận CAPTCHA. Vui lòng thử lại..."
     @contact = Contact.new(contact_params)
-
     respond_to do |format|
-      if @contact.save
-        format.html { redirect_to contact_homes_path, notice: 'Cảm ơn bạn đã gửi thông tin.' }
+      if verify_recaptcha(model: @contact) && @contact.save
+        format.html { redirect_to contact_homes_path, notice: 'Cảm ơn quý khách đã gửi thông tin.' }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }

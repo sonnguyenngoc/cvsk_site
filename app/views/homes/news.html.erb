@@ -44,13 +44,13 @@
                       <div class="row">
                         <% @module_news_posts.each do |item| %>
                             <article class="post col-sm-4 col-xs-12">
-                                <h3 class="title"><%= link_to item.title, post_detail_homes_path(:id => item) %></h3>
+                                <h3 class="title title-margin"><%= link_to item.title, post_detail_homes_path(:id => item) %></h3>
                                 <section class="meta font-roboto">
                                     <span>Ngày tạo:<a class="date" title="Date" href="#"><%= item.created_at.strftime("%d/%m/%Y") %></a></span>
                                     <span class="categories">Nhãn:<a class="category" title="Category1" href="#"><%= item.tag.title %></a></span>
                                 </section>
-                                <div class="image image-post">
-                                    <a href="<%= item.image_url %>" rel="prettyPhoto"><img src="<%= item.image_url if item.image_url? %>" style="width: 360px; height: 150px;" alt="<%= item.title %>"></a>
+                                <div class="image">
+                                    <a href="<%= item.image_url.news %>" rel="prettyPhoto"><img src="<%= item.image_url.news if item.image_url? %>" width="255" height="130" alt="<%= item.title %>"></a>
                                 </div>
                                 <section class="post-entry excerpt">
                                     <%= content_tag(:p, class: "text-justify") do %>

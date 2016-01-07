@@ -12,6 +12,7 @@ class HomesController < ApplicationController
     @class_body = 'home'
     @module_slide_products = Product.joins(:manufacturer).where(manufacturers: { name: 'Chay vì sức khỏe' }).order("created_at DESC").first(8)
     @module_new_products = Product.order("created_at DESC").first(2)
+    @hour_restaurant = Post.joins(:tag).where(tags: { title: 'Giờ mở cửa' }).order("created_at DESC").first(1)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)
     @module_news_posts = Post.joins(:tag).where("tags.title = 'Tin tức' OR tags.title = 'Dịch vụ' ").order("created_at DESC").first(3)
     @module_news_events = Post.joins(:tag).where(tags: { title: 'Sự kiện' }).order("created_at DESC").first(2)
@@ -64,7 +65,7 @@ class HomesController < ApplicationController
   def service
     @newsletter = Newsletter.new
     @layout_frontend = 'single'
-    @module_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC").paginate(page: params[:page], per_page: 3)
+    @module_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC").paginate(page: params[:page], per_page: 2)
     @module_new_services = Post.joins(:tag).where(tags: { title: 'Dịch vụ' }).order("created_at DESC").first(4)
     @module_new_products = Product.order("created_at DESC").first(2)
     @module_introduction = Post.joins(:tag).where(tags: { title: 'Lời giới thiệu' }).order("created_at DESC").first(1)

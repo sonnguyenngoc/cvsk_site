@@ -108,7 +108,7 @@ $(function() {
     // ------------------------------
 
     // Add placeholder to the datatable filter option
-    $('.dataTables_filter input[type=search]').attr('placeholder','Type to filter...');
+    $('.dataTables_filter input[type=search]').attr('placeholder','Order to filter...');
 
 
     // Enable Select2 select for the length option

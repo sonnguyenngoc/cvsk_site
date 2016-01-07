@@ -69,6 +69,9 @@
 					</a>
 
                     <ul class="dropdown-menu dropdown-menu-right">
+						<li>
+							<%= link_to('<i class="icon-images2"></i> Flickr'.html_safe, 'https://www.flickr.com/', target: "_blank") %>
+						</li>
                         <li>
 							<% if user_signed_in? %>
 								<%= link_to('<i class="icon-switch2"></i> Logout'.html_safe, destroy_user_session_path, :method => :delete) %>

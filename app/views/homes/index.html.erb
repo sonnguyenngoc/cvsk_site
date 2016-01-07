@@ -4,7 +4,7 @@
             <div class="main-slider simple">
                 <% @slide_shows.each do |item| %>
                     <% if item.tag_name == 'General Manufacturers' %>
-                        <div class="slide" style="background-image: url('<%= item.image_url if item.image_url? %>');  ">
+                        <div class="slide" style="background-image: url('<%= item.image_url.slide_show if item.image_url? %>');  ">
                             <h4 class="slide-item-h4"><%= item.title_1 %></h4>
                             <h2 class="slide-item-h2"><%= item.title_2 %></h2>
                             <p class="slide-item-p text-center"><%= item.description %></p>
@@ -13,9 +13,15 @@
                         </div>
                         <!-- .slide -->
                     <% elsif item.tag_name == 'Personal Manufacturers' %>
-                        
+                        <div class="slide" style="background-image: url('<%= item.image_url.slide_show if item.image_url? %>');">
+                            <h4 class="slide-item-h4"><%= item.title_1 %></h4>
+                            <h2 class="slide-item-h2"><%= item.title_2 %></h2>
+                            <p class="slide-item-p text-center"><%= item.description %></p>
+                            <%= link_to 'Xem tiếp', item.link, class: 'slide-item-a font-small try-button' %>
+                            <div class="mobile-mask"></div>                
+                        </div>
                     <% else %>
-                        <div class="slide" style="background-image: url('<%= item.image_url if item.image_url? %>');">
+                        <div class="slide" style="background-image: url('<%= item.image_url.slide_show if item.image_url? %>');">
                             <h4 class="slide-item-h4"><%= item.title_1 %></h4>
                             <h2 class="slide-item-h2"><%= item.title_2 %></h2>
                             <p class="slide-item-p text-center"><%= item.description %></p>
@@ -43,8 +49,8 @@
                             <li >
                                 <span class="meta"><a href="#"><%= link_to 'Nhà hàng: '+item.manufacturer.name, manufacturer_detail_homes_path(id: item.manufacturer_id) %> </a></span>
                                 <h3 class="title"><a href="#"><%= link_to item.name, product_detail_homes_path(id: item) %></a></h3>
-                                <div class="image  image-slideshow-small">
-                                    <img src="<%= item.image_url if item.image_url? %>" class="tl-frame-light" alt="<%= item.name %>" />
+                                <div class="image image-slideshow-small">
+                                    <img src="<%= item.image_url.product if item.image_url? %>" alt="<%= item.name %>" />
                                 </div>
                                 <p class="excerpt"><%= truncate(strip_tags(item.description), length: 115) %></p>
                                 <%= link_to "Xem tiếp", product_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
@@ -69,7 +75,7 @@
             <div class="row">
     
                 <!-- Today special widget -->
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-5 col-sm-6">
                     <div class="widget widget-today-special">
                         
                         <% if @module_run_events.count > 0 %>
@@ -115,30 +121,13 @@
                 </div>
                 
                 <!-- Restaurant hours widget -->
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-3 col-sm-6">
                     <div class="widget widget-restaurant-hours">
                         <h3 class="widget-title">Giờ mở cửa</h3>
                         <ul class="restaurant-hours">
-                            <li><p class="meta">Breakfast</p></li>
-                            <li>
-                                <label>Monday - Friday</label>
-                                <span>11:00 am - 03:00 pm</span>
-                            </li>
-                            <li>
-                                <label>Monday - Friday</label>
-                                <span>11:00 am - 03:00 pm</span>
-                            </li>
-                        </ul>
-                        <ul class="restaurant-hours">
-                            <li><p class="meta">Lunch</p></li>
-                            <li>
-                                <label>Monday - Friday</label>
-                                <span>11:00 am - 03:00 pm</span>
-                            </li>
-                            <li>
-                                <label>Monday - Friday</label>
-                                <span>11:00 am - 03:00 pm</span>
-                            </li>
+                            <% @hour_restaurant.each do |time| %>
+                                <p><%= time.content.html_safe %></p>
+                            <% end %>
                         </ul>
                     </div>
                 </div>
@@ -162,7 +151,7 @@
                         <% @module_introduction.each do |item| %>
                             <% if item.tag.title == "Lời giới thiệu" %>
                                 <div class="image hvr-float-shadow">
-                                    <img src="<%= item.image_url if item.image_url? %>" width="82" height="82" alt="" />
+                                    <img src="<%= item.image_url if item.image_url? %>" alt="" />
                                 </div>
                                 <div class="text-justify"><%= item.content.html_safe %></div>
                                 <div class="clearfix"></div>

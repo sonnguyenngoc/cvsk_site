@@ -43,11 +43,12 @@
                     <div class="gallery-list list-cols">
                         <div class="row">
                           <% @module_pictures.each do |item| %>
-                              <article class="col-sm-4 col-xs-12">
-                                  <h3 class="title"><%= link_to item.title, picture_detail_homes_path(id: item) %></h3>
-                                  <div class="image image-post">
-                                      <img src="<%= item.image_url if item.image_url? %>" style="width: 360px; height: 150px;" alt="<%= item.title %>">
+                              <article class="col-sm-3 col-xs-12">
+                                  <h3 class="title title-margin"><%= link_to item.title, picture_detail_homes_path(id: item) %></h3>
+                                  <div class="image">
+                                      <img src="<%= item.image_url.news if item.image_url? %>" width="255" height="130" alt="<%= item.title %>">
                                   </div>
+                                  <%= link_to "Xem thêm", post_detail_homes_path(:id => item), class: "read-more-red font-medium", title: "Read more" %>
                               </article>
                               <!-- .post -->
                           <% end %>   
