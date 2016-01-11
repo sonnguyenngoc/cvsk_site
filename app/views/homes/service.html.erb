@@ -53,7 +53,7 @@
                     <% end %>
                     <!-- .post-list -->
                     <div class="digg_pagination">
-                        <%= will_paginate @module_services, :container => false %>
+                        <%= will_paginate @module_services, :container => false, previous_label: 'Trước', next_label: 'Sau' %>
                     </div>
                 </div>
                 <!-- .page-content -->
