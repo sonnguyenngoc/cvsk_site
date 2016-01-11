@@ -151,7 +151,7 @@
                         <% @module_introduction.each do |item| %>
                             <% if item.tag.title == "Lời giới thiệu" %>
                                 <div class="image hvr-float-shadow">
-                                    <img src="<%= item.image_url if item.image_url? %>" alt="" />
+                                    <img src="<%= item.image_url if item.image_url? %>" width="82" height="82" alt="" />
                                 </div>
                                 <div class="text-justify"><%= item.content.html_safe %></div>
                                 <div class="clearfix"></div>

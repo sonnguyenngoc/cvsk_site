@@ -4,6 +4,7 @@ class MainsController < ApplicationController
   # GET /mains
   # GET /mains.json
   def index
+    @users = User.all
     @mains = Main.all
   end
 

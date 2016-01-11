@@ -4,9 +4,9 @@ $(document).ready(function() {
 
 // Call this function when the page has been loaded
 function initializeGoogleMap() {
-    var myLatlng = new google.maps.LatLng(40.712655,-74.00425);
+    var myLatlng = new google.maps.LatLng(10.789988,106.679079);
     var myOptions = {
-        zoom: 12,
+        zoom: 16,
         center: myLatlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };

@@ -51,7 +51,7 @@ Manufacturer.delete_all
 Manufacturer.create(
   name: 'Chay vì sức khỏe',
   email: 'info@chayvisuckhoe.com',
-  address: 'TP.HCM',
+  address: '108/25 Trần Quang Diệu, Phường 14, Quận 3, TP. Hồ Chí Minh',
   phone: '0918 214 859'
 )
 #....

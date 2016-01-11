@@ -3,7 +3,7 @@ class HomesController < ApplicationController
   layout "layout_frontend"
   
   include CurrentCart
-  before_action :set_cart, only: [:reservation]
+  before_action :set_cart, only: [:reservation, :confirm_order]
   
   # GET /homes
   # GET /homes.json

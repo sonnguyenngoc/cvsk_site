@@ -25,24 +25,24 @@
                 
                 <tbody>
                     <% @cart.line_items.includes(:product).where(products: {manufacturer_id: f.id}).each do |ff| %>
-                            <tr>
-                                <td>
-                                    <input type="hidden" name="line_items[<%= @count %>][id]" value="<%= ff.id %>">
-                                    <%= ff.product.name %>
-                                </td>
-                                <td><%= number_with_delimiter ff.product.price.to_i %> đ</td>
-                                <td class="text-left"><input type="text" name="line_items[<%= @count %>][quantity]" value="<%= ff.quantity %>" class="size-quantity"></td>
-                                <td class="text-left"><%= number_with_delimiter ff.total.to_i %> đ</td>
-                                <td class="text-center">
-                                    <%= link_to "X" , reservation_homes_path(do: 'remove', line_item_id: ff.id), class: "btn btn-primary btn-xs"  %>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <input type="hidden" name="line_items[<%= @count %>][id]" value="<%= ff.id %>">
+                                <%= ff.product.name %>
+                            </td>
+                            <td><%= number_with_delimiter ff.product.price.to_i %> đ</td>
+                            <td class="text-left"><input type="text" name="line_items[<%= @count %>][quantity]" value="<%= ff.quantity %>" class="size-quantity"></td>
+                            <td class="text-left"><%= number_with_delimiter ff.total.to_i %> đ</td>
+                            <td class="text-center">
+                                <%= link_to "X" , reservation_homes_path(do: 'remove', line_item_id: ff.id), class: "btn btn-primary btn-xs"  %>
+                            </td>
+                        </tr>
                         <% @count += 1 %>
                     <% end %>
                 </tbody>
             </table>
             <div class="pull-right">
-              <strong>Tổng tiền: </strong><p class="label label-primary"><%= number_with_delimiter  @cart.sum_total.to_i %> đ</p>
+              <strong>Tổng tiền: </strong><p class="label label-primary font-small"><%= number_with_delimiter  @cart.sum_total.to_i %> đ</p>
             </div>
         </article>
         <hr/>
@@ -68,10 +68,10 @@
         <div class="container-fluid bd-example-row">
           <div class="row">
                 <div class="col-md-6">
-                    <p class="text-left"><%= link_to "GIAO HÀNG", confirm_order_homes_path(type_id: 2), class: "btn btn-warning" %></p>
+                    <p class="text-left"><%= link_to "GIAO HÀNG", confirm_order_homes_path(type_id: 1), class: "btn btn-warning" %></p>
                 </div>
                 <div class="col-md-6">
-                    <p class="text-right"><%= link_to "ĐẶT MÓN", confirm_order_homes_path(type_id: 1), class: "btn btn-info" %></p>
+                    <p class="text-right"><%= link_to "ĐẶT MÓN", confirm_order_homes_path(type_id: 2), class: "btn btn-info" %></p>
                 </div>
           </div>
         </div>

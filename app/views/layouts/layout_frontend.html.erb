@@ -48,7 +48,7 @@
     <div id="theme-wrapper">
         <header>
             <!-- Book a table for small & extra small device -->
-            <a href="reservation.html" class="book-a-table visible-xs"></a>
+			<%= link_to "", reservation_homes_path, class: "book-a-table visible-xs" %>
             <div id="nav-wrapper">
                 <div class="container">
                     <nav class="navbar-default">
@@ -58,10 +58,10 @@
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle" aria-expanded="false"></button>
                                 <a class="navbar-brand logo" href="<%= root_path %>">
-                                  <img src="<%= url_for("/assets/frontend/imgs/logo.png") %>" alt="Mazzareli logo" />
+                                  <img src="<%= url_for("/assets/frontend/imgs/logo.png") %>" alt="CVSK logo" />
                                 </a>
                             </div>
-
+						  
                             <!-- Book a table -->
 							<%= link_to "Đặt bàn Online", reservation_homes_path, class: "book-a-table pull-right hidden-xs font-large" %>
 
