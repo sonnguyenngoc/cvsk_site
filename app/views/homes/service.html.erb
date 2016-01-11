@@ -15,19 +15,7 @@
                 </div>
                 <!-- .tl-breadcrumb -->
 
-                <div class="social-bookmarking-wrapper">
-                    <ul class="social-bookmarking">
-                        <li>
-                            <%= link_to '', "http://facebook.com",class: "fb hvr-float-shadow" %>
-                        </li>
-                        <li>
-                            <%= link_to '', "http://youtube.com",class: "yt hvr-float-shadow" %>
-                        </li>
-                        <li>
-                            <%= link_to '', "http://googleplus.com",class: "gp hvr-float-shadow" %>
-                        </li>
-                    </ul>
-                </div>
+                <%= render "link_page" %>
             </div>
         </div>
         <!-- .row -->
@@ -50,7 +38,7 @@
                             </section>
 
                             <div class="image">
-                                <a href="<%= item.image_url %>" rel="prettyPhoto"><img src="<%= item.image_url if item.image_url? %>" style="width: 800px; height: 320px;" alt="<%= item.title %>"></a>
+                                <a href="<%= item.image_url.service %>" rel="prettyPhoto" width="800" height="320"><img src="<%= item.image_url.service if item.image_url? %>" width="800" height="320" alt="<%= item.title %>"></a>
                             </div>
                             <section class="post-entry excerpt">
                                 <%= content_tag(:p, class: "text-justify") do %>

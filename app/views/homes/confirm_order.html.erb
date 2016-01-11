@@ -15,19 +15,7 @@
                 </div>
                 <!-- .tl-breadcrumb -->
 
-                <div class="social-bookmarking-wrapper">
-                    <ul class="social-bookmarking">
-                        <li>
-                            <a class="fb hvr-float-shadow" href="http://facebook.com"></a>
-                        </li>
-                        <li>
-                            <a class="yt hvr-float-shadow" href="http://youtube.com"></a>
-                        </li>
-                        <li>
-                            <a class="gp hvr-float-shadow" href="http://googleplus.com"></a>
-                        </li>
-                    </ul>
-                </div>
+                <%= render "link_page" %>
             </div>
         </div>
         <!-- .row -->
@@ -38,13 +26,13 @@
 <div id="main-container">
     <div class="container">
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-8" role="main">
+          <div class="col-xs-12 col-sm-12 col-md-7" role="main">
               <div class="page-content devider">
 
                   <article class="post">
                     <%= form_for @order, html: {class: "reservation-form", onsubmit: "return checkForm();"} do |f| %>
                           <ul>
-                              <li><%= f.text_field :many_people, placeholder: "Số người đặt (Bắt buộc)", class: "form-control float-label width50", required: true %></li>
+                              <li><%= f.number_field :many_people, min: 1 ,placeholder: "Số người đặt (Bắt buộc)", class: "form-control float-label width50", required: true %></li>
                               <li>
                                 <div class="form-group width50">
                                     
@@ -62,7 +50,7 @@
                               <li><%= f.text_field :customer_phone, placeholder: "Số điện thoại (Bắt buộc)", class: "form-control float-label width50", required: true %></li>
                               <li><%= f.collection_select(:type_id, Type.all, :id, :title, {}, {class: "form-control width50"}) %></li>
                               <li><%= f.text_area :message, rows: "5", cols: "5", placeholder: "Lời nhắn (Bắt buộc)", class: "form-control float-label", required: true %></li>
-                              <li><%= recaptcha_tags %></li>
+                              <!--<li><%= recaptcha_tags %></li>-->
                               <li>
                                   <%= link_to "Xác nhận", "#", class: "tl-button red submit", "data-toggle" => "modal", "data-target" => "#myModal" %>
                                   <%= link_to "Nhập lại", "#", class: "tl-button dark reset-form" %>
@@ -101,10 +89,50 @@
 
               </div>
           </div>
-          <aside class="col-xs-12 col-sm-12 col-md-4">
+          <aside class="col-xs-12 col-sm-12 col-md-5">
             
+            <% @count = 0 %>
             
-            
+            <%= form_for @cart, :url => ''  do |xx| %>
+
+                <% @cart.manufacturers.uniq.each do |f| %>
+                    <article>
+                        <h3>
+                            <strong><%= link_to f.name, manufacturer_detail_homes_path(:id => f) %></strong>
+                        </h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Tên món ăn</th>
+                                    <th>Giá tiền</th>
+                                    <th class="text-center">Số lượng</th>
+                                    <th class="text-right">Số tiền</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <% @cart.line_items.includes(:product).where(products: {manufacturer_id: f.id}).each do |ff| %>
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" name="line_items[<%= @count %>][id]" value="<%= ff.id %>">
+                                                <%= ff.product.name %>
+                                            </td>
+                                            <td><%= number_with_delimiter ff.product.price.to_i %> đ</td>
+                                            <td class="text-center"><%= ff.quantity %></td>
+                                            <td class="text-right"><%= number_with_delimiter ff.total.to_i %> đ</td>
+                                        </tr>
+                                    <% @count += 1 %>
+                                <% end %>
+                            </tbody>
+                        </table>
+                        <div class="pull-right">
+                          <strong>Tổng tiền: </strong><p class="label label-primary font-small"><%= number_with_delimiter  @cart.sum_total.to_i %> đ</p>
+                        </div>
+                    </article>
+                    <hr/>
+                <% end %>
+                <%= link_to "Chọn món khác", menu_product_homes_path, class: "tl-button red pull-left" %>
+            <% end %>
           </aside>
           
         </div>

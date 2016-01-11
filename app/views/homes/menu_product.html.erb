@@ -15,19 +15,7 @@
                 </div>
                 <!-- .tl-breadcrumb -->
 
-                <div class="social-bookmarking-wrapper">
-                    <ul class="social-bookmarking">
-                        <li>
-                            <a class="fb hvr-float-shadow" href="http://facebook.com"></a>
-                        </li>
-                        <li>
-                            <a class="yt hvr-float-shadow" href="http://youtube.com"></a>
-                        </li>
-                        <li>
-                            <a class="gp hvr-float-shadow" href="http://googleplus.com"></a>
-                        </li>
-                    </ul>
-                </div>
+                <%= render "link_page" %>
             </div>
         </div>
         <!-- .row -->
@@ -88,12 +76,13 @@
                                                                         </div>
                                                     
                                                                         <div class="price-heading">
+                                                                            <h3>Nhà hàng: <%= link_to item.manufacturer.name, manufacturer_detail_homes_path(:id => item) %></h3>
                                                                             <h4>
                                                                                 <a href="#"><%= link_to item.name, product_detail_homes_path(id: item) %></a>
                                                                                 <span><%= number_with_delimiter item.price.to_i %> đ</span>
                                                                             </h4>
                                                                         </div>
-                                                                        <p class="text-justify"><%= item.description %></p>
+                                                                        <p class="text-justify"><%= truncate(strip_tags(item.description), length: 130) %></p>
                                                                         <%= button_to 'Thêm vào giỏ hàng', line_items_path(product_id: item), class: "btn btn-primary btn-xs pull-right" %>
                                                                     </li>
                                                                 <% end %>

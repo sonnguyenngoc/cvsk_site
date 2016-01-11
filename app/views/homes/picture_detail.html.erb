@@ -15,19 +15,7 @@
                 </div>
                 <!-- .tl-breadcrumb -->
 
-                <div class="social-bookmarking-wrapper">
-                    <ul class="social-bookmarking">
-                        <li>
-                            <a class="fb hvr-float-shadow" href="http://facebook.com"></a>
-                        </li>
-                        <li>
-                            <a class="yt hvr-float-shadow" href="http://youtube.com"></a>
-                        </li>
-                        <li>
-                            <a class="gp hvr-float-shadow" href="http://googleplus.com"></a>
-                        </li>
-                    </ul>
-                </div>
+                <%= render "link_page" %>
             </div>
         </div>
         <!-- .row -->
@@ -56,7 +44,7 @@
             <div class="widget widget-menu-highlights">
                 <h3 class="widget-title">Hình ảnh</h3>
                 <a href="<%= @posts.image_url if @posts.image_url? %>" rel="prettyPhoto">
-                  <img src="<%= @posts.image_url if @posts.image_url? %>" width="250" alt="150">
+                  <img src="<%= @posts.image_url if @posts.image_url? %>" class="border-logo" width="250" alt="150">
                 </a>
             </div><!-- .widget-menu-highlights -->
             

@@ -26,7 +26,7 @@
     <%= javascript_include_tag 'https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js' %>
     <%= javascript_include_tag 'https://oss.maxcdn.com/respond/1.4.2/respond.min.js' %>
 	
-	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<%= javascript_include_tag 'https://www.google.com/recaptcha/api.js' %>
 
     <![endif]-->
 
@@ -48,7 +48,7 @@
     <div id="theme-wrapper">
         <header>
             <!-- Book a table for small & extra small device -->
-            <a href="reservation.html" class="book-a-table visible-xs"></a>
+			<%= link_to "", reservation_homes_path, class: "book-a-table visible-xs" %>
             <div id="nav-wrapper">
                 <div class="container">
                     <nav class="navbar-default">
@@ -58,10 +58,10 @@
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle" aria-expanded="false"></button>
                                 <a class="navbar-brand logo" href="<%= root_path %>">
-                                  <img src="<%= url_for("/assets/frontend/imgs/logo.png") %>" alt="Mazzareli logo" />
+                                  <img src="<%= url_for("/assets/frontend/imgs/logo.png") %>" alt="CVSK logo" />
                                 </a>
                             </div>
-
+						  
                             <!-- Book a table -->
 							<%= link_to "Đặt bàn Online", reservation_homes_path, class: "book-a-table pull-right hidden-xs font-large" %>
 
@@ -70,9 +70,9 @@
                                 <ul id="main-menu" class="nav navbar-nav">
                                     <li class="font-large"><a href="<%= root_path %>">Trang chủ</a></li>
                                     <li class="font-large"><a href="<%= menu_product_homes_path %>">Thực đơn</a></li>
-                                    <li class="font-large"><a href="<%= picture_homes_path %>">Hình ảnh</a></li>
                                     <li class="font-large"><a href="<%= news_homes_path %>">Tin tức</a></li>
                                     <li class="font-large"><a href="<%= service_homes_path %>">Dịch vụ</a></li>
+									<li class="font-large"><a href="<%= picture_homes_path %>">Hình ảnh</a></li>
                                     <li class="font-large"><a href="<%= intro_homes_path %>">Giới thiệu</a></li>
                                     <li class="font-large"><a href="<%= contact_homes_path %>">Liên hệ</a></li>
                                 </ul>

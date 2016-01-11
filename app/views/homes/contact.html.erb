@@ -15,19 +15,7 @@
                 </div>
                 <!-- .tl-breadcrumb -->
 
-                <div class="social-bookmarking-wrapper">
-                    <ul class="social-bookmarking">
-                        <li>
-                            <a class="fb hvr-float-shadow" href="http://facebook.com"></a>
-                        </li>
-                        <li>
-                            <a class="yt hvr-float-shadow" href="http://youtube.com"></a>
-                        </li>
-                        <li>
-                            <a class="gp hvr-float-shadow" href="http://googleplus.com"></a>
-                        </li>
-                    </ul>
-                </div>
+                <%= render "link_page" %>
             </div>
         </div>
         <!-- .row -->
@@ -44,6 +32,13 @@
                   <article>
                     
                       <h3>NHÀ HÀNG CHAY VÌ SỨC KHỎE</h3>
+                      <% if !@contact.errors.empty? %>
+                        <ul>
+                          <% @contact.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                          <% end %>
+                        </ul>
+                      <% end %>
                       <%= form_for @contact, html: {class: "contact-us-form", onsubmit: "return checkForm();"} do |f| %>
                             <ul>
                               <li>
@@ -59,7 +54,7 @@
                                 <%= f.text_area :message, class: "form-control float-label", placeholder: "LỜI NHẮN (Bắt buộc)", required: true %>
                               </li>
                               <li>
-                                <div class="g-recaptcha" data-sitekey="6LfqhRMTAAAAAOIAdd745yJ9VjD6a0GA-5DUf8V5"></div>
+                                <%= recaptcha_tags %>
                               </li>
                               <li>
                                   <%= f.submit "Gửi thông tin", class: "tl-button red submit font-medium" %>

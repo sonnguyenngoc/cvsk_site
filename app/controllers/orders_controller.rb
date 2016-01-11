@@ -45,11 +45,10 @@ class OrdersController < ApplicationController
           format.html { redirect_to @order, notice: 'Order was successfully created.' }
           format.json { render :show, status: :created, location: @order }
         else
-          if verify_recaptcha(model: @order) && @order.save_from_cart(@cart)
+            @order.save_from_cart(@cart)
             #tạo trang cảm ơn
             format.html { redirect_to finish_order_homes_path, notice: '' }
             format.json { render :show, status: :created, location: @order }
-          end
           
           #verify_recaptcha
           #if verify_recaptcha(model: @order) && @order.save_from_cart(@cart)

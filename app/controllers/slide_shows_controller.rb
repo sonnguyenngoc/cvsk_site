@@ -4,7 +4,7 @@ class SlideShowsController < ApplicationController
   # GET /slide_shows
   # GET /slide_shows.json
   def index
-    @slide_shows = SlideShow.all
+    @slide_shows = SlideShow.order("created_at DESC")
   end
 
   # GET /slide_shows/1

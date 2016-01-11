@@ -34,19 +34,25 @@ Tag.create(
 )
 #....
 
+Type.delete_all
+#....
+Type.create(
+  title: 'Giao hàng',
+  description: 'Loại của đơn hàng là Giao hàng.'
+)
+Type.create(
+  title: 'Đặt món',
+  description: 'Loại của đơn hàng là Đặt món.'
+)
+#....
+
 Manufacturer.delete_all
 #....
 Manufacturer.create(
   name: 'Chay vì sức khỏe',
   email: 'info@chayvisuckhoe.com',
-  address: 'TP.HCM',
+  address: '108/25 Trần Quang Diệu, Phường 14, Quận 3, TP. Hồ Chí Minh',
   phone: '0918 214 859'
-)
-Manufacturer.create(
-  name: 'Thiện Nhân',
-  email: 'info@thiennhan.com',
-  address: 'Q.Gò Vấp, TP.HCM',
-  phone: '0123 456 789'
 )
 #....
 
@@ -66,10 +72,14 @@ Category.create(
 
 User.delete_all
 #....
-User.create(:email => "admin@chayvisuckhoe.com", :password => "aA456321@", :password_confirmation => "aA456321@", :user_name => "Administrator", :role_id => 1)
-User.create(:email => "chef@chayvisuckhoe.com", :password => "aA456321@", :password_confirmation => "aA456321@", :user_name => "Chef", :role_id => 2)
+User.create(:email => "admin@chayvisuckhoe.com", :password => "aA456321@", :password_confirmation => "aA456321@", :user_name => "Administrator")
+User.create(:email => "chef@chayvisuckhoe.com", :password => "aA456321@", :password_confirmation => "aA456321@", :user_name => "Chef")
 #....
 
+Role.delete_all
+#....
 ['admin', 'chef'].each do |role|
   Role.find_or_create_by({name: role})
 end
+#....
+

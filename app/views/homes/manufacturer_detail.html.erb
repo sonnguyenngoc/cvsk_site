@@ -17,19 +17,7 @@
                 </div>
                 <!-- .tl-breadcrumb -->
 
-                <div class="social-bookmarking-wrapper">
-                    <ul class="social-bookmarking">
-                        <li>
-                            <a class="fb hvr-float-shadow" href="http://facebook.com"></a>
-                        </li>
-                        <li>
-                            <a class="yt hvr-float-shadow" href="http://youtube.com"></a>
-                        </li>
-                        <li>
-                            <a class="gp hvr-float-shadow" href="http://googleplus.com"></a>
-                        </li>
-                    </ul>
-                </div>
+                <%= render "link_page" %>
             </div>
         </div>
         <!-- .row -->
@@ -53,25 +41,23 @@
                     </article>
                     <div class="tl-carousel-wrapper">
                         <h2 class="title">Món ăn của nhà hàng</h2>
+                        
                         <div class="tl-carousel-inner-wrapper">
-                            
                             <ul class="tl-carousel">
                                 <% @listing_product.each do |item| %>
-                                    <% if item.manufacturer_id == @manufacturers.id %>
-                                        <li>
-                                            <span class="meta font-small"><%= link_to item.name, product_detail_homes_path(:id => item) %></span>
-                                            <div class="image image-slideshow-small">
-                                                <img src="<%= item.image_url if item.image_url? %>" class="tl-frame-light" alt="<%= item.name %>" />
-                                            </div>
-                                            <p class="excerpt"><%= truncate(strip_tags(item.description), length: 100) %></p>
-                                            <%= link_to "Xem tiếp", product_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
-                                        </li>
-                                    <% end %>
+                                    <li >
+                                        <span class="meta"><a href="#"><%= link_to 'Nhà hàng: '+item.manufacturer.name, manufacturer_detail_homes_path(id: item.manufacturer_id) %> </a></span>
+                                        <h3 class="title"><a href="#"><%= link_to item.name, product_detail_homes_path(id: item) %></a></h3>
+                                        <div class="image product-image">
+                                            <img src="<%= item.image_url.product if item.image_url? %>" alt="<%= item.name %>" />
+                                        </div>
+                                        <p class="excerpt"><%= truncate(strip_tags(item.description), length: 115) %></p>
+                                        <%= link_to "Xem tiếp", product_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
+                                    </li>
                                 <% end %>
                             </ul>
                             <div class="c-pagination visible-xs"></div>
-                        </div>
-                        <!-- #tl-corausel-inner-wrapper -->
+                        </div><!-- #tl-corausel-inner-wrapper -->
     
                         <div class="tl-carousel-nav hidden-xs">
                             <span class="c-previous"></span>
@@ -86,7 +72,7 @@
                 <div class="widget widget-menu-highlights">
                     <h3 class="widget-title">LOGO NHÀ HÀNG</h3>
                     <a href="<%= @manufacturers.image_url if @manufacturers.image_url? %>" rel="prettyPhoto">
-                  <img src="<%= @manufacturers.image_url if @manufacturers.image_url? %>" width="250" alt="150">
+                  <img src="<%= @manufacturers.image_url if @manufacturers.image_url? %>" class="border-logo" width="250" alt="150">
                 </a>
                 </div>
                 <!-- .widget-menu-highlights -->
@@ -112,7 +98,7 @@
                     <h3 class="widget-title">HÌNH ẢNH LIÊN QUAN</h3>
                     <% @manufacturers.manufacturer_images.each do |item| %>
                         <div class="hvr-float-shadow line-bottom">
-                            <a href="<%= item.listing_image_url %>" rel="prettyPhoto"><%= image_tag(item.listing_image_url, size: "80x80", alt: "Hình ảnh liên quan", class: "img-rouded padding-bottom") %></a>
+                            <a href="<%= item.listing_image_url %>" rel="prettyPhoto"><%= image_tag(item.listing_image_url, size: "80x80", alt: "Hình ảnh liên quan", class: "img-rouded padding-bottom border-image") %></a>
                         </div>
 					<% end %>
                 </div>
@@ -139,7 +125,7 @@
                                 </div>
                                 <div class="clearfix"></div>
                                 <% end %>
-                                    <% end %>
+                        <% end %>
                     </div>
                 </div>
 
