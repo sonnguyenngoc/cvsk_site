@@ -156,7 +156,7 @@ class HomesController < ApplicationController
         end
     end
     
-    @cart.remove_item(params[:line_item_id]) if params[:do] == "remove"
+    @cart.remove_item(params[:line_item_id]) if params[:do] == "remove_item"
     @cart.remove_manu(params[:manu_id]) if params[:do]  == "remove_manu"
     
     @manufacturers = Manufacturer.all

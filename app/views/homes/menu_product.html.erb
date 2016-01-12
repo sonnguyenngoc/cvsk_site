@@ -76,7 +76,7 @@
                                                                         </div>
                                                     
                                                                         <div class="price-heading">
-                                                                            <h3>Nhà hàng: <%= link_to item.manufacturer.name, manufacturer_detail_homes_path(:id => item) %></h3>
+                                                                            <h3>Nhà hàng: <%= link_to item.manufacturer.name, manufacturer_detail_homes_path(:id => item.manufacturer_id) %></h3>
                                                                             <h4>
                                                                                 <a href="#"><%= link_to item.name, product_detail_homes_path(id: item) %></a>
                                                                                 <span><%= number_with_delimiter item.price.to_i %> đ</span>

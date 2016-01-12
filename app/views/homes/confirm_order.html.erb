@@ -65,12 +65,13 @@
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h4 class="modal-title">Bạn có đồng ý đặt hàng?</h4>
+                                    <h4 class="modal-title">Quý khách có đồng ý đặt hàng?</h4>
                                   </div>
                                   <div class="modal-body">
                                     <div class="container-fluid bd-example-row">
                                       <div class="row">
                                         <p class="text-center">
+                                            <p class="text-info font-medium"><strong>Quý khách vui lòng điền đầy đủ thông tin trước khi xác nhận đặt hàng!</strong></p>
                                             <%= f.submit 'Đồng ý đặt hàng', class: "btn btn-success" %>
                                         </p>
                                       </div>
@@ -98,7 +99,7 @@
                 <% @cart.manufacturers.uniq.each do |f| %>
                     <article>
                         <h3>
-                            <strong><%= link_to f.name, manufacturer_detail_homes_path(:id => f) %></strong>
+                            <strong><%= link_to "Nhà hàng: "+f.name, manufacturer_detail_homes_path(:id => f) %></strong>
                         </h3>
                         <table class="table">
                             <thead>

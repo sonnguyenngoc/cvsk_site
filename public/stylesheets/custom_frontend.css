@@ -76,3 +76,9 @@
 .title-margin {
     margin-bottom: 8px;
 }
+.slogan {
+    font-size: 150%;
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 1%;
+}
