@@ -50,7 +50,7 @@
                               <li><%= f.text_field :customer_phone, placeholder: "Số điện thoại (Bắt buộc)", class: "form-control float-label width50", required: true %></li>
                               <li><%= f.collection_select(:type_id, Type.all, :id, :title, {}, {class: "form-control width50"}) %></li>
                               <li><%= f.text_area :message, rows: "5", cols: "5", placeholder: "Lời nhắn (Bắt buộc)", class: "form-control float-label", required: true %></li>
-                              <!--<li><%= recaptcha_tags %></li>-->
+                              <li><%= recaptcha_tags %></li>
                               <li>
                                   <%= link_to "Xác nhận", "#", class: "tl-button red submit", "data-toggle" => "modal", "data-target" => "#myModal" %>
                                   <%= link_to "Nhập lại", "#", class: "tl-button dark reset-form" %>
