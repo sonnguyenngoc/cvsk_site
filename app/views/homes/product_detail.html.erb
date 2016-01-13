@@ -42,7 +42,7 @@
                                 
                                 <ul class="tl-carousel">
                                     <% @listing_product.each do |item| %>
-                                         <% if @products.manufacturer_id == item.manufacturer_id %>
+                                         <% if item.manufacturer_id == @products.manufacturer_id %>
                                             <li>
                                                 <span class="meta font-small"><%= link_to item.name, product_detail_homes_path(:id => item) %></span>
                                                 <div class="image product-image">

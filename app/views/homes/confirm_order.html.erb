@@ -50,7 +50,7 @@
                               <li><%= f.text_field :customer_phone, placeholder: "Số điện thoại (Bắt buộc)", class: "form-control float-label width50", required: true %></li>
                               <li><%= f.collection_select(:type_id, Type.all, :id, :title, {}, {class: "form-control width50"}) %></li>
                               <li><%= f.text_area :message, rows: "5", cols: "5", placeholder: "Lời nhắn (Bắt buộc)", class: "form-control float-label", required: true %></li>
-                              <!--<li><%= recaptcha_tags %></li>-->
+                              <li><div class="g-recaptcha" data-sitekey="6Lc4NBUTAAAAADq13yxOjCSRg1SRMOobApUNb6Ec"></div></li>
                               <li>
                                   <%= link_to "Xác nhận", "#", class: "tl-button red submit", "data-toggle" => "modal", "data-target" => "#myModal" %>
                                   <%= link_to "Nhập lại", "#", class: "tl-button dark reset-form" %>
@@ -65,12 +65,13 @@
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h4 class="modal-title">Bạn có đồng ý đặt hàng?</h4>
+                                    <h4 class="modal-title">Quý khách có đồng ý đặt hàng?</h4>
                                   </div>
                                   <div class="modal-body">
                                     <div class="container-fluid bd-example-row">
                                       <div class="row">
                                         <p class="text-center">
+                                            <p class="text-info font-medium"><strong>Quý khách vui lòng điền đầy đủ thông tin trước khi xác nhận đặt hàng!</strong></p>
                                             <%= f.submit 'Đồng ý đặt hàng', class: "btn btn-success" %>
                                         </p>
                                       </div>
@@ -98,7 +99,7 @@
                 <% @cart.manufacturers.uniq.each do |f| %>
                     <article>
                         <h3>
-                            <strong><%= link_to f.name, manufacturer_detail_homes_path(:id => f) %></strong>
+                            <strong><%= link_to "Nhà hàng: "+f.name, manufacturer_detail_homes_path(:id => f) %></strong>
                         </h3>
                         <table class="table">
                             <thead>
@@ -131,7 +132,7 @@
                     </article>
                     <hr/>
                 <% end %>
-                <%= link_to "Chọn món khác", menu_product_homes_path, class: "tl-button red pull-left" %>
+                <%= link_to "Quay về giỏ hàng", reservation_homes_path, class: "tl-button red pull-left" %>
             <% end %>
           </aside>
           
@@ -237,3 +238,5 @@
 
 <!-- Newsletter Validation -->
 <%= javascript_include_tag 'order-validation.js' %>
+
+<%= javascript_include_tag 'https://www.google.com/recaptcha/api.js' %>

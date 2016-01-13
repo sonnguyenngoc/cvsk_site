@@ -45,15 +45,17 @@
                         <div class="tl-carousel-inner-wrapper">
                             <ul class="tl-carousel">
                                 <% @listing_product.each do |item| %>
-                                    <li >
-                                        <span class="meta"><a href="#"><%= link_to 'Nhà hàng: '+item.manufacturer.name, manufacturer_detail_homes_path(id: item.manufacturer_id) %> </a></span>
-                                        <h3 class="title"><a href="#"><%= link_to item.name, product_detail_homes_path(id: item) %></a></h3>
-                                        <div class="image product-image">
-                                            <img src="<%= item.image_url.product if item.image_url? %>" alt="<%= item.name %>" />
-                                        </div>
-                                        <p class="excerpt"><%= truncate(strip_tags(item.description), length: 115) %></p>
-                                        <%= link_to "Xem tiếp", product_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
-                                    </li>
+                                    <% if item.manufacturer_id == @manufacturers.id %>
+                                        <li >
+                                            <span class="meta"><a href="#"><%= link_to 'Nhà hàng: '+item.manufacturer.name, manufacturer_detail_homes_path(id: item.manufacturer_id) %> </a></span>
+                                            <h3 class="title"><a href="#"><%= link_to item.name, product_detail_homes_path(id: item) %></a></h3>
+                                            <div class="image product-image">
+                                                <img src="<%= item.image_url.product if item.image_url? %>" alt="<%= item.name %>" />
+                                            </div>
+                                            <p class="excerpt"><%= truncate(strip_tags(item.description), length: 115) %></p>
+                                            <%= link_to "Xem tiếp", product_detail_homes_path(:id => item), class: "read-more-red font-medium" %>
+                                        </li>
+                                    <% end %>
                                 <% end %>
                             </ul>
                             <div class="c-pagination visible-xs"></div>

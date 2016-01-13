@@ -1,3 +1,5 @@
+<%= javascript_include_tag '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit' %>
+<%= javascript_include_tag '/assets/frontend/js/jquery.selectBox.js' %>
 <div class="social-bookmarking-wrapper">
     <ul class="social-bookmarking">
         <li>
@@ -8,6 +10,14 @@
         </li>
         <li>
             <%= link_to "", "https://plus.google.com/b/105583081867906392941/105583081867906392941/posts?gmbpt=true&pageId=105583081867906392941", class: "gp hvr-float-shadow", target: "_blank" %>
+        </li>
+        <li>
+            <div id="google_translate_element" style="float:left; padding-left:15px; margin-top: 8px;"></div>
+            <script type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'vi', includedLanguages: 'en,vi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
+                }
+            </script>
         </li>
     </ul>
 </div>
