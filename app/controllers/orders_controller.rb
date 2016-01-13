@@ -48,14 +48,7 @@ class OrdersController < ApplicationController
             @order.save_from_cart(@cart)
             #tạo trang cảm ơn
             format.html { redirect_to finish_order_homes_path, notice: '' }
-            format.json { render :show, status: :created, location: @order }
-          
-          #verify_recaptcha
-          #if verify_recaptcha(model: @order) && @order.save_from_cart(@cart)
-            #format.html { redirect_to finish_order_homes_path, notice: '' }
-            #format.json { render :show, status: :created, location: @order }
-          #end
-          
+            format.json { render :show, status: :created, location: @order }    
         end
       else
         format.html { render :new }
