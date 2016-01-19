@@ -67,33 +67,7 @@
                             <!-- Book a table -->
 							
 							<%= link_to "Đặt bàn Online", reservation_homes_path, class: "book-a-table pull-right hidden-xs font-large" %>
-							<%= javascript_include_tag '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit' %>
-							<div id="google_translate_element" class="language"></div>
-							<script type="text/javascript">
-								function googleTranslateElementInit() {
-									new google.translate.TranslateElement({pageLanguage: 'vi', includedLanguages: 'en,vi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, multilanguagePage: true}, 'google_translate_element');
-								}
-								
-								var $jt = jQuery.noConflict();
-								$jt('document').ready(function () {
-								
-									$jt('#google_translate_element').on("click", function () {
-								
-								var $frame = $jt('.goog-te-menu-frame:first');
-								$frame.contents().find(".goog-te-menu2-item div")
-											.css({
-												'color': '#544F4B',
-												'font-family': 'tahoma',
-								
-								  }).hover(function(){
-								   $jt(this).css("background","#eeeeee");
-								  },function(){
-								   $jt(this).css("background","");
-								  }); 
-								   });
-								});
-							</script>
-							
+
                             <!-- Navigation itself -->
                             <div class="navbar-right" id="main-navigation">
                                 <ul id="main-menu" class="nav navbar-nav">

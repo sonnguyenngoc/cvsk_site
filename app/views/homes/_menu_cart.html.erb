@@ -38,7 +38,7 @@
                 </tbody>
             </table>
             <div class="pull-right">
-              <strong>Tổng tiền: </strong><p class="label label-primary font-small"><%= number_with_delimiter  @cart.sum_total.to_i %> đ</p>
+              <strong>Tổng tiền: </strong><p class="label label-primary font-small"><%= number_with_delimiter  @cart.total_by_manufacturer(f.id).to_i %> đ</p>
             </div>
         </article>
         <hr/>

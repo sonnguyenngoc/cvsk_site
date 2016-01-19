@@ -30,6 +30,7 @@
               <div class="page-content devider">
 
                   <article class="post">
+                
                     <%= form_for @order, html: {class: "reservation-form", onsubmit: "return checkForm();"} do |f| %>
                           <ul>
                               <li><%= f.number_field :many_people, min: 1 ,placeholder: "Số người đặt (Bắt buộc)", class: "form-control float-label width50", required: true %></li>

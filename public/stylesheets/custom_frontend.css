@@ -77,8 +77,38 @@
     margin-bottom: 8px;
 }
 .slogan {
-    font-size: 150%;
+    font-family: "Georgia";
+    font-size: 2em;
+    resize: both;
     position: absolute;
-    margin-left: 30%;
+    margin-left: 25%;
+    margin-top: 2%;
+}
+#google_translate_element {
+    position: absolute;
+    margin-left: 70%;
     margin-top: 1%;
+}
+
+@media screen and (max-width: 480px) {
+    .slogan {
+        font-family: "Georgia";
+        font-size: 1em;
+        margin-left: 25%;
+        margin-top: 1%;
+        position: absolute;
+        resize: both;
+        width: 47%;
+    }
+    #google_translate_element {
+        margin-left: 25%;
+        margin-top: -7%;
+    }
+    .goog-te-gadget-simple {
+        font-size: 7pt;
+    }
+    .book-a-table {
+        right: 65px;
+        height: 32px;
+    }
 }
