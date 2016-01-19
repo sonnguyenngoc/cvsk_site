@@ -19,4 +19,12 @@ class Cart < ActiveRecord::Base
     return amount
   end
   
+  def total_by_manufacturer(m_id)
+    amount = 0.0
+    line_items.includes(:product).where(products: {manufacturer_id: m_id}).each do |od|
+      amount += od.total
+    end
+    return amount
+  end
+  
 end
